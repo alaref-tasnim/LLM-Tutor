@@ -1,0 +1,566 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 2 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 7
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 1.5.2025, 23:00 Uhr
+25.4.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 7 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Arbeiten Sie für dieses Blatt am Code aus dem Package de.hso.aud.ex07, Klasse SearchTree.
+Aufgabe 1 (8 Punkte)
+Implementieren Sie die Methoden postorder und preorder in SearchTree. Diese Methoden
+sollen eine Liste der Schlüssel-Werte-Paare in postorder bzw. preorder Reihenfolge zurücklie-
+fern.
+Stellen Sie sicher, dass alle Tests laufen.
+Aufgabe 2 (10 Punkte)
+Implementieren Sie in der Klasse SearchTree die Methode minimum, die den kleinsten im Baum
+gespeicherten Schlüssel liefern soll. Für einen leeren Baum soll null geliefert werden. Die Metho-
+de soll dabei in O(h) laufen, wobei h die Höhe des Baums ist. Es ist also nicht erlaubt, einfach
+inorder aufzurufen und daraus den Schlüssel aus dem ersten Element zu extrahieren.
+Stellen Sie sicher, dass alle Tests laufen.
+2
+Übungsblatt 7 Algorithmen & Datenstrukturen
+Aufgabe 3 (14 Punkte)
+Implementieren Sie die Löschoperation auf Suchbäumen. Sie sollten dazu die folgenden beiden
+Hilfsmethoden vervollständigen, beachten Sie auch die Hinweise im Code.
+private static Pair<K, V> removeMin(SearchTreeNode<K, V> node)
+private static SearchTreeNode<K, V> remove(SearchTreeNode<K, V> node, K key)
+Stellen Sie sicher, dass alle Tests laufen.
+Gesamtpunkte: 32
+Abgabe
+Via Upload im Praktomat bis 1.5.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur Ab-
+gabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex07;
+
+import java.util.List;
+
+import java.util.ArrayList;
+
+public class SearchTree<K extends Comparable<K>, V> {
+
+    private SearchTreeNode<K, V> root;
+
+    public SearchTree() {
+        this(null);
+    }
+
+    public SearchTree(SearchTreeNode<K, V> root) {
+        this.root = root;
+    }
+
+    // For testing only!
+    public SearchTreeNode<K, V> getRoot() {
+        return this.root;
+    }
+
+    public void insert(K key, V value) {
+        this.root = SearchTree.insert(this.root, key, value);
+    }
+
+    private static <K extends Comparable<K>, V> SearchTreeNode<K, V> insert(SearchTreeNode<K, V> node, K key, V value) {
+        if (node == null) {
+            return new SearchTreeNode<K, V>(key, value);
+        } else {
+            int i = key.compareTo(node.getKey());
+            // key < node.getKey() --> i < 0
+            // key > node.getKey() --> i > 0
+            // key.equals(node.getKey()) --> i == 0
+            if (i < 0) {
+                // key < node.getKey()
+                SearchTreeNode<K, V> newLeft = insert(node.getLeft(), key, value);
+                node.setLeft(newLeft);
+                return node;
+            } else if (i > 0) {
+                // key > node.getKey()
+                SearchTreeNode<K, V> newRight = insert(node.getRight(), key, value);
+                node.setRight(newRight);
+                return node;
+            } else {
+                // key.equals(node.getKey())
+                node.setValue(value);
+                return node;
+            }
+        }
+    }
+
+    public V lookup(K key) {
+        return SearchTree.lookup(this.root, key);
+    }
+
+    private static <K extends Comparable<K>, V> V lookup(SearchTreeNode<K, V> node, K key) {
+        if (node == null) {
+            return null;
+        } else {
+            int i = key.compareTo(node.getKey());
+            // key < node.getKey() --> i < 0
+            // key > node.getKey() --> i > 0
+            // key.equals(node.getKey()) --> i == 0
+            if (i < 0) {
+                // key < node.getKey()
+                return lookup(node.getLeft(), key);
+            } else if (i > 0) {
+                // key > node.getKey()
+                return lookup(node.getRight(), key);
+            } else {
+                // key.equals(node.getKey())
+                return node.getValue();
+            }
+        }
+    }
+
+    public void remove(K key) {
+        this.root = SearchTree.remove(this.root, key);
+    }
+
+    public Pair<K, V> removeMin() {
+        if (this.root == null) {
+            return null;
+        } else if (this.root.getLeft() == null) {
+            SearchTreeNode<K, V> l = this.root;
+            this.root = this.root.getRight();
+            return new Pair<K, V>(l.getKey(), l.getValue());
+        }
+
+        return SearchTree.removeMin(this.root);
+    }
+
+    /**
+     * Entfernt den Knoten mit dem kleinsten Schlüssel aus dem Baum mit Wurzel node.
+     * Der Rückgabewert ist das Paar (k, v) wobei k der kleinste Schlüssel und v der
+     * damit assoziierte Wert ist. Beachte: bei einem Aufruf removeMin(node) sind
+     * node und node.left nie null.
+     */
+    private static <K, V> Pair<K, V> removeMin(SearchTreeNode<K, V> node) {
+        // @formatter:off
+        //
+        // Unterscheide folgende beiden Situationen:
+        //
+        //
+        // (a)
+        //             node
+        //            /    \
+        //         left     ?
+        //          / \
+        //       null right
+        //
+        //    Ersetze jetzt left durch right und gib Schlüssel/Wert auf left zurück.
+        //    right kann dabei null sein oder auch nicht.
+        // @formatter:on
+
+        // @formatter:off
+        // (b) (left2 != null)
+        //             node
+        //           /     \
+        //         left     ?
+        //          / \
+        //      left2  ?
+        //
+        //    Mache dann rekursiv mit left weiter
+        //
+        // @formatter:on
+
+        return null; // FIXME
+    }
+
+    /**
+     * Entfernt aus dem (Teil-)baum mit Wurzel node den Knoten mit Schlüssel key.
+     * Der Rückgabewert ist die neue Wurzel des (Teil-)baums. Dieser Rückgabewert
+     * kann verschieden von node sein, z.B. wenn in node der zu entfernende key steht.
+     */
+    private static <K extends Comparable<K>, V> SearchTreeNode<K, V> remove(SearchTreeNode<K, V> node, K key) {
+        if (node == null) {
+            return null;
+        }
+        int i = key.compareTo(node.getKey());
+
+        // Falls node nicht der zu entfernende Knoten ist, müssen Sie diesen erst
+        // finden.
+
+        // @formatter:off
+        // Falls node der zu entfernde Knoten ist, sollten Sie folgende Situationen
+        //   unterscheiden:
+        //
+        //
+        // (a)
+        //             node
+        //             /   \
+        //           null  null
+        // @formatter:on
+
+        // @formatter:off
+        // (b) (left != null)
+        //             node
+        //             /   \
+        //           left  null
+        // @formatter:on
+
+        // @formatter:off
+        // (c) (right != null)
+        //             node
+        //             /   \
+        //           null  right
+        // @formatter:on
+
+        // @formatter:off
+        // (d) (left != null && right != null)
+        //             node
+        //             /   \
+        //           left  right
+        //                 /   \
+        //               null   ?
+        // @formatter:on
+
+        // @formatter:off
+        // (e) (left != null && right != null && left2 != null)
+        //             node
+        //             /   \
+        //           left  right
+        //                 /   \
+        //              left2   ?
+        //
+        //    In diesem Fall können Sie removeMin benutzen.
+        // @formatter:on
+        return null; // FIXME
+    }
+
+    public List<Pair<K, V>> inorder() {
+        List<Pair<K, V>> list = new ArrayList<Pair<K, V>>();
+        SearchTree.inorder(this.root, list);
+        return list;
+    }
+
+    private static <K, V> void inorder(SearchTreeNode<K, V> node, List<Pair<K, V>> list) {
+        if (node != null) {
+            inorder(node.getLeft(), list);
+            Pair<K, V> p = new Pair<K, V>(node.getKey(), node.getValue());
+            list.add(p);
+            inorder(node.getRight(), list);
+        }
+    }
+
+    public List<Pair<K, V>> preorder() {
+        List<Pair<K, V>> list = new ArrayList<Pair<K, V>>();
+        SearchTree.preorder(this.root, list);
+        return list;
+    }
+
+    private static <K, V> void preorder(SearchTreeNode<K, V> node, List<Pair<K, V>> list) {
+        if (node != null) {
+            Pair<K, V> p = new Pair<K, V>(node.getKey(), node.getValue());
+            list.add(p);
+            preorder(node.getLeft(), list);
+            preorder(node.getRight(), list);
+        }
+    }
+
+    public List<Pair<K, V>> postorder() {
+        List<Pair<K, V>> list = new ArrayList<Pair<K, V>>();
+        SearchTree.postorder(this.root, list);
+        return list;
+    }
+
+    private static <K, V> void postorder(SearchTreeNode<K, V> node, List<Pair<K, V>> list) {
+        if (node != null) {
+            postorder(node.getLeft(), list);
+            postorder(node.getRight(), list);
+            Pair<K, V> p = new Pair<K, V>(node.getKey(), node.getValue());
+            list.add(p);
+        }
+    }
+
+
+    private static <K, V> K minimum(SearchTreeNode<K, V> node) {
+    if (node == null) {
+        return null;
+    }
+
+    SearchTreeNode<K, V> current = node;
+    SearchTreeNode<K, V> next = null;
+
+    boolean done = false;
+
+    for (int guard = 0; guard < 1000 && !done; guard++) {
+        next = current.getLeft();
+
+        if (next == null) {
+            done = true;        
+        } else {
+            current = next;    
+        }
+    }
+
+        return current.getKey();
+    }
+
+    public K minimum() {
+        return minimum(this.root);
+    }
+
+
+    public void rotateLeft() {
+        SearchTreeNode<K, V> a = this.root;
+        if (a == null) {
+            return;
+        }
+        SearchTreeNode<K, V> b = a.getRight();
+        if (b == null) {
+            return;
+        }
+        SearchTreeNode<K, V> beta = b.getLeft();
+        a.setRight(beta);
+        b.setLeft(a);
+        this.root = b;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchTree( " + this.root + ")";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof SearchTree) {
+            SearchTree that = (SearchTree) other;
+            return java.util.Objects.equals(root, that.root);
+        } else {
+            return false;
+        }
+    }
+}
+
+
+        
+================================== Ai Message ==================================
+
+Extrahierter Aufgabentext:
+Aufgabe 2 (10 Punkte)
+Implementieren Sie in der Klasse SearchTree die Methode minimum, die den kleinsten im Baum
+gespeicherten Schlüssel liefern soll. Für einen leeren Baum soll null geliefert werden. Die Metho-
+de soll dabei in O(h) laufen, wobei h die Höhe des Baums ist. Es ist also nicht erlaubt, einfach
+inorder aufzurufen und daraus den Schlüssel aus dem ersten Element zu extrahieren.
+Stellen Sie sicher, dass alle Tests laufen.
+
+---
+
+Gegebene Lösung (unverändert):
+
+```java
+private static <K, V> K minimum(SearchTreeNode<K, V> node) {
+    if (node == null) {
+        return null;
+    }
+
+    SearchTreeNode<K, V> current = node;
+    SearchTreeNode<K, V> next = null;
+
+    boolean done = false;
+
+    for (int guard = 0; guard < 1000 && !done; guard++) {
+        next = current.getLeft();
+
+        if (next == null) {
+            done = true;        
+        } else {
+            current = next;    
+        }
+    }
+
+    return current.getKey();
+}
+
+public K minimum() {
+    return minimum(this.root);
+}
+```
+================================== Ai Message ==================================
+
+**Bewertung der gegebenen Lösung**
+
+Es sind zwei Methoden zu betrachten:
+1. `private static <K, V> K minimum(SearchTreeNode<K, V> node)`
+2. `public K minimum()`
+
+---
+
+## 1. Methode: `private static <K, V> K minimum(SearchTreeNode<K, V> node)`
+
+**Fehleraufzählung:**
+
+- **In Zeile 1:** Der Methode fehlt ein Hinweis auf ihren Gültigkeitsbereich im Kontext (wird aber über die Klasse aufgerufen, vermutlich korrekt).
+  
+- **In Zeile 2:** Die Rückgabe von `null` ist korrekt für den Fall, dass der Baum leer ist (erfüllt die Aufgabenstellung).
+
+- **In Zeile 7:** Verwendung von zwei Variablen, `current` und `next`, ist nicht zwingend ein Fehler, aber redundant – daraus ergibt sich kein funktionaler Fehler, jedoch ist dies unnötig komplex.
+
+- **In Zeile 10-18:** Hier wird ein for-Loop mit einer Guard-Variable (max. 1000 Iterationen) verwendet, um die eventuell unendliche Schleife abzufangen.
+    - Dies stellt einen potentiellen Fehler dar: In korrekt programmierten Suchbäumen darf es keine Zyklen geben, daher ist diese Guard-Absicherung überflüssig.
+    - Noch wichtiger: Falls der Baum tatsächlich tiefer als 1000 Knoten ist (was extrem selten, aber formal möglich ist), gibt die Schleife nach 1000 Iterationen auf, obwohl das Minimum evtl. noch nicht erreicht wurde. Dies ist ein funktionaler Fehler in Zeile 10.
+   
+- **In Zeile 12:** Zugriff auf `getLeft()` zur Suche nach dem Minimum ist korrekt für einen binären Suchbaum.
+  
+- **In Zeile 19:** Rückgabe von `current.getKey()` ist korrekt, unter der Annahme, dass `current` auf dem Minimum-Knoten steht.
+
+**Richtigkeit der Lösung:**  
+**Nicht korrekt.** Die Lösung funktioniert nur für Suchbäume mit weniger als 1000 Ebenen. Die Implementierung mit einer festen Zahl als Abbruchbedingung ist fehlerhaft und nicht objektorientiert. Für sehr tiefe oder fehlerhafte Bäume funktioniert sie nicht korrekt.
+
+**Geforderter Algorithmus:**  
+- **Explizite Aufgabenanforderung:** Die Methode soll in **O(h)** laufen, indem sie nach ganz links im Suchbaum läuft (wiederholter Zugriff auf den linken Kindknoten).
+- **Tatsächlich implementierter Algorithmus:** Tatsächlich wird eine Iteration zum linken Knoten in einer for‑Schleife gemacht, aber mit fester maximaler Tiefe, was nicht dem Standardalgorithmus für die Minimumsuche entspricht (üblicherweise while‑Schleife ohne künstliches Ende).
+
+**Abweichung:**
+- Erkennbar ist nicht die eigentlich erwartete (und zu implementierende) **Endlosschleife mit Abbruch bei null** umgesetzt, sondern eine for-Schleife mit willkürlichem Guard (bei 1000 Durchläufen). Dies ist **kein sauberer O(h)-Algorithmus**, weil das Laufzeitverhalten formal „abgeschnitten“ sein kann.
+
+**Fazit:**  
+Die Methode ist NICHT korrekt gemäß Aufgabenstellung, weil sie das Minimum im schlimmsten Fall nicht liefert.
+
+---
+
+## 2. Methode: `public K minimum()`
+
+**Fehleraufzählung:**
+
+- **In Zeile 22:** Korrekte Weiterleitung an die statische Hilfsmethode unter Angabe von `this.root`. Hier sind keine Fehler zu erkennen.
+
+**Richtigkeit der Lösung:**  
+**Korrekt.** Die Methode leitet sauber an die eigentliche Mindestwert‑Methode weiter.
+
+---
+
+## Zusammenfassung
+
+### Fehler in Funktion 1 (`private static <K, V> K minimum(SearchTreeNode<K, V> node)`):
+
+- In Zeile 10: Feste Limitierung auf 1000 Durchläufe kann dazu führen, dass das tatsächliche Minimum bei sehr tiefen Bäumen nicht gefunden wird. Dies verletzt die Aufgabenstellung.
+- In Zeile 10: Der Einsatz der for‑Schleife mit Guard widerspricht dem Standard-Algorithmus für diese Aufgabe. Erwartet war eine einfache Endlosschleife (z. B. while‑Konstrukt), die solange zur linken Seite geht, bis kein linker Knoten mehr existiert.
+- Es wurde kein von der Aufgabenstellung abweichender Algorithmus („Inorder Traversierung“ o. ä.) verwendet, jedoch erfolgt die Umsetzung per for‑Schleife statt per while‑Schleife, was der Aufgabenanforderung widerspricht.
+
+### Fehler in Funktion 2 (`public K minimum()`):
+
+- Kein Fehler; die Weiterleitung ist formal korrekt.
+
+---
+
+**Ergebnis:**  
+Die Lösung entspricht nicht der Aufgabenstellung, da:
+- In Funktion 1 das Terminieren der Suche nach fester Begrenzung fehlerhaft ist und nicht dem geforderten Algorithmus entspricht.
+- Sonst werden die weiteren Anforderungen (keine Inorder, Rückgabe von null bei Leerbaum) eingehalten.
+================================== Ai Message ==================================
+
+Musterlösung:
+```java
+private static <K, V> K minimum(SearchTreeNode<K, V> node) {
+    if (node == null) {
+        return null;
+    }
+    SearchTreeNode<K, V> left = node.getLeft();
+    if (left == null) {
+        return node.getKey();
+    } else {
+        return minimum(left);
+    }
+}
+```
+
+Studentenlösung:
+```java
+private static <K, V> K minimum(SearchTreeNode<K, V> node) {
+    if (node == null) {
+        return null;
+    }
+
+    SearchTreeNode<K, V> current = node;
+    SearchTreeNode<K, V> next = null;
+
+    boolean done = false;
+
+    for (int guard = 0; guard < 1000 && !done; guard++) {
+        next = current.getLeft();
+
+        if (next == null) {
+            done = true;        
+        } else {
+            current = next;    
+        }
+    }
+
+    return current.getKey();
+}
+```
+
+**Unterschiede:**
+- Die Musterlösung verwendet eine rekursive Implementierung, die immer nach links geht, bis kein weiteres linkes Kind mehr existiert.
+- Die Studentenlösung realisiert die gleiche Suche, aber mit einer eigenen Schleife und einer künstlichen „guard“-Variable, um endlose Schleifen zu vermeiden. Sie läuft iterativ und bricht ab, wenn das linke Kind null ist.
+
+**Beurteilung:**
+Beide Lösungen erfüllen korrekt die Laufzeitvorgabe O(h) und liefern wie gefordert den minimalen Schlüssel.
+
+Die rekursive Variante der Musterlösung ist jedoch kürzer, klarer und eleganter, da sie keine Hilfsvariablen wie einen „guard“-Zähler oder die boole’sche Variable „done“ benötigt. Außerdem ist sie einfacher zu lesen und entspricht direkt der Baumstruktur.
+
+**Feedback:**  
+Die Musterlösung ist einfacher und sinnvoller, weil sie ohne Hilfsvariablen auskommt und den Algorithmus klarer und direkter ausdrückt. Die iterative Studentenlösung funktioniert technisch ebenso, ist aber unnötig kompliziert.
+================================== Ai Message ==================================
+
+1. Gesamtbewertung  
+Die Lösung ist korrekt; beide Methoden liefern das geforderte Minimum und erfüllen die Laufzeitvorgabe O(h), wie von den Agenten festgestellt.
+
+4. Hinweis auf unnötige Komplexität (nur bei korrekter Lösung)  
+Die iterative Umsetzung in der Studentenlösung ist funktional korrekt, jedoch unnötig komplex im Vergleich zur rekursiven Musterlösung, die mit weniger Hilfsvariablen und direkter Struktur klarer und eleganter umgesetzt ist.

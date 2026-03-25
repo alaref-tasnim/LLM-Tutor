@@ -1,0 +1,399 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 2 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 10
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 6.6.2025, 23:00 Uhr
+12.6.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Aufgabe 1 ((4+6) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_01 (siehe Templa-
+te).
+Implementieren Sie in der Klasse HashFunction die Berechnung eines Hashwerts gegeben eine
+ganze Zahl.
+(a) Divisions-Rest-Methode mit m=97.
+(b) Multiplikative-Methode mit einem von Ihnen gewählten A ∈ (0, 1) und m=16.
+Stellen Sie sicher, dass alle Tests laufen.
+2
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Templa-
+te).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag
+zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen
+Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus
+einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle
+berechnet.
+Gesamtpunkte: 36
+Abgabe
+Via Upload im Praktomat bis 6.6.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur Ab-
+gabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+      @Override
+    public void insert(K key, V value) {
+        if (value == null) {
+            throw new NullPointerException("value must not be null");
+        }
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[h];
+        if (l == null) {
+            l = new ArrayList<>();
+            HashEntry<K, V> entry = new HashEntry<>(key, value);
+            l.add(entry);
+            
+        } else {
+            for (HashEntry<K,V> e : l) {
+                if (e.getKey() == key) {
+                    e.setValue(value);
+                    
+                }
+            }
+            HashEntry<K, V> entry = new HashEntry<>(key, value);
+            l.add(0, entry);
+        }
+    }
+
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[h];
+        
+         
+        for (HashEntry<K,V> entry : l) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+            }
+        }
+        return null;
+    }
+    
+
+    @Override
+    public void remove(K key) {
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[3];
+        if (l != null) {
+            for (HashEntry<K,V> e : l) {
+                if (e.getKey().equals(key)) {
+                    l.remove(e);
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        for (ArrayList<HashEntry<K,V>> l : this.array) {
+            if (l != null) {
+                return l.size();
+            }
+        }
+
+    }
+
+
+
+
+}
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabentext:
+Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Template).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle berechnet.
+
+Gegebene Lösung:
+package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+      @Override
+    public void insert(K key, V value) {
+        if (value == null) {
+            throw new NullPointerException("value must not be null");
+        }
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[h];
+        if (l == null) {
+            l = new ArrayList<>();
+            HashEntry<K, V> entry = new HashEntry<>(key, value);
+            l.add(entry);
+            
+        } else {
+            for (HashEntry<K,V> e : l) {
+                if (e.getKey() == key) {
+                    e.setValue(value);
+                    
+                }
+            }
+            HashEntry<K, V> entry = new HashEntry<>(key, value);
+            l.add(0, entry);
+        }
+    }
+
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[h];
+        
+         
+        for (HashEntry<K,V> entry : l) {
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+            }
+        }
+        return null;
+    }
+    
+
+    @Override
+    public void remove(K key) {
+        int h = hashValue(key);
+        ArrayList<HashEntry<K,V>> l = this.array[3];
+        if (l != null) {
+            for (HashEntry<K,V> e : l) {
+                if (e.getKey().equals(key)) {
+                    l.remove(e);
+
+                }
+            }
+        }
+    }
+
+    @Override
+    public int size() {
+        for (ArrayList<HashEntry<K,V>> l : this.array) {
+            if (l != null) {
+                return l.size();
+            }
+        }
+
+    }
+
+
+
+
+}
+================================== Ai Message ==================================
+
+Nachfolgend erfolgt eine Bewertung der Lösung gemäß den Vorgaben, getrennt für jede geforderte Methode. Die Zeilennummerierung beginnt bei der Zeile mit „package…“ (Zeile 1).
+
+---
+
+### 1. Funktion: insert (Zeilen 13-36)
+
+#### Vorhandene Fehler:
+- **Zeile 19/20:** Initialisierte Liste `l` wird nicht im Array gespeichert. Es fehlt die Zuweisung `this.array[h] = l;`, wodurch die neu erstellte Liste niemals in das Array eingetragen wird.
+- **Zeile 26:** Es wird mit `==` verglichen (`e.getKey() == key`). Für Objekte (inklusive generischer Typen wie K) muss stattdessen `.equals()` verwendet werden, da `==` nur prüft, ob es sich um dasselbe Objekt handelt, nicht ob sie inhaltlich gleich sind.
+- **Zeile 31:** Nach Setzen des neuen Werts wird dennoch ein neuer Eintrag mit demselben Schlüssel eingefügt, was zu doppelten Schlüsseln führen kann.
+- **Algorithmus:** Es wird nicht geprüft, ob der Schlüssel bereits vorhanden ist, BEVOR ein neuer Eintrag hinzugefügt wird. Der Eintrag wird immer hinzugefügt, selbst wenn der Schlüssel schon existiert. Laut Aufgabenstellung soll ein vorhandener Wert nur geändert, nicht ein neuer Eintrag erzeugt werden.
+- **Geforderter Algorithmus / Abweichung:** Es ist Hashing mit Chaining gefordert. Die grundlegende Idee (String-zu-Hash, dann Zugriff auf die Liste im Array) ist zwar verwendet, aber der Einfüge- und Ersetz-Mechanismus ist fehlerhaft: 
+  - **Gefordert war:** Ketten (Listen) nur um neuen Schlüssel zu ergänzen, wenn er nicht existiert; ansonsten Aktualisierung.
+  - **Implementiert wurde:** Ketten werden nicht richtig ins Array gespeichert und bei Überschreibung kommt es zu doppelten Schlüsseln durch immer neues Hinzufügen.
+  
+#### Fazit:
+Die Methode ist fehlerhaft (siehe oben) und entspricht nicht vollständig dem geforderten Algorithmus.
+
+---
+
+### 2. Funktion: lookup (Zeilen 43-52)
+
+#### Vorhandene Fehler:
+- **Zeile 45:** Es wird nicht geprüft, ob `l` null ist, bevor in der for-each-Schleife darauf zugegriffen wird. Falls noch nie ein Element in diese Liste eingefügt wurde, ist sie `null`, was zu einer NullPointerException führt.
+- **Algorithmische Korrektheit:** Bis auf die fehlende Null-Prüfung sucht die Methode korrekt mit `.equals()` nach einem Schlüssel in der Liste an der gehashten Position.
+- **Geforderter Algorithmus / Abweichung:** Hashing mit Chaining ist hier grundsätzlich (vom Grundprinzip) korrekt angewandt.
+
+#### Fazit:
+Die Methode ist fast korrekt, hat aber einen potentiellen Laufzeitfehler durch die fehlende Null-Prüfung.
+
+---
+
+### 3. Funktion: remove (Zeilen 55-64)
+
+#### Vorhandene Fehler:
+- **Zeile 57:** Falscher Hashwert! Es wird immer `this.array[3]` verwendet, anstatt `this.array[h]`. Das bedeutet, dass für JEDEN Schlüssel nur versucht wird, in der Liste am Index 3 zu löschen, unabhängig vom eigentlichen Schlüssel.
+- **Zeile 59/61:** Es wird während der Iteration über die Liste ein Element daraus entfernt (`l.remove(e);`). Dies kann zu ConcurrentModificationException führen, da es keinen Iterator gibt und in einer for-each-Schleife entfernt wird.
+- **Algorithmische Korrektheit:** Selbst wenn die Zeile mit dem festen Index 3 korrekt wäre, würden durch das direkte Entfernen Fehler auftreten.
+- **Geforderter Algorithmus / Abweichung:** Hashing mit Chaining ist grundsätzlich beabsichtigt, aber durch fehlerhafte Array-Indexierung und Listenzugriffe (siehe oben) nicht korrekt umgesetzt.
+
+#### Fazit:
+Die Methode ist fehlerhaft und entspricht auch nicht dem geforderten Algorithmus (korrektes Hashen, Suche und Entfernen in der richtigen Kette).
+
+---
+
+### 4. Funktion: size (Zeilen 67-72)
+
+#### Vorhandene Fehler:
+- **Fehlerhafter Algorithmus:** Die Methode gibt bereits bei der ersten nicht-leeren Liste die Größe dieser Einzelkette zurück (Zeile 69), anstatt die Größe aller Listen (also insgesamt aller HashTable-Einträge) zu liefern.
+- **Fehlender Rückgabewert am Ende:** Es fehlt ein return-Statement, falls alle Listen `null` sind (leere Tabelle). Der Compiler erkennt dies als Fehler, da nicht alle Pfade einen int zurückgeben.
+- **Geforderter Algorithmus / Abweichung:** Es sollte eine Schleife über alle Ketten laufen, um die Summe aller Einträge zu ermitteln. Hier wird nur die erste belegte Kette betrachtet.
+
+#### Fazit:
+Die Methode ist funktional und logisch inkorrekt, berechnet nicht die Gesamtgröße der Hashtabelle und entspricht nicht dem geforderten Algorithmus.
+
+---
+
+## Zusammenfassung
+
+Die umzusetzenden Anforderungen sind in allen Methoden teilweise oder ganz fehlerhaft umgesetzt.  
+- Es gibt falsche Array-Zugriffe, fehlerhafte Vergleiche, fehlende oder unvollständige Kettenverwaltung und kein robustes behavior bei leeren Ketten.
+- Keiner der geforderten Algorithmen (Hashing mit Chaining und korrekte Listenverwaltung) ist vollständig und korrekt in der jeweiligen Methode umgesetzt.
+================================== Ai Message ==================================
+
+Unterschiede:
+
+**insert**
+- Musterlösung: Weist beim Erstellen einer neuen Liste explizit this.array[h] = l; zu. Wenn der Key bereits existiert, wird nur dessen Wert geändert und sofort return benutzt.
+- Studentenlösung: Weist der Arrayposition keine Liste zu (vergisst this.array[h] = l;), überschreibt nie return, kann so mehrfach denselben Key einfügen, prüft Key-Vergleich mit == statt .equals().
+
+**lookup**
+- Musterlösung: Prüft zunächst auf null, durchläuft dann mit .equals() die Liste.
+- Studentenlösung: Prüft nicht, ob l==null (würde zu NullPointerException führen), benutzt korrekt .equals() beim Vergleich.
+
+**remove**
+- Musterlösung: Nutzt korrekten Hashindex (this.array[h]); iteriert mit .equals(), entfernt nur das erste passende Element und kehrt dann zurück.
+- Studentenlösung: Nutzt statisch this.array[3] (statt this.array[h]), durchsucht also immer nur Index 3, vergleicht korrekt mit .equals(), kehrt aber nicht nach dem Entfernen zurück.
+
+**size**
+- Musterlösung: Zählt alle Listenelemente im Array auf und gibt die Gesamtzahl zurück.
+- Studentenlösung: Gibt nur die Größe der ersten nicht-leeren Liste zurück (return in der Schleife), bricht also zu früh ab.
+
+**Feedback:**
+Die Musterlösung ist deutlich robuster und nutzt übliche Java-Praktiken. Die Studentenlösung zeigt grundlegende Schwächen bei Listeninitialisierung, Arrayzugriff und Terminierung von Rückgaben; außerdem werden Schlüssel teils nicht korrekt verglichen (== statt .equals()). Das führt zu fehlerhaftem Verhalten in fast allen Methoden und ist damit weniger sinnvoll und schlicht fehlerhaft im Alltagsgebrauch.
+================================== Ai Message ==================================
+
+1. Gesamtbewertung  
+Die Bewertung der Agenten ergibt, dass die Lösung insgesamt inkorrekt ist.
+
+2. Fehlerauflistung
+
+**insert (Zeilen 13-36):**
+- Zeile 19/20: Die beim Erstellen einer neuen Liste initialisierte Liste `l` wird nicht mit `this.array[h] = l;` im Array gespeichert.
+- Zeile 26: Schlüsselvergleich erfolgt mit `==` statt mit `.equals()`, was bei Objekten zu fehlerhaftem Verhalten führt.
+- Zeile 31: Nach dem Setzen eines neuen Werts wird ein weiterer Eintrag mit demselben Schlüssel hinzugefügt, was zu doppelten Schlüsseln führen kann.
+- Algorithmisch: Es wird nicht ausreichend geprüft, ob der Schlüssel bereits existiert, bevor ein neuer Eintrag eingefügt wird; vorhandene Werte werden nicht korrekt aktualisiert.
+
+**lookup (Zeilen 43-52):**
+- Zeile 45: Sucht ohne Überprüfung, ob die Liste `l` null ist, was bei fehlender Initialisierung eine NullPointerException verursachen kann.
+
+**remove (Zeilen 55-64):**
+- Zeile 57: Es wird immer auf `this.array[3]` zugegriffen anstatt auf `this.array[h]`, sodass das Entfernen von Elementen nahezu immer scheitert.
+- Zeile 59/61: Während der Iteration über die Liste wird direkt ein Element entfernt (`l.remove(e)` in einer for-each-Schleife), wodurch eine ConcurrentModificationException auftreten kann.
+
+**size (Zeilen 67-72):**
+- Die Methode gibt bereits bei der ersten nicht-leeren Liste deren Größe zurück (return in der Schleife), statt die Gesamtzahl aller Elemente über alle Ketten hinweg zu zählen.
+- Am Ende der Methode fehlt ein Rückgabewert, falls alle Listen null sind (leere Tabelle).
+
+3. Explizit geforderte Algorithmen  
+Sämtliche Methoden setzen das in der Aufgabenstellung explizit geforderte Hashing mit Chaining sowie die dafür notwendige korrekte Listen- und Schlüsselverwaltung entweder gar nicht oder nur unvollständig beziehungsweise fehlerhaft um.
+
+4. Hinweis auf unnötige Komplexität  
+Nicht zutreffend, da die Lösung als inkorrekt beurteilt wurde.

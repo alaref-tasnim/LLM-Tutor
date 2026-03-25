@@ -1,0 +1,267 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 2 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 10
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 6.6.2025, 23:00 Uhr
+12.6.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Aufgabe 1 ((4+6) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_01 (siehe Templa-
+te).
+Implementieren Sie in der Klasse HashFunction die Berechnung eines Hashwerts gegeben eine
+ganze Zahl.
+(a) Divisions-Rest-Methode mit m=97.
+(b) Multiplikative-Methode mit einem von Ihnen gewählten A ∈ (0, 1) und m=16.
+Stellen Sie sicher, dass alle Tests laufen.
+2
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Templa-
+te).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag
+zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen
+Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus
+einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle
+berechnet.
+Gesamtpunkte: 36
+Abgabe
+Via Upload im Praktomat bis 6.6.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur Ab-
+gabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+    @Override
+    public void insert(K key, V value) {
+        // FIXME: Praktikum
+    }
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        return null; // FIXME: Praktikum
+    }
+
+    @Override
+    public void remove(K key) {
+        // FIXME: Praktikum
+    }
+
+    @Override
+    public int size() {
+        return 0; // FIXME: Praktikum
+    }
+}
+
+
+        
+================================== Ai Message ==================================
+
+Extrahierter Aufgabentext:
+Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Templa­te).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle berechnet.
+
+Gegebene Lösung (unverändert):
+package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+    @Override
+    public void insert(K key, V value) {
+        // FIXME: Praktikum
+    }
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        return null; // FIXME: Praktikum
+    }
+
+    @Override
+    public void remove(K key) {
+        // FIXME: Praktikum
+    }
+
+    @Override
+    public int size() {
+        return 0; // FIXME: Praktikum
+    }
+}
+================================== Ai Message ==================================
+
+**Allgemeine Bewertung**  
+Die übergebene Lösung enthält ausschließlich die Methodensignaturen für die geforderten Methoden (`insert`, `lookup`, `remove`, `size`). In allen vier gefragten Methoden fehlt jegliche eigene Implementierung – stattdessen findet sich nur ein Platzhalterkommentar oder ein Dummy-Return.  
+
+Daher gilt nach Vorgabe:  
+- Es ist **keine Studentenlösung vorhanden** für die geforderten Aufgaben a) bis d).
+- Aufgrund deiner Vorgaben dürfen keine weiteren Beobachtungen oder Code-Vorschläge gemacht werden.
+
+---
+
+**a) Methode insert:**  
+**Fehler:**  
+- In Zeile 16–19 (`insert`): Es ist keinerlei Implementierung vorhanden („// FIXME: Praktikum“). Die Methode erfüllt daher nicht die geforderte Aufgabe, einen Eintrag zu einer Hashtabelle hinzuzufügen oder zu ändern.
+
+**b) Methode lookup:**  
+**Fehler:**  
+- In Zeile 31–33 (`lookup`): Es ist keinerlei Implementierung vorhanden („return null; // FIXME: Praktikum“). Die Methode erfüllt nicht die geforderte Aufgabe, einen Eintrag für den übergebenen Schlüssel zu liefern.
+
+**c) Methode remove:**  
+**Fehler:**  
+- In Zeile 35–37 (`remove`): Es ist keinerlei Implementierung vorhanden („// FIXME: Praktikum“). Die Methode erfüllt nicht die geforderte Aufgabe, einen Eintrag für den gegebenen Schlüssel aus der Hashtabelle zu entfernen.
+
+**d) Methode size:**  
+**Fehler:**  
+- In Zeile 39–41 (`size`): Es ist keinerlei Implementierung vorhanden („return 0; // FIXME: Praktikum“). Die Methode liefert immer den Wert 0, unabhängig vom tatsächlichen Zustand der Hashtabelle. Damit erfüllt sie nicht die Aufgabe, die Anzahl der Einträge zu berechnen.
+
+---
+
+**Algorithmus-Anforderung:**  
+- In keiner der genannten Methoden wurde ein Algorithmus implementiert (z. B. Hashen, lineares Durchsuchen, Chaining-Prinzip).  
+- Da keine Implementierung vorliegt, kann auch nicht beurteilt werden, ob explizit der in der Aufgabenstellung geforderte Algorithmus verwendet wurde.
+
+---
+
+**Fazit:**  
+Es wurde **für keine der geforderten Funktionen eine Lösung abgegeben**.  
+Keine Methode enthält funktionalen oder ansatzweisen Code zur Lösung der Aufgabe.
+================================== Ai Message ==================================
+
+Musterlösung:
+
+- Die Musterlösung implementiert alle geforderten Methoden vollständig. 
+- insert prüft auf null-Werte, erstellt beim ersten Einfügen die Liste, sucht vorhandene Schlüssel und ersetzt ggf. den Wert oder fügt neu hinzu.
+- lookup sucht den Schlüssel korrekt in der Liste.
+- remove sucht und entfernt das passende Element aus der Liste.
+- size zählt korrekt über alle Listen die Einträge.
+
+Studentenlösung:
+
+- Die Methoden insert, lookup, remove und size sind in der Studentenlösung nicht implementiert. Es steht überall nur // FIXME: Praktikum oder ein Platzhalter-return.
+
+Unterschied:
+
+- Musterlösung: Vollständig und korrekt implementiert.
+- Studentenlösung: Keine Implementierung, nur Platzhalter.
+
+Feedback:
+Die Musterlösung ist vollständig und korrekt. Die Studentenlösung enthält keinerlei eigene Ansätze oder Implementierung. Ein sinnvoller Vergleich ist nicht möglich, da keine Lösung vorhanden ist.
+================================== Ai Message ==================================
+
+1. Gesamtbewertung  
+Die Lösung ist inkorrekt. In sämtlichen geforderten Methoden (insert, lookup, remove, size) fehlt jegliche Implementierung; es sind lediglich Platzhalter vorhanden.
+
+2. Fehlerauflistung  
+a) Methode insert:  
+- Kein funktionsfähiger Code vorhanden, lediglich ein Platzhalterkommentar. (Zeile 16–19)
+
+b) Methode lookup:  
+- Kein funktionsfähiger Code vorhanden; Methode gibt immer null zurück und enthält nur einen Platzhalter. (Zeile 31–33)
+
+c) Methode remove:  
+- Kein funktionsfähiger Code vorhanden, nur ein Platzhalterkommentar. (Zeile 35–37)
+
+d) Methode size:  
+- Kein funktionsfähiger Code vorhanden; Methode gibt immer 0 zurück und enthält nur einen Platzhalter. (Zeile 39–41)
+
+3. Explizit geforderte Algorithmen  
+Da keine Implementierung vorliegt, wurden auch keine der in der Aufgabenstellung explizit geforderten Algorithmen (wie Hashen oder Chaining) umgesetzt.

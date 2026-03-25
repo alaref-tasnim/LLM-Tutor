@@ -1,0 +1,212 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 2 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 4
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 3.4.2025, 23:00 Uhr
+28.3.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 4 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Aufgabe 1 (14 Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex04_01 (siehe Templa-
+te).
+Implementieren Sie den Sortieralgorithmus SelectionSort. Der Algorithmus soll das Array in situ
+sortieren. Stellen Sie sicher, dass alle Tests laufen.
+Hinweis: Strings in Java werden mittels der Methode int compareTo(String otherString)
+verglichen. Ein Aufruf s1.compareTo(s2) für zwei Strings s1 und s2 liefert 0 falls die beiden
+Strings gleich sind, eine negative Zahl falls s1 < s2 und eine positive Zahl falls s1 > s2.
+2
+Übungsblatt 4 Algorithmen & Datenstrukturen
+Aufgabe 2 (14 Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex04_02 (siehe Templa-
+te).
+Implementieren Sie den Sortieralgorithmus InsertionSort. Der Algorithmus soll das Array in situ
+sortieren. Stellen Sie sicher, dass alle Tests laufen.
+Beachten Sie den Hinweis zum Vergleichen von Strings in Aufgabe 1.
+Aufgabe 3 (8 Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex04_03 (siehe Templa-
+te).
+Im Code-Gerüst ist auch die in der Vorlesung vorgestellte Variante von QuickSort enthalten.
+Ändern Sie in diesem Code die Strategie zur Wahl des Pivotelements. Das Pivotelement soll
+jetzt mittels der „median-of-three“ Strategie gewählt werden. Dabei wird das Pivotelement als
+Median aus dem ersten, dem letzten und dem mittleren Element gewählt. Beachten Sie dabei
+folgende Punkte:
+• Falls die zu sortierende Sequenz drei Elemente oder weniger hat, kann die Sequenz durch
+ähnliche Fallunterscheidungen sortiert werden, wie sie auch zur Wahl des Medians nötig
+sind.
+• Wenn Sie ein Pivotelement bestimmt haben, können Sie dieses durch Positionstausch in
+der Sequenz ganz nach rechts bewegen. Dann funktioniert der übrige Code unverändert.
+Beachten Sie den Hinweis zum Vergleichen von Strings in Aufgabe 1.
+Gesamtpunkte: 36
+Abgabe
+Via Upload im Praktomat bis 3.4.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur Ab-
+gabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex04_02;
+
+import de.hso.aud.sorting.SortingAlgorithm;
+
+public class InsertionSort implements SortingAlgorithm {
+
+    public void sort(String[] arr) {
+        public void sort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int smallestIdx = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[smallestIdx]) {
+                    smallestIdx = j;
+                }
+            }
+
+            if (i != smallestIdx) {
+                Utils.swap(arr, i, smallestIdx);
+            }
+        }
+    }
+    }
+}
+
+
+        
+================================== Ai Message ==================================
+
+- Aufgabe 2 (14 Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex04_02 (siehe Templa-
+te).
+Implementieren Sie den Sortieralgorithmus InsertionSort. Der Algorithmus soll das Array in situ
+sortieren. Stellen Sie sicher, dass alle Tests laufen.
+Beachten Sie den Hinweis zum Vergleichen von Strings in Aufgabe 1.
+- package de.hso.aud.ex04_02;
+
+import de.hso.aud.sorting.SortingAlgorithm;
+
+public class InsertionSort implements SortingAlgorithm {
+
+    public void sort(String[] arr) {
+        public void sort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            int smallestIdx = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[smallestIdx]) {
+                    smallestIdx = j;
+                }
+            }
+
+            if (i != smallestIdx) {
+                Utils.swap(arr, i, smallestIdx);
+            }
+        }
+    }
+    }
+}
+================================== Ai Message ==================================
+
+Okay, hier ist die Bewertung des Codes für die Aufgabe 2 (InsertionSort):
+
+**Allgemeine Anmerkungen:**
+
+*   Der Code kompiliert nicht, da die Methode `sort` doppelt deklariert wurde.
+*   Der geforderte Algorithmus ist InsertionSort, aber im Code ist stattdessen SelectionSort implementiert.
+*   Die Klasse implementiert das Interface `SortingAlgorithm`, aber die `sort`-Methode ist nicht korrekt implementiert (sowohl vom Typ als auch vom Algorithmus her).
+
+**Detaillierte Fehleranalyse:**
+
+**Funktion `sort` (String-Array):**
+
+*   Zeile 7: Die Methode `sort` für ein `String[]` ist vorhanden, aber leer. Dies führt dazu, dass die Methode nichts tut und das Array unsortiert bleibt.
+*   Zeile 7: Die Methode ist leer. Es fehlt die Implementierung des Insertion Sort Algorithmus für Strings.
+*   Zeile 7: Da die Methode leer ist, wird der geforderte Algorithmus InsertionSort nicht verwendet.
+
+**Funktion `sort` (Integer-Array):**
+
+*   Zeile 8: Die Methode `sort` wird doppelt deklariert. Dies führt zu einem Kompilierungsfehler.
+*   Zeile 9-19: Der hier implementierte Algorithmus ist **Selection Sort** und nicht **Insertion Sort**, wie in der Aufgabenstellung gefordert.
+    *   Selection Sort findet in jedem Durchlauf das kleinste Element im unsortierten Teil des Arrays und tauscht es an die korrekte Position. Dies ist erkennbar an der äußeren Schleife (Zeile 9), die durch das Array iteriert, und der inneren Schleife (Zeile 11), die das kleinste Element sucht. Das `Utils.swap` (Zeile 17) tauscht dann das kleinste Element mit dem aktuellen Element der äußeren Schleife.
+    *   Insertion Sort hingegen iteriert durch das Array und fügt jedes Element an der richtigen Position im bereits sortierten Teil des Arrays ein.
+*   Zeile 17: Die `swap` Funktion wird aufgerufen, obwohl es nicht notwendig ist, wenn `i == smallestIdx`. Dies ist zwar kein direkter Fehler, aber eine unnötige Operation, die die Effizienz des Algorithmus beeinträchtigen kann.
+
+**Zusammenfassung der Fehler:**
+
+1.  **Kompilierungsfehler:** Doppelte Deklaration der `sort`-Methode.
+2.  **Falscher Algorithmus:** Implementierung von Selection Sort anstelle von Insertion Sort.
+3.  **Fehlende Implementierung:** Die `sort`-Methode für `String[]` ist leer.
+4.  **Ineffizienz:** Unnötiger `swap`-Aufruf in Selection Sort.
+================================== Ai Message ==================================
+
+- Musterlösung: Direkte Implementierung von Insertion Sort mit Verschieben von Elementen.
+- Studentenlösung: Implementierung von Selection Sort, nicht Insertion Sort. Zudem ist die äußere Schleife unnötig kompliziert.
+
+Der Ansatz der Musterlösung ist korrekt und effizient für Insertion Sort. Die Studentenlösung implementiert einen anderen Sortieralgorithmus (Selection Sort) und ist daher nicht korrekt.
+================================== Ai Message ==================================
+
+**Gesamtbewertung:**
+
+Die Lösung ist inkorrekt, da sie mehrere Fehler enthält, darunter einen Kompilierungsfehler, die Verwendung eines falschen Sortieralgorithmus und eine fehlende Implementierung.
+
+**Fehlerauflistung:**
+
+*   Zeile 7: Die Methode `sort` für ein `String[]` ist leer.
+*   Zeile 8: Die Methode `sort` wird doppelt deklariert, was zu einem Kompilierungsfehler führt.
+*   Zeile 9-19: Der implementierte Algorithmus ist Selection Sort und nicht Insertion Sort.
+*   Zeile 17: Unnötiger `swap`-Aufruf, wenn `i == smallestIdx`.
+
+**Explizit geforderte Algorithmen:**
+
+Der explizit geforderte Algorithmus Insertion Sort wurde nicht korrekt implementiert. Stattdessen wurde Selection Sort implementiert. Die `sort`-Methode für `String[]` ist zudem nicht implementiert.

@@ -1,0 +1,177 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 4 in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 8
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 11.12.2024, 23:00 Uhr
+5.12.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie eine Funktion, die aus einer Liste von Strings alle leeren Strings entfernt.
+1. Schreiben Sie die Funktion zuerst so, dass die Parameterliste nicht verändert wird. Die-
+se Funktion soll removeEmpties heißen. Sie dürfen dabei keine Operationen verwenden,
+die die Liste verändern. Zu solchen Operationen gehören z.B. remove, insert, append,
+extend, pop, sort und auch die Zuweisung an einem Index mittels l[i] = ... oder auch
+l += ... .
+2. Schreiben Sie die Funktion dann so, dass die Parameterliste verändert wird. Diese Funktion
+soll removeEmptiesMutable heißen.
+1
+Übungsblatt 8 AKI/NES Programmierung 1
+Aufgabe 2 (4+4 Punkte)
+Schreiben Sie eine Funktion, die einer Liste von Objekten eine neues Objekt am Ende hinzu-
+fügt.
+1. Das neue Objekt soll hinzugefügt werden, falls in der Liste das gleiche Objekte (Gleichheit
+bzgl. ==) noch nicht enthalten ist. Die Liste soll dabei nicht verändert werden, sie dürfen
+keine Operation verwenden, die die Liste modifizieren (wie z.B. remove, insert, append,
+extend, pop, sort oder die Zuweisung an einem Index mittels l[i] = ... ). Die Funktion
+soll addIfNotEq heißen.
+2. Das neue Objekt soll hinzugefügt werden, falls in der Liste das identische Objekte (Gleich-
+heit bzgl. is) noch nicht enthalten ist. Die Liste soll dabei verändert werden. Die Funktion
+soll addIfNotIdentical heißen.
+Hinweis: Um zuverlässig Objekte zu erzeugen, die nicht identisch sind, sollten Sie keine Zahlen
+oder Strings als Elemente der Listen für die Tests von Teil (b) verwenden. Aus Effizienzgründen
+verwendet Python nämlich oft dasselbe Zahl- oder String-Objekt wieder. Stattdessen sollten Sie
+einen Record wie z.B.
+@record
+class Point
+x: int
+y: int
+definieren und Objekte dieses Records als Listenelemente verwenden.
+Aufgabe 3 (8 Punkte)
+Programmieren Sie die Funktionalität der Funktion insert nach, ohne dabei natürlich insert
+zu verwenden. Ihre Funktion soll folgenden Funktionskopf haben:
+def myInsert(l: List, i: int, x: Any) -> None:
+Dabei soll sich myInsert(l, i, x) genauso wie l.insert(i, x) verhalten, d.h. das Element
+x wird in Liste l an Index i eingefügt, die Element ab Index i wandern um eins nach hinten.
+Die Liste l wird dabei in-place modifiziert. Als einzige Operationen, die eine Liste verändern,
+dürfen Sie append und die Zuweisung an einem Index mittels l[k] = ... verwenden.
+Schreiben Sie mindestens vier sinnvolle Tests.
+Aufgabe 4 (10 Punkte)
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+2
+Übungsblatt 8 AKI/NES Programmierung 1
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l ent-
+fernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber
+können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen
+removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', G'] .
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1)
+auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step]
+Gesamtpunkte: 34
+Abgabe
+Via Upload im Praktomat bis 11.12.2024, 23:00 Uhr . Speichern Sie jede Programmieren-
+aufgabe in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N
+die Nummer der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann
+aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+def removeSlice(l: list, start: int, end: int, step: int) -> None:
+    if step <= 0:
+        step = 1 
+    
+    for i in range(start, len(l), step): 
+        if i < len(l):  
+            l.pop(i)  
+
+
+        
+================================== Ai Message ==================================
+
+Extrahierter Aufgabentext:
+
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l entfernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', 'G'].
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1) auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step].
+
+Gegebene Lösung:
+```python
+from wypp import *
+
+def removeSlice(l: list, start: int, end: int, step: int) -> None:
+    if step <= 0:
+        step = 1 
+    
+    for i in range(start, len(l), step): 
+        if i < len(l):  
+            l.pop(i)  
+```
+================================== Ai Message ==================================
+
+In der vorgegebenen Lösung wurden einige der sechs Schritte befolgt, aber nicht alle.
+
+Hier ist das Feedback für jeden Schritt:
+
+1. Schritt 1: Der Kommentar fehlt, der eine Kurzbeschreibung darüber liefern sollte, was diese Funktion tut.
+
+2. Schritt 2: Es gibt in der Lösung keinen Kommentar, der die Dateneingänge und -ausgänge analysiert und dokumentiert.
+
+3. Schritt 3: Der Funktionskopf ist korrekt eingestellt. Der Funktionsname und die Namen und Typen der Parameter sowie der Rückgabewert spiegeln die Aufgabenbeschreibung korrekt wider.
+
+4. Schritt 4: Dieser Schritt wurde übergangen. Es wurden keine Überprüfungen oder Tests durchgeführt, um zu bestätigen, dass die Funktion korrekt funktioniert.
+
+5. Schritt 5: Dieser Schritt wurde ebenfalls ignoriert.
+
+6. Schritt 6: Die Implementierung ist teilweise korrekt. Die Funktion erfüllt im Allgemeinen ihren Zweck, jedoch gibt es einen schwerwiegenden Fehler. Während der Iteration wird die Länge der Liste verändert, was zu inkonsistenten Ergebnissen führt, da der Index während der Iteration geändert wird. Dies widerspricht dem Hinweis in der Aufgabenstellung, dass `del l[start:end:step]` nicht verwendet werden sollte, da dessen Verwendung die Liste tatsächlich ändert.
+
+Insgesamt ist die vorgegebene Lösung unzureichend aufgrund der fehlenden Schritte und dem genannten Fehler. Es wäre hilfreich, jeden Schritt sorgfältig zu befolgen und den Fehler in der Implementierung zu beheben.
+================================== Ai Message ==================================
+
+Die Studentenlösung und die Musterlösung haben den gleichen Lösungsansatz, nämlich die Funktion pop() verwenden, um die Elemente aus der Liste zu entfernen.
+
+Unterschiede:
+1. In der Studentenlösung wird zusätzlich überprüft, ob der Schritt (step) größer als Null ist. Wenn nicht, wird er auf eins gesetzt. Diese Bedingung ist jedoch laut dem Aufgabentext unnötig, da festgelegt ist, dass der Schritt nicht negativ ist.
+2. In der Studentenlösung wird der Loop nicht umgekehrt wie in der Musterlösung. Das Bearbeiten einer Liste, während durch sie iteriert wird, kann zu unerwarteten Problemen führen.
+
+Die Musterlösung ist hier sinnvoller. 
+Die Studentenlösung könnte zu unerwarteten Behavior führen, da sie die Liste während der Iteration ändert. Die Elemente sollten immer in umgekehrter Reihenfolge entfernt werden, um dieses Problem zu vermeiden, was in der Musterlösung korrekt gemacht wurde.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |    ❌ Nein   |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|    ❌ Nein   |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |    ✅ Ja   |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |    ❌ Nein   |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |    ❌ Nein   |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                      |    ✅ Ja   |
+
+Code-Fehler Schritt 6:
+- Während der Iteration wird die Länge der Liste verändert, was zu inkonsistenten Ergebnissen führen kann, wenn der Index während der Iteration geändert wird.
+
+Unterscheidungen zwischen der Studentenlösung und der Musterlösung:
+
+1. Die Studentenlösung beinhaltet eine unnötige Überprüfung, ob der Schritt (step) größer als Null ist.
+2. Im Gegensatz zur Musterlösung wird der Loop in der Studentenlösung nicht umgekehrt. 
+
+Die Studentenlösung kann zu unerwarteten Verhalten führen, da sie die Liste während der Iteration verändert. Es wird empfohlen die Elemente immer in umgekehrter Reihenfolge zu entfernen, um dieses Problem zu vermeiden, wie es im Musterbeispiel demonstriert wird.

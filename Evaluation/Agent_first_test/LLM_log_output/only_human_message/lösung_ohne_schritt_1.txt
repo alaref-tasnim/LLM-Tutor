@@ -1,0 +1,231 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe_1 teil a) in der pdf:
+Prof. Dr. Stefan Wehr, Simon Rösch
+Übungsblatt 10
+AKI/NES Programmierung 1, Wintersemester 2025/2026
+Deadline: 24.1.2026, 23:00 Uhr
+18.1.2026
+Aufgabe 1 (5+5+8 Punkte)
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter
+findet. Gehen Sie wie folgt vor:
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin
+enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt
+werden.
+Beispiel:
+Hallo Stefan,
+wie geht es dir?
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"]
+zurückgegeben werden.
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary
+berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der
+angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle
+spielen.
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurück-
+gegeben werden.
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten
+in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert
+ausgeben. Beispielausgabe:
+er: 31
+haus: 29
+bunt: 19
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords.
+Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Haupt-
+funktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem
+möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl
+python3 wordcount.py FILE
+1
+Übungsblatt 10 AKI/NES Programmierung 1
+soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.
+Unter Windows braucht man (manchmal) den Befehl
+py -3.10 -m unittest FILE
+Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei
+vorne in der Liste die am häufigsten vorkommenden Wörter stehen:
+sorted(d.items(), key=lambda x: x[1], reverse=True)
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der
+Wörter in einer Datei auszugeben, nicht ausgeführt wird.
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so
+aussehen:
+the: 10
+was: 9
+he: 7
+Aufgabe 2 (2+3+5+5+5 Punkte)
+Entwerfen und implementieren Sie einen Record Fraction zum exakten Rechnen mit Brüchen
+auf der Basis der vorhandenen arithmetischen Operationen auf int. Dabei hat ein Bruch zwei
+Eigenschaften: numerator (Zähler) und denominator (Nenner).
+Stellen Sie in Ihrer Implementierung sicher, dass folgende Eigenschaften gelten:
+• Der Nenner darf nie 0 sein.
+• Instanzen von Fraction sollen nicht veränderbar sein.
+• Die Implementierung soll komplett ohne Gleitkommazahlen auskommen!
+Sie dürfen ausschließlich folgenden Imports nutzen:
+from wypp import *
+from math import gcd
+Insbesondere dürfen Sie das Module fractions nicht verwenden!
+Gehen Sie wie folgt vor:
+(a) Verwenden Sie Records zur Repräsentation von Brüchen
+(b) Stellen Sie zunächst die Bedingung „Nenner ungleich 0“ sicher. Dazu bieten die klassen-
+basierte Records die Möglichkeit, durch Defininition einer Method
+__post_init__(self: Fraction) -> None
+Code direkt nach Konstruktion eines Fraction-Wertes auszuführen. Werfen Sie einen ValueError
+wenn die Bedingung verletzt ist.
+2
+Übungsblatt 10 AKI/NES Programmierung 1
+(c) Schreiben Sie eine Methode cancel(self: Fraction) -> Fraction, die einen Bruch voll-
+ständig kürzt und normalisiert. So soll z.B. der Bruch 2
+−6 zu −1
+3 werden.
+(d) Implementieren Sie die Operatoren +, - und * auf Brüchen. Geben Sie nur vollständig
+gekürzte Brüche als Ergebnis zurück. Welche Methoden Sie dazu implementieren müssen,
+finden Sie im Abschnitt 3.3.8 unter https://docs.python.org/3/reference/datamodel.
+html
+(e) Implementieren Sie Methoden für die Vergleichsoperatoren == und < auf Brüchen.
+Speichern Sie ihre Lösung in einer Datei fraction.py
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 24.1.2026, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.pysein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+
+        Hier ist die Musterlösung:
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        
+================================== Ai Message ==================================
+
+1. Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter findet. Gehen Sie wie folgt vor: (a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt werden. Beispiel: Hallo Stefan, wie geht es dir? Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"] zurückgegeben werden. (b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle spielen. Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurückgegeben werden. (c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert ausgeben. Beispielausgabe: er: 31 haus: 29 bunt: 19 Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords. Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Haupt-funktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl python3 wordcount.py FILE soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben. Unter Windows braucht man (manchmal) den Befehl py -3.10 -m unittest FILE Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll. Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei vorne in der Liste die am häufigsten vorkommenden Wörter stehen: sorted(d.items(), key=lambda x: x[1], reverse=True) Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der Wörter in einer Datei auszugeben, nicht ausgeführt wird. In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so aussehen: the: 10 was: 9 he: 7 
+
+2. from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+3. from wypp import *
+
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+================================== Ai Message ==================================
+
+Die Studentenlösung (Abschnitt 2 und 3) enthält die Implementierung der Funktion `stringToWords`, die korrekt funktioniert und erwartet wird. Es gibt jedoch keine Unterschiede zwischen den Abschnitten — es scheint, dass die gleiche Funktion zweimal gepostet wurde. Solch eine Wiederholung ist unnötig und sollte vermieden werden.
+
+Ein sinnvollerer Ansatz wäre, die Funktion nur einmal zu definieren und dann den Testfall darauf auszuführen. Darüber hinaus wäre es empfehlenswert, die Implementierung für die anderen geforderten Funktionen (`countWords` und `countWordsInFile`) ebenfalls zu berücksichtigen, um die Aufgabe vollständig zu lösen. 
+
+Feedback: Achte darauf, Wiederholungen zu vermeiden und die vollständige Funktionalität zu implementieren. Füge zusätzlich die `countWords` und `countWordsInFile` Funktionen hinzu, damit die Aufgabe vollständig erfüllt wird.
+================================== Ai Message ==================================
+
+Sie haben die Lösung gut strukturiert, und ich kann feststellen, dass alle sechs Schritte in Ihrer Lösung beachtet wurden. Hier sind die einzelnen Schritte, die Sie eingehalten haben:
+
+**Schritt 1: Kurzbeschreibung**
+- Sie haben klar erläutert, was die Funktion tut: „String in Liste von Wörtern konvertieren.“ Das passt zur Anforderung und entspricht der Musterlösung.
+
+**Schritt 2: Datenanalyse**
+- Ihre Datenanalyse beschreibt die Eingaben und das Ergebnis korrekt, jedoch könnte sie etwas präziser gefasst werden. Es wäre hilfreich gewesen, die Eingabe genauer zu spezifizieren, z.B. dass es sich um einen mehrzeiligen String handelt und das Ergebnis eine Liste von Wörtern in Form von Strings zurückgibt.
+
+**Schritt 3: Funktionskopf**
+- Der Funktionskopf ist korrekt und entspricht dem Muster. Der Typ des Arguments und des Rückgabewerts ist klar angegeben.
+
+**Schritt 4: Tests**
+- Sie haben einen Testfall mit der `check`-Funktion angegeben, um die Funktionalität von `stringToWords` zu überprüfen. Dies ist auch in Übereinstimmung mit der Musterlösung.
+
+**Schritt 5: Schablonen**
+- Sie haben diesen Schritt in Ihrer Lösung ausgelassen. Das ist in Ordnung, da es nicht notwendig war, aber für Vollständigkeit wäre es gut gewesen, zu erwähnen, dass dieser Schritt übersprungen wurde.
+
+**Schritt 6: Implementierung**
+- Der Funktionsrumpf ist korrekt implementiert. Sie verwenden eine Schleife, um die Satzzeichen zu entfernen, und schließen mit dem Aufteilen des Strings ab, was den Anforderungen entspricht.
+
+### Verbesserungsvorschläge:
+1. **Datenanalyse erweitern**: Fügen Sie spezifische Details hinzu, z.B. was für ein Typ von String die Funktion erwartet (mehrzeilig), und dass die Rückgabe eine Liste von Wörtern in Form von Strings ist. 
+   
+   Beispiel:
+   ```python
+   # Eingabe: ein mehrzeiliger String (str)
+   # Ergebnis: Liste mit Wörtern (list[str]), die im String enthalten sind
+   ```
+
+2. **Kommentare**: Wenn möglich, könnten Sie weitere Kommentare innerhalb der Funktion hinzufügen, um den Code verständlicher zu machen, besonders für jemanden, der nicht mit der Lösung vertraut ist.
+
+3. **Schablonen**: Falls relevant, könnten Sie einen Platz für die Schablonen in Ihrer Lösung hinzufügen, um zu zeigen, dass dies in der Implementierung berücksichtigt wurde.
+
+Ansonsten ist Ihre Lösung sehr gut, und die Hauptfunktion ist korrekt und klar implementiert. 
+
+**Bestätigung**: Perfekt!
+================================== Ai Message ==================================
+
+| Schritt                                        | Wurde eingehalten? |
+| :--------------------------------------------- | :----------------: |
+| Schritt 1: Kurzbeschreibung                    |    ✅ Ja          |
+| Schritt 2: Datenanalyse                        |    ❌ Nein        |
+| Schritt 3: Funktionskopf                       |    ✅ Ja          |
+| Schritt 4: Tests                               |    ✅ Ja          |
+| Schritt 5: Schablonen                          |    ❌ Nein        |
+| Schritt 6: Implementierung                     |    ✅ Ja          |
+
+### Zusammenfassung des Feedbacks vom Muster_Agent:
+Die Studentenlösung enthält die Implementierung der Funktion `stringToWords`, die korrekt ist, jedoch wurde die Funktion zweimal gepostet, was unnötig ist. Es wird empfohlen, Wiederholungen zu vermeiden und die vollständige Funktionalität zu implementieren, indem auch die Funktionen `countWords` und `countWordsInFile` hinzugefügt werden, um die Aufgabe vollständig zu erfüllen.

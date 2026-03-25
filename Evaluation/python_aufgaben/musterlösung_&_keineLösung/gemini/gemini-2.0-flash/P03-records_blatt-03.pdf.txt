@@ -1,0 +1,178 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 1 a in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 3
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 6.11.2024, 23:00 Uhr
+31.10.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie weitere Funktionen für die Computer aus der Vorlesung. Kopieren Sie dazu zu-
+nächst die Daten- und Recorddefinition für Computer in Deine Datei.
+(a) Es soll folgendes Preismodell für Computer gelten:
+• Jedes GB Arbeitsspeicher kosten 5 Euro. Für den Arbeitsspeicher werden mindestens
+30 Euro fällig
+• Jedes 500 GB Festplatte kosten 20 Euro. Dabei wird auf die nächsten 500 GB aufge-
+rundet, z.B. kosten 1100 GB genausoviel wie 1500 GB, nämlich 60 Euro.
+• Die CPU kostet 90 Euro. Falls die CPU von Intel ist, wird ein Aufschlag von 20 Euro
+fällig. Sie können mittels 'Intel' in s prüfen, ob der String 'Intel' im String s
+vorkommt.
+• Weitere Komponenten und Montage kosten pauschal 100 Euro. Diese Pauschale fällt
+für jeden Computer an.
+Implementieren Sie das Preismodell.
+1
+Übungsblatt 3 AKI/NES Programmierung 1
+(b) Schreiben Sie eine Funktion, die den Arbeitsspeicher des Computers erweitert. Die Funkti-
+on nimmt einen Computer und die Speichermenge als Eingabe und liefert einen Computer
+mit dem erweiterten Speicher. Achten Sie darauf dass der Arbeitsspeicher durch die Er-
+weiterung nie kleiner werden darf.
+Hinweise: Die Vorlesung verwendet für den „Arbeitsspeicher“ eines Computers manchmal auch
+die Begriffe „Hauptspeicher“ oder „RAM“ . Statt „CPU“ wird in der Vorlesung manchmal auch
+vom „Prozessor“ gesprochen.
+Aufgabe 2 (8 Punkte)
+Zur Verkehrssteuerung soll in Offenburg eine City–Maut eingeführt werden. Die Einfahrt in die
+Stadt ist dann abhängig von folgenden Kriterien:
+• Wurde die City–Maut bezahlt?
+• Liegt eine Sondergenehmigung vor?
+• Welche Schadstoffklasse hat das Auto?
+Modellieren Sie die Schadstoffklasse und die Maut–Kriterien durch eine Datenbeschreibung und
+eine Typdefinition. Es gibt die folgenden Schadstoffklassen: 1-4, 5 und 6.
+Es gelten nun folgende Regeln:
+• Falls die Maut nicht bezahlt wurde, ist eine Einfahrt nur mit Sondergenehmigung möglich.
+• Falls das Auto nicht Schadstoffklasse 5 oder 6 hat, ist eine Einfahrt nur mit Sondergeneh-
+migung möglich und die Maut muss bezahlt worden sein.
+Implementieren Sie nun eine Funktion, die aus den Maut-Kriterien berechnet ob eine Einfahrt
+möglich ist.
+Aufgabe 3 (3+3+4 Punkte)
+Eine Adresse besteht aus einem Namen, einer Straße plus Hausnummer, einem Zusatz der leer
+sein kann, einer Postleitzahl, einer Stadt und einem Land. Ein Namen wiederum hat einen Vor-
+und einen Nachnamen.
+(a) Modelliere Sie diese Gegebenheiten in Python.
+(b) Schreiben Sie eine Funktion, die den Nachnamen einer gegebenen Adresse ändert.
+(c) Schreiben Sie eine Funktion, die eine Adresse für einen Briefumschlag formatiert.
+2
+Übungsblatt 3 AKI/NES Programmierung 1
+Aufgabe 4 (6+6 Punkte)
+Lebensmittel haben einen Namen, eine Packungsgröße in Gramm und einen Zuckergehalt. Für
+die Angabe des Zuckergehalts gibt es mehrere Möglichkeiten:
+• Auf einigen Lebensmitteln ist die Menge an enthaltenem Zucker aufgeteilt in Fruktose und
+Glukose angegeben. Der Zuckergehalt bezieht sich auf die Packungsgröße.
+• Bei anderen Lebensmitteln ist der Zuckergehalt in Gramm pro 100 Gramm Lebensmittel
+angegeben.
+• Bei wieder anderen Lebensmitteln ist der Zuckergehalt über das nachfolgende Ampelsys-
+tem angegeben.
+Farbe Bedeutung Zuckergehalt pro 100g
+grün niedriger Gehalt weniger als 5g
+gelb mittlerer Gehalt zwischen 5g und 22,5g
+rot hoher Gehalt mehr als 22,5g
+Hier Beispiele für Lebensmittel:
+Name Packungsgröße Zuckergehalt
+Coca Cola 500 25g Fruktose, 25g Glukose
+Ritter Sport himmlische Beere 100 15,29g Fruktose, 24,9g Glukose
+Kürbis 1000 2,8g pro 100g
+Gurke 470 grün
+(a) Führen Sie eine Datenanalyse durch und modellieren Sie solche Lebensmittel in der Pro-
+grammiersprache. Modellieren Sie die drei alternativen Darstellungsformen des Zuckerge-
+halts dabei als gemischten Datentyp. Schreiben Sie die obigen Beispiele in der Program-
+miersprache hin.
+(b) Schreiben Sie eine Funktion, die für ein Lebensmittel berechnet, in welche Kategorie der
+Ampel (rot, gelb oder grün) das Lebensmittel fällt. Sie sollten dazu eine Hilfsfunktion
+schreiben, die für einen Zuckergehalt, der als Glukose- und Fruktosemenge pro Gesamt-
+menge ausgedrückt ist, den Gesamtzuckergehalt pro 100g berechnet.
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 6.11.2024, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie weitere Funktionen für die Computer aus der Vorlesung. Kopieren Sie dazu zu-
+nächst die Daten- und Recorddefinition für Computer in Deine Datei.
+(a) Es soll folgendes Preismodell für Computer gelten:
+• Jedes GB Arbeitsspeicher kosten 5 Euro. Für den Arbeitsspeicher werden mindestens
+30 Euro fällig
+• Jedes 500 GB Festplatte kosten 20 Euro. Dabei wird auf die nächsten 500 GB aufge-
+rundet, z.B. kosten 1100 GB genausoviel wie 1500 GB, nämlich 60 Euro.
+• Die CPU kostet 90 Euro. Falls die CPU von Intel ist, wird ein Aufschlag von 20 Euro
+fällig. Sie können mittels 'Intel' in s prüfen, ob der String 'Intel' im String s
+vorkommt.
+• Weitere Komponenten und Montage kosten pauschal 100 Euro. Diese Pauschale fällt
+für jeden Computer an.
+Implementieren Sie das Preismodell.
+
+code
+================================== Ai Message ==================================
+
+Okay, hier ist dein Feedback zur Aufgabe, strukturiert nach den vorgegebenen Schritten.
+
+**Aufgabe 1(a)**
+
+*   **schritt\_1: Kurzbeschreibung**
+
+    Die Kurzbeschreibung fehlt. Bitte füge eine einzeilige Beschreibung hinzu, was die Funktion macht.
+*   **schritt\_2: Datenanalyse**
+
+    Die Datenanalyse fehlt. Beschreibe die Eingabeparameter (Name, Typ, ggf. Einheit) und den Rückgabewert (Name, Typ, ggf. Einheit).
+*   **schritt\_3: Funktionskopf**
+
+    Der Funktionskopf fehlt. Definiere den Funktionskopf mit Parametern und Typannotationen.
+*   **schritt\_4: Tests mittels check**
+
+    Die Tests fehlen. Schreibe mindestens zwei aussagekräftige Tests, um die Funktion zu überprüfen.
+*   **schritt\_5: Schablonen**
+
+    Dieser Schritt wird in dieser Aufgabe ausgelassen.
+*   **schritt\_6: Implementierung**
+
+    Die Implementierung fehlt. Schreibe den Funktionsrumpf, der die Logik zur Berechnung des Computerpreises umsetzt.
+
+Zusammenfassend fehlen in deiner aktuellen Lösung alle wesentlichen Bestandteile: Kurzbeschreibung, Datenanalyse, Funktionskopf, Tests und die Implementierung selbst. Du musst alle diese Schritte ausführen, um eine vollständige Lösung zu erhalten.
+================================== Ai Message ==================================
+
+Studentenlösung nicht vorhanden
+================================== Ai Message ==================================
+
+Okay, hier ist dein Feedback zur Aufgabe, strukturiert nach den vorgegebenen Schritten.
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |    ❌ Nein   |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|    ❌ Nein   |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |    ❌ Nein   |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |    ❌ Nein   |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |    ❌ Nein   |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                      |    ❌ Nein   |
+
+**Muster_Agent Feedback:**
+
+Zusammenfassend fehlen in deiner aktuellen Lösung alle wesentlichen Bestandteile: Kurzbeschreibung, Datenanalyse, Funktionskopf, Tests und die Implementierung selbst. Du musst alle diese Schritte ausführen, um eine vollständige Lösung zu erhalten. Studentenlösung nicht vorhanden

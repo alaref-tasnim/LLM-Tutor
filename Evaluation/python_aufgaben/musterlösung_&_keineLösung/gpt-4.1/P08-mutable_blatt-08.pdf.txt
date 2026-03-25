@@ -1,0 +1,205 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 4 in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 8
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 11.12.2024, 23:00 Uhr
+5.12.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie eine Funktion, die aus einer Liste von Strings alle leeren Strings entfernt.
+1. Schreiben Sie die Funktion zuerst so, dass die Parameterliste nicht verändert wird. Die-
+se Funktion soll removeEmpties heißen. Sie dürfen dabei keine Operationen verwenden,
+die die Liste verändern. Zu solchen Operationen gehören z.B. remove, insert, append,
+extend, pop, sort und auch die Zuweisung an einem Index mittels l[i] = ... oder auch
+l += ... .
+2. Schreiben Sie die Funktion dann so, dass die Parameterliste verändert wird. Diese Funktion
+soll removeEmptiesMutable heißen.
+1
+Übungsblatt 8 AKI/NES Programmierung 1
+Aufgabe 2 (4+4 Punkte)
+Schreiben Sie eine Funktion, die einer Liste von Objekten eine neues Objekt am Ende hinzu-
+fügt.
+1. Das neue Objekt soll hinzugefügt werden, falls in der Liste das gleiche Objekte (Gleichheit
+bzgl. ==) noch nicht enthalten ist. Die Liste soll dabei nicht verändert werden, sie dürfen
+keine Operation verwenden, die die Liste modifizieren (wie z.B. remove, insert, append,
+extend, pop, sort oder die Zuweisung an einem Index mittels l[i] = ... ). Die Funktion
+soll addIfNotEq heißen.
+2. Das neue Objekt soll hinzugefügt werden, falls in der Liste das identische Objekte (Gleich-
+heit bzgl. is) noch nicht enthalten ist. Die Liste soll dabei verändert werden. Die Funktion
+soll addIfNotIdentical heißen.
+Hinweis: Um zuverlässig Objekte zu erzeugen, die nicht identisch sind, sollten Sie keine Zahlen
+oder Strings als Elemente der Listen für die Tests von Teil (b) verwenden. Aus Effizienzgründen
+verwendet Python nämlich oft dasselbe Zahl- oder String-Objekt wieder. Stattdessen sollten Sie
+einen Record wie z.B.
+@record
+class Point
+x: int
+y: int
+definieren und Objekte dieses Records als Listenelemente verwenden.
+Aufgabe 3 (8 Punkte)
+Programmieren Sie die Funktionalität der Funktion insert nach, ohne dabei natürlich insert
+zu verwenden. Ihre Funktion soll folgenden Funktionskopf haben:
+def myInsert(l: List, i: int, x: Any) -> None:
+Dabei soll sich myInsert(l, i, x) genauso wie l.insert(i, x) verhalten, d.h. das Element
+x wird in Liste l an Index i eingefügt, die Element ab Index i wandern um eins nach hinten.
+Die Liste l wird dabei in-place modifiziert. Als einzige Operationen, die eine Liste verändern,
+dürfen Sie append und die Zuweisung an einem Index mittels l[k] = ... verwenden.
+Schreiben Sie mindestens vier sinnvolle Tests.
+Aufgabe 4 (10 Punkte)
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+2
+Übungsblatt 8 AKI/NES Programmierung 1
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l ent-
+fernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber
+können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen
+removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', G'] .
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1)
+auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step]
+Gesamtpunkte: 34
+Abgabe
+Via Upload im Praktomat bis 11.12.2024, 23:00 Uhr . Speichern Sie jede Programmieren-
+aufgabe in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N
+die Nummer der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann
+aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 4 (10 Punkte)
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l ent-
+fernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber
+können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen
+removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', G'] .
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1)
+auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step]
+
+code
+================================== Ai Message ==================================
+
+Hier ist mein strukturiertes Feedback zu deiner Lösung. Ich bewerte sorgfältig, ob du alle sechs Schritte eingehalten hast und identifiziere sämtliche vorhandenen Fehler.
+
+---
+
+**Feedback zur Lösung:**
+
+### schritt_1: Kurzbeschreibung als Kommentar
+
+- Überprüfe, ob ein kurzer Kommentar vorhanden ist, der die Funktion beschreibt.
+- **Fehler:** Falls kein Kommentar vorhanden ist oder nicht präzise formuliert wurde, wird dies bemängelt.
+
+### schritt_2: Datenanalyse kommentiert
+
+- Es sollte direkt unter der Kurzbeschreibung eine Analyse zu Parametern (jeweils mit Typ und Beschreibung) und Rückgabewert (mit Typ und Beschreibung) als Kommentar geben.
+- **Fehler:** Fehlt diese vollständige Analyse oder ist diese nicht ausreichend präzise, wird dies angemerkt.
+
+### schritt_3: Funktionskopf inkl. Typen
+
+- Der Funktionskopf sollte exakt wie angegeben sein und Typannotationen enthalten:  
+  `def removeSlice(l: list, start: int, end: int, step: int) -> None`
+- **Fehler:** Abweichungen oder fehlende Typen werden hier angemerkt.
+
+### schritt_4: Tests mittels check
+
+- Es sollten Tests mit der `check`-Funktion vorhanden sein, die die Korrektheit an Beispielen wie aus der Aufgabe überprüfen (auch mit Seiteneffekt, d.h. Veränderung der Liste).
+- **Fehler:** Fehlen die Tests, sind diese falsch, unvollständig oder werden die Listen nicht korrekt überprüft (vorher/nachher), wird dies genannt.
+
+### schritt_5: Schablone im Funktionsrumpf
+
+- Hier soll ein Gerüst/Schablone für die spätere Implementierung eingefügt werden.
+- **Fehler:** Wenn direkt Code implementiert wird, ohne vorher eine Schablone wie `for i in ...:` oder einen Platzhalter, fehlt dieser Schritt.
+
+### schritt_6: Richtige Implementierung
+
+- Erst jetzt wird der vollständige Funktionsrumpf geschrieben.
+- Die Funktion muss die passenden Indizes bestimmen und die Elemente in der richtigen Reihenfolge löschen, um Indexverschiebungen zu vermeiden (also rückwärts löschen!).
+- **Fehler:** Hier werden Fehler bei der Manipulation der Liste, Reihenfolge des Löschens, Nebenwirkungen etc. genannt.
+
+---
+
+## Zusammenfassung/Beurteilung (bezogen auf deinen eingereichten Code):
+
+- **Wurden alle sechs Schritte sauber und vollständig abgearbeitet?**
+- **Sind Kurzbeschreibung und Datenanalyse vorhanden und korrekt?**
+- **Ist der Funktionskopf wie gefordert und mit Typannotationen?**
+- **Gibt es (und bestehen) die `check`-Tests?**
+- **Wurde eine Schablone verwendet?**
+- **Ist der finale Funktionsrumpf korrekt und robust? (bes. bzgl. Seiteneffekten und der Index-Problematik beim Löschen in Listen)**
+
+---
+
+### Vollständige Fehlerrückmeldung (typischerweise):
+
+**1.** Es fehlt die Kurzbeschreibung als Kommentar → unbedingt hinzufügen!
+
+**2.** Es fehlt die Datenanalyse als Kommentar zu den Parametern samt Typen und Rückgabe. Ergänzen!
+
+**3.** Funktionskopf: Ist meist korrekt, falls Teil der Angabe.
+
+**4.** Es fehlen Tests mit `check` oder sie prüfen nicht den Seiteneffekt auf die Original-Liste.
+
+**5.** Es fehlt eine Schablone, der Funktionsrumpf wird direkt implementiert.
+
+**6.** Häufiger Fehler:  
+– Wird vorwärts gelöscht, verschieben sich die Indizes und es werden falsche Elemente entfernt.  
+– Lösung: Indizes zuerst berechnen, dann in umgekehrter Reihenfolge löschen oder `del` vermeiden wie verlangt.
+
+---
+
+**Fazit:**  
+Wenn alle Schritte und Details korrekt und sauber vorhanden sind, rückmelde mit "Perfekt". Sonst alle (!) Abweichungen und Verbesserungsmöglichkeiten klar nennen und erläutern.
+
+---
+
+Bitte reiche deinen Code (bzw. deinen Lösungsvorschlag) ein, damit ich das konkrete Feedback nach obiger Struktur geben kann!
+================================== Ai Message ==================================
+
+Studentlösung nicht vorhanden.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |        ❌ Nein     |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|        ❌ Nein     |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |        ❌ Nein     |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |        ❌ Nein     |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |        ❌ Nein     |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                |        ❌ Nein     |
+
+
+Feedback des Muster_Agenten:  
+Keine Studentenlösung vorhanden; daher kann kein Vergleich mit dem Muster erfolgen.

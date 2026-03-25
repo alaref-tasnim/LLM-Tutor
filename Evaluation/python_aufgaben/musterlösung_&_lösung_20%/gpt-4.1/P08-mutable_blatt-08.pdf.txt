@@ -1,0 +1,297 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 4 in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 8
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 11.12.2024, 23:00 Uhr
+5.12.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie eine Funktion, die aus einer Liste von Strings alle leeren Strings entfernt.
+1. Schreiben Sie die Funktion zuerst so, dass die Parameterliste nicht verändert wird. Die-
+se Funktion soll removeEmpties heißen. Sie dürfen dabei keine Operationen verwenden,
+die die Liste verändern. Zu solchen Operationen gehören z.B. remove, insert, append,
+extend, pop, sort und auch die Zuweisung an einem Index mittels l[i] = ... oder auch
+l += ... .
+2. Schreiben Sie die Funktion dann so, dass die Parameterliste verändert wird. Diese Funktion
+soll removeEmptiesMutable heißen.
+1
+Übungsblatt 8 AKI/NES Programmierung 1
+Aufgabe 2 (4+4 Punkte)
+Schreiben Sie eine Funktion, die einer Liste von Objekten eine neues Objekt am Ende hinzu-
+fügt.
+1. Das neue Objekt soll hinzugefügt werden, falls in der Liste das gleiche Objekte (Gleichheit
+bzgl. ==) noch nicht enthalten ist. Die Liste soll dabei nicht verändert werden, sie dürfen
+keine Operation verwenden, die die Liste modifizieren (wie z.B. remove, insert, append,
+extend, pop, sort oder die Zuweisung an einem Index mittels l[i] = ... ). Die Funktion
+soll addIfNotEq heißen.
+2. Das neue Objekt soll hinzugefügt werden, falls in der Liste das identische Objekte (Gleich-
+heit bzgl. is) noch nicht enthalten ist. Die Liste soll dabei verändert werden. Die Funktion
+soll addIfNotIdentical heißen.
+Hinweis: Um zuverlässig Objekte zu erzeugen, die nicht identisch sind, sollten Sie keine Zahlen
+oder Strings als Elemente der Listen für die Tests von Teil (b) verwenden. Aus Effizienzgründen
+verwendet Python nämlich oft dasselbe Zahl- oder String-Objekt wieder. Stattdessen sollten Sie
+einen Record wie z.B.
+@record
+class Point
+x: int
+y: int
+definieren und Objekte dieses Records als Listenelemente verwenden.
+Aufgabe 3 (8 Punkte)
+Programmieren Sie die Funktionalität der Funktion insert nach, ohne dabei natürlich insert
+zu verwenden. Ihre Funktion soll folgenden Funktionskopf haben:
+def myInsert(l: List, i: int, x: Any) -> None:
+Dabei soll sich myInsert(l, i, x) genauso wie l.insert(i, x) verhalten, d.h. das Element
+x wird in Liste l an Index i eingefügt, die Element ab Index i wandern um eins nach hinten.
+Die Liste l wird dabei in-place modifiziert. Als einzige Operationen, die eine Liste verändern,
+dürfen Sie append und die Zuweisung an einem Index mittels l[k] = ... verwenden.
+Schreiben Sie mindestens vier sinnvolle Tests.
+Aufgabe 4 (10 Punkte)
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+2
+Übungsblatt 8 AKI/NES Programmierung 1
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l ent-
+fernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber
+können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen
+removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', G'] .
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1)
+auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step]
+Gesamtpunkte: 34
+Abgabe
+Via Upload im Praktomat bis 11.12.2024, 23:00 Uhr . Speichern Sie jede Programmieren-
+aufgabe in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N
+die Nummer der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann
+aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+def removeSlice(l: list, start: int, end: int, step: int) -> None:
+    if step <= 0:
+        step = 1 
+    
+    for i in range(start, len(l), step): 
+        if i < len(l):  
+            l.pop(i)  
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 4 (10 Punkte)
+Schreiben Sie eine Funktion removeSlice. Die Funktion soll folgenden Funktionskopf haben:
+def removeSlice(l: list, start: int, end: int, step: int) -> None
+Dabei soll ein Aufruf removeSlice(l, start, end, step) die Elemente aus der Liste l ent-
+fernen, die der Slice-Ausdruck l[start:end:step] selektieren würde. Der Einfachheit halber
+können Sie annehmen dass die Indexe start und end sowie step nicht negativ sind.
+Beispiel 1: Wenn myList die Liste ['A', 'B', 'C', 'D', 'E', 'F', 'G'] ist, und wir rufen
+removeSlice(myList, 1, 5, 2) auf, dann sieht myList danach so aus: ['A', 'C', 'E', 'F', G'] .
+Beispiel 2: Wenn myList2 die Liste [1,2,3,1,2,3] ist, und wir rufen removeSlice(myList2, 0, 3, 1)
+auf, dann sieht myList2 danach so aus: [1,2,3].
+Hinweis: Verwenden Sie nicht del l[start:end:step]
+
+code 
+
+from wypp import *
+
+def removeSlice(l: list, start: int, end: int, step: int) -> None:
+    if step <= 0:
+        step = 1 
+    
+    for i in range(start, len(l), step): 
+        if i < len(l):  
+            l.pop(i)
+================================== Ai Message ==================================
+
+Hier ist dein Feedback zu deiner Lösung für die Aufgabe „removeSlice“ unter strikter Berücksichtigung der sechs geforderten Schritte:
+
+---
+
+### Schritt 1: Kurzbeschreibung
+
+**Vorgabe:**  
+Schreibe einen einzeiligen Kommentar unmittelbar vor der Funktion, der erklärt, was die Funktion tut.  
+
+**Dein Code:**  
+Du hast keinen Kommentar vor dem Funktionskopf geschrieben.
+
+**Bewertung:**  
+❌ **Fehler:** Es fehlt die Kurzbeschreibung als Kommentar vor dem Funktionskopf.
+
+---
+
+### Schritt 2: Datenanalyse
+
+**Vorgabe:**  
+Kommentiere unter die Kurzbeschreibung, welches die Eingabeparameter sind und welches Ergebnis die Funktion liefert (jeweils Typ und kurze Beschreibung).
+
+**Dein Code:**  
+Eine Datenanalyse (Kommentar zu Parametern und Ergebnis) fehlt.
+
+**Bewertung:**  
+❌ **Fehler:** Es fehlt die Datenanalyse unterhalb der Kurzbeschreibung.  
+
+---
+
+### Schritt 3: Funktionskopf
+
+**Vorgabe:**  
+Gib den Funktionskopf mit Typannotationen an.
+
+**Dein Code:**  
+```python
+def removeSlice(l: list, start: int, end: int, step: int) -> None:
+```
+
+**Bewertung:**  
+✅ **Erfüllt:** Der Funktionskopf ist korrekt und entspricht der Aufgabenstellung.
+
+---
+
+### Schritt 4: Tests mittels check
+
+**Vorgabe:**  
+Schreibe Tests/Beispiele, die die Funktionsweise prüfen, mit `check`.
+
+**Dein Code:**  
+Keine Tests/Beispiele vorhanden.
+
+**Bewertung:**  
+❌ **Fehler:** Es fehlen sämtliche `check`-Tests für die Funktion.
+
+---
+
+### Schritt 5: Schablonen
+
+**Vorgabe:**  
+Setze die passende Schablone für die Implementierung ein – also vorerst einen Roh-Rumpf (z.B. pass).
+
+**Dein Code:**  
+Schablone übersprungen, direkt mit einer Implementierung begonnen.
+
+**Bewertung:**  
+❌ **Fehler:** Schablone wurde übersprungen – direkt mit Logik begonnen.
+
+---
+
+### Schritt 6: Implementierung
+
+**Vorgabe:**  
+Schreibe erst jetzt den richtigen Funktionsrumpf.
+
+**Dein Code:**  
+Du hast direkt mit einer (fehlerhaften) Implementierung begonnen:
+```python
+    if step <= 0:
+        step = 1 
+    
+    for i in range(start, len(l), step): 
+        if i < len(l):  
+            l.pop(i)  
+```
+**Bewertung der Implementierung und Logik:**
+
+1. **Keine Anpassung für Bereich [start:end:step]:**  
+   Du iterierst mit `range(start, len(l), step)`, was nicht dasselbe ist wie `range(start, end, step)`.  
+   ➔ ❌ Fehler: Entfernte Indizes stimmen nicht mit dem gewünschten Slice überein.
+
+2. **Mutation während Iteration:**  
+   Wenn du während des Vorwärtsdurchlaufs Elemente entfernst, verändern sich die Indizes der nachfolgenden Elemente, was dazu führt, dass manche Elemente übersprungen werden.  
+   ➔ ❌ Fehler: Elemente werden nicht korrekt entfernt, weil sich beim Entfernen die Listenindizes verschieben.
+
+3. **Beschränkung auf positiven Schritt – aber Aufgabenstellung sagt, step ist nie negativ. Die Überprüfung auf `step <= 0` ist also unnötig.**
+
+---
+
+## Zusammenfassung aller Fehler
+
+**Schritt 1**: Kein einzeiliger erklärender Kommentar.  
+**Schritt 2**: Keine Datenanalyse mit Parametern und Rückgabewert.  
+**Schritt 4**: Es fehlen alle Checks/Tests mit Beispielaufrufen und Ergebnissen.  
+**Schritt 5**: Es fehlt die Schablone (z.B. Funktionsrumpf mit `pass`).  
+**Schritt 6**:  
+- Falscher Entferungsvorgang (nicht identisch zu dem, was ein Slice tun würde ― Bereich falsch und Mutation fehlerhaft).
+- Mutationsproblem beim Entfernen im Vorwärtslauf.
+- Überprüfung auf `step <= 0` ist unnötig laut Vorgabe.
+
+---
+
+**Fazit:**  
+Die Lösung überspringt fast alle vorgegebenen Schritte und enthält Fehler in der Implementierungslogik. Bitte halte dich strikt an alle sechs Schritte und achte insbesondere darauf, bei in-place-Änderungen korrekt rückwärts zu iterieren, um Mutationsprobleme zu vermeiden.
+
+---
+
+**Deine Lösung ist weder korrekt noch vollständig und enthält mehrere konzeptionelle und strukturelle Fehler.**
+================================== Ai Message ==================================
+
+Studentenlösung ist vorhanden.
+
+**Unterschiede der Lösungswege:**
+1. **Iteration über Indizes:**
+   - Musterlösung: Erstellt einen `range` mit den gewünschten Indizes und iteriert darüber in umgekehrter Reihenfolge (`reversed`). Dadurch bleiben die Indizes der zu entfernenden Elemente immer korrekt.
+   - Studentenlösung: Iteriert direkt von `start` bis `len(l)` mit Schrittweite `step` und entfernt dabei (mit `pop(i)`) das Element.
+
+2. **Fehlende Slicebegrenzung:**
+   - Musterlösung: Entfernt nur Elemente im Bereich `start:end` gemäß Slice-Semantik.
+   - Studentenlösung: Setzt `end` im Loop nicht um, sondern läuft immer bis zum Listenende (`len(l)`), was nicht korrekt ist.
+
+3. **Fehlermanagement für `step`:**
+   - Studentenlösung: Macht ein eigenes Fallunterscheidung für `step <= 0`, setzt dann aber einfach `step = 1`, was so nicht gefordert und bei negativen Schritten auch falsch wäre (diese werden laut Aufgabenstellung aber ausgeschlossen). 
+   - Musterlösung: Geht davon aus, dass die Eingaben korrekt sind (wie in der Aufgabe beschrieben).
+
+4. **Problem mit Listenveränderung während der Iteration:**
+   - Musterlösung: Indizes werden von hinten nach vorn bearbeitet, so verschiebt sich der Indexbereich nicht durch die Löschung.
+   - Studentenlösung: Entfernt von vorne nach hinten und verändert damit die Indizes der nachfolgenden Elemente während der Iteration, was zu falschen Ergebnissen führt.
+
+**Beurteilung:**
+- Der Ansatz der Musterlösung ist wesentlich einfacher und robuster, da das Löschen von hinten nach vorne korrekt ist und die Slicesemantik einhält. Die Lösung des Studenten enthält einen logischen Fehler (Iteration und Manipulation an der gleichen Liste von vorne nach hinten), was leicht zu falschen Ergebnissen führt, und setzt zudem die End-Beschränkung falsch um.
+
+**Feedback:**  
+Die Musterlösung ist korrekt und eleganter, da sie in umgekehrter Reihenfolge löscht und exakt nur die gewünschten Elemente entfernt. Die Studentenlösung hat einen logischen Iterationsfehler und stimmt nicht mit der Aufgabe/Slicesemantik überein.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |        ❌ Nein     |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|        ❌ Nein     |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |        ✅ Ja       |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |        ❌ Nein     |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |        ❌ Nein     |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                |        ❌ Nein     |
+
+**Fehler im Funktionsrumpf (Schritt 6):**
+- Der Entfernungsbereich stimmt nicht mit der Slicesemantik überein – die Schleife läuft bis zum Listenende statt nur bis `end`.
+- Es wird von vorne nach hinten entfernt, wodurch sich Indizes verschieben und Elemente übersprungen werden.
+- Die Überprüfung und Anpassung von `step <= 0` ist unnötig, da negative Schritte laut Vorgabe ausgeschlossen sind.
+
+---
+
+**Muster_Agent Feedback (Zusammenfassung):**
+Die Musterlösung ist korrekt und entfernt Elemente sicher von hinten nach vorne im gewünschten Slice-Bereich. Die Studentenlösung hat logische Fehler: Sie implementiert die Slicesemantik nicht richtig und entfernt von vorne nach hinten, was zu falschen Ergebnissen führt.

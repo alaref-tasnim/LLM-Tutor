@@ -1,0 +1,192 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 3 in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 4
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 13.11.2024, 23:00 Uhr
+7.11.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Ein Auto ist charakterisiert durch Farbe (ein String), die Marke (ebenfalls ein String) und
+die Antriebsart (Verbrenner oder elektrisch). Ein Fahrrad besitzt eine Marke (String) und die
+Antriebsart (Muskelkraft oder elektrisch). Zur Vereinfachung nehmen wir an, dass immer nur
+eine Antriebsart gibt (also keine Hybridautos o.ä.)
+Ein Fahrzeug ist entweder ein Auto oder ein Fahrrad.
+(a) Modellieren Sie diese Gegebenheit.
+(b) Schreiben Sie eine Funktion zur Berechnung der Reichweite eines Fahrzeugs. Dabei kommt
+ein Auto mit Verbrenner 600km weit, eines mit elektrischem Antriebe 400km, ein Fahrrad
+mit elektrischem Antrieb 120km und ein Fahrrad mit Muskelkraft 10.000km. Es ist sinn-
+voll, zunächst separate Hilfsfunktionen zur Berechnung der Reichweiten von Autos und
+Fahrräder zu bestimmen.
+1
+Übungsblatt 4 AKI/NES Programmierung 1
+Aufgabe 2 (2+2+6+6 Punkte)
+Im folgenden soll ein Bestellformular für Sportartikel modelliert werden. Folgende Artikel sind
+lieferbar:
+Trikot mit Größe (S, M oder L), Farbe (schwarz, grün, blau oder rot) und einer optionalen
+Rückennummer.
+Hose mit Größe (S, M oder L) und Farbe (schwarz, grün, blau oder rot)
+Stutzen mit einer oberen und unteren Schranke für die passende Schuhgröße und einer Farbe
+(schwarz, grün, blau oder rot).
+(a) Überlegen Sie sich zuerst, wie Sie optionale Rückennummern mit einem gemischten Daten-
+typ modellieren können. Schauen Sie sich dazu noch einmal an, wie wir in der Vorlesung
+Fehler mittels gemischter Daten modelliert haben. Schreiben Sie dann eine Funktion die
+entscheidet, ob eine optionale Rückennummer vorhanden ist.
+(b) Modellieren Sie die Sportartikel wie oben beschrieben.
+(c) Schreiben Sie dann eine Funktion die den Preis eines Sportartikels berechnet.
+• Ein Trikot kostet dabei 20 e, mit Rückennummer 25 e.
+• Eine Hose kostet in Größe S 10 e, in Größe M 12 eund in Größe L 15 e.
+• Stutzen kosten bis zur Maximalgröße 38 nur 5 e. Ansonsten 9 e.
+Aufgabe 3 (6+8 Punkte)
+Die Pizzeria „Cheap&Dirty“ setzt verstärkt auf Gerichte zum Mitnehmen. Um die Preiskalku-
+lation zu vereinfachen soll eine automatische Berechnung des Preis’ erfolgen.
+(a) Eine Pizza ist in zwei Größen verfügbar: normal (Grundpreis: 2 e) und groß (Grundpreis
+2,50e). Neben der Größe kann eine Pizza noch folgende Zutaten haben: Oliven (0,50 e),
+Pilze (0,40 e), Salami (0,45 e) und Käse (0,55 e). Die Preise in Klammern gelten für die
+Normalgröße, bei großen Pizzen wird ein Aufpreis von 10% fällig. Zutaten können beliebig
+kombiniert werden, jede Zutat kann aber höchstens einmal vorkommen. Schreiben Sie eine
+Funktion, die den Preis einer Pizza berechnet.
+(b) Da der Preisrechner sehr erfolgreich ist, sollen die Preise weiterer Gerichte und Getränke
+damit berechnet werden. Zum einen Bier, welches in den Sorten Pils und Weizen angeboten
+wird und in den Größen 0,3l und 0,5l verfügbar ist. 100ml Pils kostet dabei 0,80 e, 100ml
+Weizen 0,85e. Zum anderen gibt es Nudelgerichte. Ein Nudelgericht hat dabei einen Na-
+men, einen Preis pro 100g und eine Bestellmenge in Gramm. Schreiben Sie eine Funktion,
+die den Preis eines Gerichts (Pizza oder Nudeln) oder eines Getränks berechnet.
+2
+Übungsblatt 4 AKI/NES Programmierung 1
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 13.11.2024, 23:00 Uhr . Speichern Sie jede Programmieren-
+aufgabe in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N
+die Nummer der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann
+aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 3 (6+8 Punkte)  
+Die Pizzeria „Cheap&Dirty“ setzt verstärkt auf Gerichte zum Mitnehmen. Um die Preiskalku- lation zu vereinfachen soll eine automatische Berechnung des Preis’ erfolgen.  
+(a) Eine Pizza ist in zwei Größen verfügbar: normal (Grundpreis: 2 e) und groß (Grundpreis 2,50e). Neben der Größe kann eine Pizza noch folgende Zutaten haben: Oliven (0,50 e), Pilze (0,40 e), Salami (0,45 e) und Käse (0,55 e). Die Preise in Klammern gelten für die Normalgröße, bei großen Pizzen wird ein Aufpreis von 10% fällig. Zutaten können beliebig kombiniert werden, jede Zutat kann aber höchstens einmal vorkommen. Schreiben Sie eine Funktion, die den Preis einer Pizza berechnet.  
+(b) Da der Preisrechner sehr erfolgreich ist, sollen die Preise weiterer Gerichte und Getränke damit berechnet werden. Zum einen Bier, welches in den Sorten Pils und Weizen angeboten wird und in den Größen 0,3l und 0,5l verfügbar ist. 100ml Pils kostet dabei 0,80 e, 100ml Weizen 0,85e. Zum anderen gibt es Nudelgerichte. Ein Nudelgericht hat dabei einen Namen, einen Preis pro 100g und eine Bestellmenge in Gramm. Schreiben Sie eine Funktion, die den Preis eines Gerichts (Pizza oder Nudeln) oder eines Getränks berechnet.  
+ 
+Hier ist die Lösung des Studenten:  
+```python
+def pizza_preis(groesse, zutaten):
+    grundpreise = {'normal': 2.0, 'gross': 2.50}
+    zutaten_preise = {'oliven': 0.50, 'pilze': 0.40, 'salami': 0.45, 'kaese': 0.55}
+
+    preis = grundpreise[groesse]
+    if groesse == 'gross':
+        preis *= 1.1  # 10% Aufpreis für große Pizzen
+    
+    for zutat in zutaten:
+        preis += zutaten_preise[zutat]
+    
+    return preis
+
+def gericht_preis(typ, **kwargs):
+    if typ == 'pizza':
+        return pizza_preis(kwargs['groesse'], kwargs['zutaten'])
+    elif typ == 'bier':
+        preis_pro_100ml = {'pils': 0.80, 'weizen': 0.85}
+        return preis_pro_100ml[kwargs['sorte']] * kwargs['menge'] / 100
+    elif typ == 'nudeln':
+        return kwargs['preis_pro_100g'] * kwargs['menge'] / 100
+    else:
+        return 0
+```
+================================== Ai Message ==================================
+
+Vielen Dank für das Einsenden deiner Lösung. Hier ist das Feedback basierend auf den sechs Schritten, die du einhalten solltest:
+
+### Schritt 1: Kurzbeschreibung
+Deine Funktion hat keine Kommentare, die erklären, was die Funktionen tun. Sowohl die Funktion `pizza_preis` als auch `gericht_preis` sollten mit einer kurzen Beschreibung versehen sein.
+
+### Schritt 2: Datenanalyse
+Es fehlen die Kommentare, die die Eingaben und Ausgaben der Funktionen detailliert beschreiben. Für `pizza_preis` solltest du angeben, welche Parameter (Größen und Zutaten) erwartet werden, und welches Ergebnis (Preis der Pizza) zurückgegeben wird. Für `gericht_preis` sollten die verschiedenen Arten von Gerichten (z.B. Pizza, Bier, Nudeln) sowie deren Parameter und das Rückgabewert ebenfalls dokumentiert werden.
+
+### Schritt 3: Funktionskopf
+Die Funktionsköpfe für `pizza_preis` und `gericht_preis` sollten die Typen für die Argumente und das Ergebnis enthalten. Dies ist in deiner Lösung nicht gegeben. Es sollte spezifisch sein, welche Typen (z.B. `str`, `list`, `float`) erwartet werden und was zurückgegeben wird.
+
+### Schritt 4: Beispiele und Tests
+Es gibt keine Tests mit der Funktion `check`, um zu überprüfen, ob die Funktionen die erwarteten Ergebnisse zurückgeben. Du solltest Tests hinzufügen, die verschiedene Szenarien abdecken, um sicherzustellen, dass die Funktionalität korrekt ist.
+
+### Schritt 5: Schablonen
+Dieser Schritt sollte nicht übersprungen werden. Überlege, welche Schablonen in den Rumpf der Funktion eingesetzt werden könnten, bevor du den richtigen Code schreibst.
+
+### Schritt 6: Implementierung
+Der Implementierungsteil ist an sich sinnvoll, jedoch wäre es hilfreich, sicherzustellen, dass die Funktion auch Fehler handelt, z.B. wenn ungültige Zutaten oder unzulässige Typen angegeben werden.
+
+### Zusammenfassung
+- **Fehlende Beschreibungen** für die Funktionen (Schritt 1 und 2).
+- **Typinformationen** für die Funktionsköpfe nicht angegeben (Schritt 3).
+- **Fehlende Tests** durch `check` (Schritt 4).
+- **Inkorrekter Umgang** mit dem Schablonen-Schritt (Schritt 5).
+- **Fehlerbehandlung** und mögliche Validierungen im Implementierungsteil (Schritt 6).
+
+Insgesamt wurden die Schritte nicht korrekt eingehalten. Stelle sicher, dass du alle vorgegebenen Schritte vollständig befolgst, um zur vollständigen und korrekten Implementierung zu gelangen.
+================================== Ai Message ==================================
+
+Die Studentlösung und die Musterlösung unterscheiden sich in mehreren Aspekten:
+
+1. **Datenstruktur**:
+   - *Student*: Verwendet einfache Parameter für die Funktion `pizza_preis` (Größe und Zutaten als Liste). 
+   - *Muster*: Nutzt eine `Pizza`-Klasse, die die Größe und Zutaten als Attribute mit booleschen Flags speichert.
+
+2. **Preisberechnung**:
+   - *Student*: Berechnet die Preisaufschläge für Zutaten und die Preisgrundlage innerhalb einer Funktion. Die Logik zum Preisberechnen ist in einer einzigen Funktion.
+   - *Muster*: Berechnet den Preis der Pizza in einer separaten Funktion `calcPizzaPreis`, die die `Pizza`-Objekte verwendet. Aufpreise für die Größe werden zusammen mit den Zutaten in einer klaren Logik behandelt.
+
+3. **Flexibilität**: 
+   - *Student*: Unterstützt keine Überprüfung, ob die Zutaten gültig sind, und erwartet eine Liste.
+   - *Muster*: Nutzt optionale Eigenschaften, die den Gültigkeitsbereich der Zutaten sicherstellen.
+
+4. **Tests**:
+   - *Student*: Beinhaltet keine Tests oder Überprüfungen der Funktionsweise.
+   - *Muster*: Enthält zahlreiche `check()`-Anweisungen, um die Funktionalität der Preisberechnung zu validieren.
+
+Beurteilung: 
+Die Musterlösung ist strukturell sauberer, flexibler und einfacher zu testen. Es empfiehlt sich, eine objektorientierte Herangehensweise wie die der Musterlösung zu verwenden, um die Wartbarkeit und Lesbarkeit zu verbessern. Die Verwendung einer Klasse zur Beschreibung der Pizza und ihrer Eigenschaften ist sinnvoll und erleichtert die Preisberechnung und spätere Erweiterungen.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |    ❌ Nein         |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|    ❌ Nein         |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |    ❌ Nein         |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |    ❌ Nein         |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |    ❌ Nein         |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                      |    ❌ Nein         |
+
+### Fehler im Funktionsrumpf (Schritt 6)
+- Der Implementierungsteil behandelt keine Fehler oder Validierungen, wenn ungültige Zutaten oder Typen angegeben werden.
+
+### Feedback des Muster_Agenten
+Die Studentlösung und die Musterlösung unterscheiden sich in mehreren Aspekten. Die Musterlösung verwendet eine `Pizza`-Klasse für eine bessere Datenstruktur, während die Studentlösung einfache Parameter verwendet. Zudem ist die Preisberechnung in der Musterlösung klarer strukturiert. Es fehlen Überprüfungen für die Zutaten in der Studentlösung, ebenso wie Tests. Insgesamt bietet die Musterlösung eine objektorientierte Herangehensweise, die die Wartbarkeit und Lesbarkeit verbessert. Es wird empfohlen, die Struktur der Musterlösung zu nutzen.

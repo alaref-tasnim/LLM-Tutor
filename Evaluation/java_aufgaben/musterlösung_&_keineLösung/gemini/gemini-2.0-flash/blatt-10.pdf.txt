@@ -1,0 +1,228 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 2 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 10
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 6.6.2025, 23:00 Uhr
+12.6.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Aufgabe 1 ((4+6) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_01 (siehe Templa-
+te).
+Implementieren Sie in der Klasse HashFunction die Berechnung eines Hashwerts gegeben eine
+ganze Zahl.
+(a) Divisions-Rest-Methode mit m=97.
+(b) Multiplikative-Methode mit einem von Ihnen gewählten A ∈ (0, 1) und m=16.
+Stellen Sie sicher, dass alle Tests laufen.
+2
+Übungsblatt 10 Algorithmen & Datenstrukturen
+Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Templa-
+te).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag
+zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen
+Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus
+einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle
+berechnet.
+Gesamtpunkte: 36
+Abgabe
+Via Upload im Praktomat bis 6.6.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur Ab-
+gabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+    @Override
+    public void insert(K key, V value) {
+        // FIXME: Praktikum
+    }
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        return null; // FIXME: Praktikum
+    }
+
+    @Override
+    public void remove(K key) {
+        // FIXME: Praktikum
+    }
+
+    @Override
+    public int size() {
+        return 0; // FIXME: Praktikum
+    }
+}
+
+
+        
+================================== Ai Message ==================================
+
+- Aufgabe 2 ((10+6+6+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex10_02 (siehe Templa-
+te).
+(a) Implementieren Sie in HashTableChaining die Methode insert, die einen neuen Eintrag
+zu einer Hashtabelle hinzufügt oder ändert.
+(b) Implementieren Sie in HashTableChaining die Methode lookup, die den zum übergebenen
+Schlüssel passenden Eintrag zurückgibt.
+(c) Implementieren Sie in HashTableChaining die Methode remove, die einen Eintrag aus
+einer Hashtabelle für den gegebenen Schlüssel entfernt.
+(d) Implementieren Sie die size Methode, die die Anzahl der Einträge in der Hashtabelle
+berechnet.
+
+- package de.hso.aud.ex10_02;
+
+import java.util.ArrayList;
+
+public class HashTableChaining<K, V> implements HashTable<K,V> {
+
+    private static final int SIZE = 97;
+
+    private ArrayList<HashEntry<K,V>>[] array;
+
+    @SuppressWarnings("unchecked")
+    public HashTableChaining() {
+        this.array = new ArrayList[SIZE];
+    }
+
+    @Override
+    public void insert(K key, V value) {
+        // FIXME: Praktikum
+    }
+
+    private int hashValue(K k) {
+        int hc = k.hashCode();           // Hashcode
+        int h = Math.abs(hc) % SIZE;       // Hashwert, Index im Array
+        return h;
+    }
+
+    @Override
+    public V lookup(K key) {
+        return null; // FIXME: Praktikum
+    }
+
+    @Override
+    public void remove(K key) {
+        // FIXME: Praktikum
+    }
+
+    @Override
+    public int size() {
+        return 0; // FIXME: Praktikum
+    }
+}
+================================== Ai Message ==================================
+
+Okay, hier ist die Bewertung des gegebenen Java-Codes für die `HashTableChaining` Klasse, wobei ich mich auf die Implementierung der Methoden `insert`, `lookup`, `remove` und `size` konzentriere.
+
+**Allgemeine Anmerkungen:**
+
+*   Der Code verwendet eine `ArrayList` von `HashEntry` Objekten für jede Position im Array, was eine übliche Strategie für Chaining in Hash Tables ist.
+*   Die `hashValue` Methode ist korrekt implementiert.
+*   Die `HashTableChaining` Klasse verwendet Generics, was eine gute Praxis ist.
+
+**Bewertung der einzelnen Methoden:**
+
+**a) `insert(K key, V value)`**
+
+*   Es wurde keine Implementierung für die `insert` Methode bereitgestellt. Daher kann ich keine Fehler in Bezug auf die Funktionalität oder den verwendeten Algorithmus feststellen.
+
+**b) `lookup(K key)`**
+
+*   Es wurde keine Implementierung für die `lookup` Methode bereitgestellt. Daher kann ich keine Fehler in Bezug auf die Funktionalität oder den verwendeten Algorithmus feststellen.
+
+**c) `remove(K key)`**
+
+*   Es wurde keine Implementierung für die `remove` Methode bereitgestellt. Daher kann ich keine Fehler in Bezug auf die Funktionalität oder den verwendeten Algorithmus feststellen.
+
+**d) `size()`**
+
+*   Es wurde keine Implementierung für die `size` Methode bereitgestellt. Daher kann ich keine Fehler in Bezug auf die Funktionalität oder den verwendeten Algorithmus feststellen.
+
+**Zusammenfassung:**
+
+Es wurden keine Implementierungen für die geforderten Methoden bereitgestellt. Daher kann ich keine detaillierte Fehleranalyse durchführen.
+================================== Ai Message ==================================
+
+Keine Studentenlösung vorhanden
+================================== Ai Message ==================================
+
+Basierend auf der Bewertung des Retriever_Agent ist die Lösung inkorrekt, da keine Implementierungen für die geforderten Methoden `insert`, `lookup`, `remove` und `size` bereitgestellt wurden.

@@ -1,0 +1,296 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 1 a in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 3
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 6.11.2024, 23:00 Uhr
+31.10.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie weitere Funktionen für die Computer aus der Vorlesung. Kopieren Sie dazu zu-
+nächst die Daten- und Recorddefinition für Computer in Deine Datei.
+(a) Es soll folgendes Preismodell für Computer gelten:
+• Jedes GB Arbeitsspeicher kosten 5 Euro. Für den Arbeitsspeicher werden mindestens
+30 Euro fällig
+• Jedes 500 GB Festplatte kosten 20 Euro. Dabei wird auf die nächsten 500 GB aufge-
+rundet, z.B. kosten 1100 GB genausoviel wie 1500 GB, nämlich 60 Euro.
+• Die CPU kostet 90 Euro. Falls die CPU von Intel ist, wird ein Aufschlag von 20 Euro
+fällig. Sie können mittels 'Intel' in s prüfen, ob der String 'Intel' im String s
+vorkommt.
+• Weitere Komponenten und Montage kosten pauschal 100 Euro. Diese Pauschale fällt
+für jeden Computer an.
+Implementieren Sie das Preismodell.
+1
+Übungsblatt 3 AKI/NES Programmierung 1
+(b) Schreiben Sie eine Funktion, die den Arbeitsspeicher des Computers erweitert. Die Funkti-
+on nimmt einen Computer und die Speichermenge als Eingabe und liefert einen Computer
+mit dem erweiterten Speicher. Achten Sie darauf dass der Arbeitsspeicher durch die Er-
+weiterung nie kleiner werden darf.
+Hinweise: Die Vorlesung verwendet für den „Arbeitsspeicher“ eines Computers manchmal auch
+die Begriffe „Hauptspeicher“ oder „RAM“ . Statt „CPU“ wird in der Vorlesung manchmal auch
+vom „Prozessor“ gesprochen.
+Aufgabe 2 (8 Punkte)
+Zur Verkehrssteuerung soll in Offenburg eine City–Maut eingeführt werden. Die Einfahrt in die
+Stadt ist dann abhängig von folgenden Kriterien:
+• Wurde die City–Maut bezahlt?
+• Liegt eine Sondergenehmigung vor?
+• Welche Schadstoffklasse hat das Auto?
+Modellieren Sie die Schadstoffklasse und die Maut–Kriterien durch eine Datenbeschreibung und
+eine Typdefinition. Es gibt die folgenden Schadstoffklassen: 1-4, 5 und 6.
+Es gelten nun folgende Regeln:
+• Falls die Maut nicht bezahlt wurde, ist eine Einfahrt nur mit Sondergenehmigung möglich.
+• Falls das Auto nicht Schadstoffklasse 5 oder 6 hat, ist eine Einfahrt nur mit Sondergeneh-
+migung möglich und die Maut muss bezahlt worden sein.
+Implementieren Sie nun eine Funktion, die aus den Maut-Kriterien berechnet ob eine Einfahrt
+möglich ist.
+Aufgabe 3 (3+3+4 Punkte)
+Eine Adresse besteht aus einem Namen, einer Straße plus Hausnummer, einem Zusatz der leer
+sein kann, einer Postleitzahl, einer Stadt und einem Land. Ein Namen wiederum hat einen Vor-
+und einen Nachnamen.
+(a) Modelliere Sie diese Gegebenheiten in Python.
+(b) Schreiben Sie eine Funktion, die den Nachnamen einer gegebenen Adresse ändert.
+(c) Schreiben Sie eine Funktion, die eine Adresse für einen Briefumschlag formatiert.
+2
+Übungsblatt 3 AKI/NES Programmierung 1
+Aufgabe 4 (6+6 Punkte)
+Lebensmittel haben einen Namen, eine Packungsgröße in Gramm und einen Zuckergehalt. Für
+die Angabe des Zuckergehalts gibt es mehrere Möglichkeiten:
+• Auf einigen Lebensmitteln ist die Menge an enthaltenem Zucker aufgeteilt in Fruktose und
+Glukose angegeben. Der Zuckergehalt bezieht sich auf die Packungsgröße.
+• Bei anderen Lebensmitteln ist der Zuckergehalt in Gramm pro 100 Gramm Lebensmittel
+angegeben.
+• Bei wieder anderen Lebensmitteln ist der Zuckergehalt über das nachfolgende Ampelsys-
+tem angegeben.
+Farbe Bedeutung Zuckergehalt pro 100g
+grün niedriger Gehalt weniger als 5g
+gelb mittlerer Gehalt zwischen 5g und 22,5g
+rot hoher Gehalt mehr als 22,5g
+Hier Beispiele für Lebensmittel:
+Name Packungsgröße Zuckergehalt
+Coca Cola 500 25g Fruktose, 25g Glukose
+Ritter Sport himmlische Beere 100 15,29g Fruktose, 24,9g Glukose
+Kürbis 1000 2,8g pro 100g
+Gurke 470 grün
+(a) Führen Sie eine Datenanalyse durch und modellieren Sie solche Lebensmittel in der Pro-
+grammiersprache. Modellieren Sie die drei alternativen Darstellungsformen des Zuckerge-
+halts dabei als gemischten Datentyp. Schreiben Sie die obigen Beispiele in der Program-
+miersprache hin.
+(b) Schreiben Sie eine Funktion, die für ein Lebensmittel berechnet, in welche Kategorie der
+Ampel (rot, gelb oder grün) das Lebensmittel fällt. Sie sollten dazu eine Hilfsfunktion
+schreiben, die für einen Zuckergehalt, der als Glukose- und Fruktosemenge pro Gesamt-
+menge ausgedrückt ist, den Gesamtzuckergehalt pro 100g berechnet.
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 6.11.2024, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+# Ein Computer besteht aus:
+# - Prozessor
+# - Festplatten-Kapazität in Gigabyte
+# - Hauptspeicher-Kapazität in Gigabyte
+@record
+class Computer:
+    prozessor: str
+    festplatte: int
+    hauptspeicher: int
+
+# Gesamtspeicher berechnen
+# Eingabe: ein Computer
+# Ergebnis: die Summe von Haupt- und Festplattenspeicher (int)
+def totalMemory(c: Computer) -> int:
+    return c.festplatte + c.hauptspeicher
+
+
+check(totalMemory(Computer('Intel i9', 1000, 16)), 1016)
+check(totalMemory(Computer('AMD', 250, 8)), 258)
+
+
+# Ein Modell ist eins der folgenden:
+# - Billigmodell
+# - Gamer-Modell
+# - Office-Modell
+type Modell = Literal['billig', 'gamer', 'office']
+
+# Computer für ein bestimmtes Modell zusammenstellen.
+# Eingabe: ein Modell
+# Ergebnis: ein Computer
+def standardComputer(modell: Modell) -> Computer:
+    if modell == 'billig':
+        return Computer('Sempron', 2, 500)
+    elif modell == 'gamer':
+        return Computer('Quad', 16, 1000)
+    elif modell == 'office':
+        return Computer('Intel i7', 8, 750)
+
+
+check(standardComputer('billig'), Computer('Sempron', 2, 500))
+check(standardComputer('gamer'), Computer('Quad', 16, 1000))
+check(standardComputer('office'), Computer('Intel i7', 8, 750))
+
+
+# Aufgabe A
+# Berechnet einen Preis für einen Computer.
+def calcComputerPreis(c: Computer) -> float:
+    summe = 0
+    summe = summe + c.hauptspeicher * 3
+    summe = summe + int(c.festplatte / 100) * 5
+
+    summe = summe + 50
+    if 'Intel' in c.prozessor:
+        summe = summe - 10
+    return c.festplatte  
+
+
+
+        
+================================== Ai Message ==================================
+
+Extrahierter Aufgabentext:
+
+Aufgabe 1 (4+4 Punkte)
+Schreiben Sie weitere Funktionen für die Computer aus der Vorlesung. Kopieren Sie dazu zunächst die Daten- und Recorddefinition für Computer in Ihre Datei.
+(a) Es soll folgendes Preismodell für Computer gelten:
+• Jedes GB Arbeitsspeicher kosten 5 Euro. Für den Arbeitsspeicher werden mindestens 30 Euro fällig
+• Jedes 500 GB Festplatte kosten 20 Euro. Dabei wird auf die nächsten 500 GB aufgerundet, z.B. kosten 1100 GB genausoviel wie 1500 GB, nämlich 60 Euro.
+• Die CPU kostet 90 Euro. Falls die CPU von Intel ist, wird ein Aufschlag von 20 Euro fällig. Sie können mittels 'Intel' in s prüfen, ob der String 'Intel' im String s vorkommt.
+• Weitere Komponenten und Montage kosten pauschal 100 Euro. Diese Pauschale fällt für jeden Computer an.
+Implementieren Sie das Preismodell.
+(b) Schreiben Sie eine Funktion, die den Arbeitsspeicher des Computers erweitert. Die Funktion nimmt einen Computer und die Speichermenge als Eingabe und liefert einen Computer mit dem erweiterten Speicher. Achten Sie darauf dass der Arbeitsspeicher durch die Erweiterung nie kleiner werden darf.
+
+Gegebene Lösung:
+
+```python
+from wypp import *
+
+# Ein Computer besteht aus:
+# - Prozessor
+# - Festplatten-Kapazität in Gigabyte
+# - Hauptspeicher-Kapazität in Gigabyte
+@record
+class Computer:
+    prozessor: str
+    festplatte: int
+    hauptspeicher: int
+
+# Gesamtspeicher berechnen
+# Eingabe: ein Computer
+# Ergebnis: die Summe von Haupt- und Festplattenspeicher (int)
+def totalMemory(c: Computer) -> int:
+    return c.festplatte + c.hauptspeicher
+
+
+check(totalMemory(Computer('Intel i9', 1000, 16)), 1016)
+check(totalMemory(Computer('AMD', 250, 8)), 258)
+
+
+# Ein Modell ist eins der folgenden:
+# - Billigmodell
+# - Gamer-Modell
+# - Office-Modell
+type Modell = Literal['billig', 'gamer', 'office']
+
+# Computer für ein bestimmtes Modell zusammenstellen.
+# Eingabe: ein Modell
+# Ergebnis: ein Computer
+def standardComputer(modell: Modell) -> Computer:
+    if modell == 'billig':
+        return Computer('Sempron', 2, 500)
+    elif modell == 'gamer':
+        return Computer('Quad', 16, 1000)
+    elif modell == 'office':
+        return Computer('Intel i7', 8, 750)
+
+
+check(standardComputer('billig'), Computer('Sempron', 2, 500))
+check(standardComputer('gamer'), Computer('Quad', 16, 1000))
+check(standardComputer('office'), Computer('Intel i7', 8, 750))
+
+
+# Aufgabe A
+# Berechnet einen Preis für einen Computer.
+def calcComputerPreis(c: Computer) -> float:
+    summe = 0
+    summe = summe + c.hauptspeicher * 3
+    summe = summe + int(c.festplatte / 100) * 5
+
+    summe = summe + 50
+    if 'Intel' in c.prozessor:
+        summe = summe - 10
+    return c.festplatte
+```
+================================== Ai Message ==================================
+
+Die Lösung hat folgende Fehler:
+
+1. Im ersten Schritt, der Kommentar "Ein Computer besteht aus.." und die darunterliegende Definition sind korrekt eingehalten.
+2. Der zweite Schritt sieht vor, dass eine Datenanalyse durchgeführt wird, die jedoch fehlt.
+3. Der Funktionskopf inkl. Typangaben "def totalMemory(c: Computer) -> int:" wurde korrekt implementiert.
+4. Der vierte Schritt sieht vor, Tests durchzuführen. Und dieser Step wurde korrekt eingehalten.
+5. Der fünfte Schritt ist in der Aufgabe nicht dargestellt und kann daher nicht bewertet werden.
+6. Der sechste Schritt zur Implementierung des Funktionsrumpfes wurde nicht korrekt umgesetzt. Die Funktion `calcComputerPreis` berechnet nicht korrekt den Preis für den Computer gemäß der Aufgabenstellung. Der Hauptspeicher Preis wird mit 3multipliziert und nicht mit 5, außerdem fehlt die Bedingung, dass der Hauptspeicher mindestens 30 Euro kosten muss. Die Festplatte wird durch 100 geteilt und nicht durch 500, die Kosten pro 500GB sind ebenfalls falsch, sie sollten 20 Euro sein und nicht 5 Euro. Am Ende wird nicht die Summe sondern die Festplattengröße zurückgegeben. Außerdem fehlen die pauschalen Kosten von 100 Euro pro Computer.
+
+7. Obwohl die Aufgabe es explizit verlangt, fehlt die Funktion, um den Hauptspeicher des Computers zu erweitern.
+================================== Ai Message ==================================
+
+Die Studentenlösung ist in einigen fundamentalen Teilen unvollständig oder fehlerhaft.
+
+1. Die Funktion `calcComputerPreis` in der Studentenlösung ignoriert einige Aspekte, wie das Aufnehmen der Aufschläge für Intel CPUs oder Mindestpreis für Arbeitsspeicher und rundet die Festplattenkapazität nicht auf. 
+
+2. Der Preis für den Arbeitsspeicher wird falsch berechnet (3€ statt 5€ pro GB). 
+
+3. Bei der Berechnung der Festplatte wird der Preis auf 100GB statt 500GB Runden nicht beachtet.
+
+4. Die Kosten für die CPU und weitere Komponenten sind falsch.
+
+5. Die Funktion kehrt einen falschen Wert (Festplattenkapazität) zurück, statt den errechneten Preis.
+
+Die Musterlösung ist vollständig und korrekt, sie implementiert alle Preiskomponenten wie in der Aufgabenstellung gefordert und kehrt den korrekten Preis zurück. Sie ist somit sowohl einfacher als auch sinnvoller als die Studentenlösung.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |    ✅ Ja   |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|    ❌ Nein   |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |    ✅ Ja   |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |    ✅ Ja   |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |    ❌ Nein |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                      |    ❌ Nein   |
+Auflistung der Fehler in Schritt 6:
+1. Der Hauptspeicher Preis wird nicht korrekt berechnet. Es wird mit 3 multipliziert anstatt mit 5.
+2. Mindestpreis für Hauptspeicher fehlt.
+3. Der Preis der Festplatte wird durch 100 geteilt und nicht durch 500.
+4. Die Kosten pro 500GB Festplatte sind fälschlich 5 Euro anstatt 20 Euro.
+5. Es wird die Festplattengröße anstatt der berechneten Preise zurückgegeben.
+6. Pauschale Kosten von 100 Euro pro Computer fehlen.
+7. Funktion zum Erweitern des Hauptspeichers fehlt.
+
+Feedback des Muster_Agenten:
+Die Musterlösung ist adäquat und korrekt implementiert und entspricht den Anforderungen der Aufgabenstellung, während die Studentenlösung signifikante Mängel enthält. Insbesondere fehlen notwendige Funktionalitäten und die berechneten Preise sind inkorrekt.

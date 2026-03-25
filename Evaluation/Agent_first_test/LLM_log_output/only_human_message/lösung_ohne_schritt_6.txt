@@ -1,0 +1,304 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe_1 teil a) in der pdf:
+Prof. Dr. Stefan Wehr, Simon Rösch
+Übungsblatt 10
+AKI/NES Programmierung 1, Wintersemester 2025/2026
+Deadline: 24.1.2026, 23:00 Uhr
+18.1.2026
+Aufgabe 1 (5+5+8 Punkte)
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter
+findet. Gehen Sie wie folgt vor:
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin
+enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt
+werden.
+Beispiel:
+Hallo Stefan,
+wie geht es dir?
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"]
+zurückgegeben werden.
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary
+berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der
+angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle
+spielen.
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurück-
+gegeben werden.
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten
+in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert
+ausgeben. Beispielausgabe:
+er: 31
+haus: 29
+bunt: 19
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords.
+Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Haupt-
+funktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem
+möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl
+python3 wordcount.py FILE
+1
+Übungsblatt 10 AKI/NES Programmierung 1
+soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.
+Unter Windows braucht man (manchmal) den Befehl
+py -3.10 -m unittest FILE
+Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei
+vorne in der Liste die am häufigsten vorkommenden Wörter stehen:
+sorted(d.items(), key=lambda x: x[1], reverse=True)
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der
+Wörter in einer Datei auszugeben, nicht ausgeführt wird.
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so
+aussehen:
+the: 10
+was: 9
+he: 7
+Aufgabe 2 (2+3+5+5+5 Punkte)
+Entwerfen und implementieren Sie einen Record Fraction zum exakten Rechnen mit Brüchen
+auf der Basis der vorhandenen arithmetischen Operationen auf int. Dabei hat ein Bruch zwei
+Eigenschaften: numerator (Zähler) und denominator (Nenner).
+Stellen Sie in Ihrer Implementierung sicher, dass folgende Eigenschaften gelten:
+• Der Nenner darf nie 0 sein.
+• Instanzen von Fraction sollen nicht veränderbar sein.
+• Die Implementierung soll komplett ohne Gleitkommazahlen auskommen!
+Sie dürfen ausschließlich folgenden Imports nutzen:
+from wypp import *
+from math import gcd
+Insbesondere dürfen Sie das Module fractions nicht verwenden!
+Gehen Sie wie folgt vor:
+(a) Verwenden Sie Records zur Repräsentation von Brüchen
+(b) Stellen Sie zunächst die Bedingung „Nenner ungleich 0“ sicher. Dazu bieten die klassen-
+basierte Records die Möglichkeit, durch Defininition einer Method
+__post_init__(self: Fraction) -> None
+Code direkt nach Konstruktion eines Fraction-Wertes auszuführen. Werfen Sie einen ValueError
+wenn die Bedingung verletzt ist.
+2
+Übungsblatt 10 AKI/NES Programmierung 1
+(c) Schreiben Sie eine Methode cancel(self: Fraction) -> Fraction, die einen Bruch voll-
+ständig kürzt und normalisiert. So soll z.B. der Bruch 2
+−6 zu −1
+3 werden.
+(d) Implementieren Sie die Operatoren +, - und * auf Brüchen. Geben Sie nur vollständig
+gekürzte Brüche als Ergebnis zurück. Welche Methoden Sie dazu implementieren müssen,
+finden Sie im Abschnitt 3.3.8 unter https://docs.python.org/3/reference/datamodel.
+html
+(e) Implementieren Sie Methoden für die Vergleichsoperatoren == und < auf Brüchen.
+Speichern Sie ihre Lösung in einer Datei fraction.py
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 24.1.2026, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.pysein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+
+        Hier ist die Musterlösung:
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+# Diese Funktion konvertiert eine String in Liste.
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(str, ' ')
+    return s
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 1 (5+5+8 Punkte)  
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter findet. Gehen Sie wie folgt vor:  
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt werden.  
+Beispiel:  
+Hallo Stefan,  
+wie geht es dir?  
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"] zurückgegeben werden.  
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle spielen.  
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurückgegeben werden.  
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert ausgeben. Beispielausgabe:  
+er: 31  
+haus: 29  
+bunt: 19  
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords. Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Hauptfunktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl  
+python3 wordcount.py FILE  
+soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.  
+Unter Windows braucht man (manchmal) den Befehl  
+py -3.10 -m unittest FILE  
+Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.  
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei vorne in der Liste die am häufigsten vorkommenden Wörter stehen:  
+sorted(d.items(), key=lambda x: x[1], reverse=True)  
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der Wörter in einer Datei auszugeben, nicht ausgeführt wird.  
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so aussehen:  
+the: 10  
+was: 9  
+he: 7  
+
+Hier ist die Lösung des Studenten:  
+from wypp import *  
+
+# Diese Funktion konvertiert eine String in Liste.  
+# Eingabe: s(str)   
+# Ergebnis: Liste aus Strings.  
+def stringToWords(s: str) -> list[str]:  
+    satzzeichen = [',', '?', '.', ';', ':', '!']  
+    for x in satzzeichen:  
+        s = s.replace(str, ' ')  
+    return s  
+
+sampleString = """Hallo Stefan,  
+
+wie geht es dir?"""  
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])  
+
+Hier ist die Musterlösung:  
+from wypp import *  
+
+# String in Liste von Wörtern konvertieren.  
+# Eingabe: ein String  
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.  
+def stringToWords(s: str) -> list[str]:  
+    satzzeichen = [',', '?', '.', ';', ':', '!']  
+    for x in satzzeichen:  
+        s = s.replace(x, ' ')  
+    return s.split()  
+
+sampleString = """Hallo Stefan,  
+
+wie geht es dir?"""  
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+================================== Ai Message ==================================
+
+**Vergleich und Beurteilung:**
+
+Der Student hat einen anderen Lösungsweg gewählt, indem er in der Funktion `stringToWords` die Satzzeichen durch Leerzeichen ersetzt, es jedoch versäumt hat, den String nach dem Ersetzen der Satzzeichen in eine Liste von Wörtern zu konvertieren. In der Musterlösung wird dies korrekt durch die Verwendung von `s.split()` am Ende der Funktion umgesetzt. 
+
+**Feedback:**
+Der Ansatz des Studenten zeigt ein grundlegendes Verständnis, jedoch fehlt der entscheidende Schritt, die resultierende Zeichenkette in eine Liste von Wörtern zu konvertieren. Es wäre einfacher und effektiver, `s.split()` am Ende der Funktion zu verwenden, um sicherzustellen, dass die Ausgabe tatsächlich eine Liste von Wörtern ist. Bitte achte beim Umsetzen solcher Anforderungen immer darauf, den gesamten Funktionsumfang abzudecken.
+================================== Ai Message ==================================
+
+Vielen Dank für das Einreichen deiner Lösung! Lassen Sie uns die einzelnen Schritte gemäß den gegebenen Anforderungen durchgehen und deine Lösung im Vergleich zur Musterlösung überprüfen.
+
+### Schritt 1: Kurzbeschreibung
+**Dein Kommentar:**
+```python
+# Diese Funktion konvertiert eine String in Liste.
+```
+**Feedback:**
+Die Kurzbeschreibung ist verständlich, es könnte jedoch etwas präziser sein. Eine bessere Formulierung könnte sein: „Diese Funktion konvertiert einen String in eine Liste von Wörtern.“
+
+### Schritt 2: Datenanalyse
+**Dein Kommentar:**
+```python
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+```
+**Feedback:**
+Der Kommentar für die Datenanalyse sagt, dass die Eingabe ein String ist und das Ergebnis eine Liste aus Strings. Dies ist korrekt, jedoch sollte die Beschreibung auch weitere Details enthalten. Es wäre gut, den Zweck der Liste und mögliche Aspekte zu erwähnen, z. B. dass Satzzeichen entfernt werden.
+
+**Verbesserungsvorschlag:**
+```python
+# Eingabe: ein String (str)
+# Ergebnis: eine Liste von Wörtern (list[str]), die im String enthalten sind, ohne Satzzeichen am Ende.
+```
+
+### Schritt 3: Funktionskopf
+**Dein Funktionskopf:**
+```python
+def stringToWords(s: str) -> list[str]:
+```
+**Feedback:**
+Dieser Schritt wurde korrekt umgesetzt.
+
+### Schritt 4: Beispiele und Tests
+**Dein Test:**
+```python
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+```
+**Feedback:**
+Der Test ist korrekt und entspricht dem Vorgaben.
+
+### Schritt 5: Schablonen
+**Dein Hinweis:**
+Du hast Schritt 5 ignoriert. In der Aufgabenstellung wurde jedoch angemerkt, dass dieser Schritt vorerst übersprungen werden kann, was hier akzeptabel ist.
+
+### Schritt 6: Implementierung
+**Dein Funktionsrumpf:**
+```python
+satzzeichen = [',', '?', '.', ';', ':', '!']
+for x in satzzeichen:
+    s = s.replace(str, ' ')
+return s
+```
+**Feedback:**
+Hier gibt es einen Fehler. Du hast `str` anstelle von `x` verwendet. Außerdem fehlt die Aufteilung des Strings in eine Liste. Um die Aufgabe korrekt zu erfüllen, sollte die Methode so aussehen:
+
+```python
+satzzeichen = [',', '?', '.', ';', ':', '!']
+for x in satzzeichen:
+    s = s.replace(x, ' ')
+return s.split()
+```
+
+### Zusammenfassung:
+- **Kurzbeschreibung:** Verbesserungsvorschlag für die Formulierung.
+- **Datenanalyse:** Konkretisieren und erweitern.
+- **Funktionskopf:** Korrekt.
+- **Tests:** Korrekt.
+- **Implementierung:** Ein Fehler im Code.
+  
+### Gesamteinschätzung:
+ **Verbesserungen sind nötig.** Achte besonders auf die Implementierung, um sicherzustellen, dass die Funktion das erwartete Verhalten zeigt.
+================================== Ai Message ==================================
+
+| Schritt                                        | Wurde eingehalten? |
+| :--------------------------------------------- | :----------------: |
+| Schritt 1: *Kurzbeschreibung der Funktion*     |    ✅ Ja           |
+| Schritt 2: *Datenanalyse*                      |    ❌ Nein         |
+| Schritt 3: *Funktionskopf*                     |    ✅ Ja           |
+| Schritt 4: *Beispiele und Tests*               |    ✅ Ja           |
+| Schritt 5: *Schablonen*                        |    ❌ Nein         |
+| Schritt 6: *Implementierung*                   |    ❌ Nein         |
+
+### Zusammenfassung:
+- **Kurzbeschreibung:** Verbesserungsvorschlag für die Formulierung.
+- **Datenanalyse:** Konkretisieren und erweitern.
+- **Funktionskopf:** Korrekt.
+- **Tests:** Korrekt.
+- **Implementierung:** Ein Fehler im Code. `s.split()` fehlt zur Umwandlung in eine Liste.
+
+### Gesamteinschätzung:
+ **Verbesserungen sind nötig.** Achte besonders auf die Implementierung, um sicherzustellen, dass die Funktion das erwartete Verhalten zeigt. Der Student hat zwar einen richtigen Ansatz, jedoch fehlt der entscheidende Schritt zur korrekten Resultatbildung.

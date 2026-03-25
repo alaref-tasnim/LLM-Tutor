@@ -1,0 +1,4 @@
+.env
+/.env
+RAG/chroma/.env
+.venv/

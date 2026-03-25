@@ -1,0 +1,229 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die aufgabe 3 in der pdf:
+Prof. Dr. Stefan Wehr, M.Sc. Hannes Braun
+Übungsblatt 4
+AKI/NES Programmierung 1, Wintersemester 2024/2025
+Deadline: 13.11.2024, 23:00 Uhr
+7.11.2024
+Gehen Sie beim Lösen aller Programmieraufgaben strikt nach unserem Schema vor:
+1. Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar.
+2. Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse
+ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung.
+3. Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin.
+4. Schreiben Sie dann Tests mittels check.
+5. Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein.
+6. Schreiben Sie erst dann den Funktionsrumpf hin.
+Eine Lösung, in der nicht ersichtlich ist, dass Sie gemäß des Schemas aggiert haben, erhält keine
+Punkte. Insbesondere erhält eine Lösung, bei der nur der Funktionsrumpf da steht, keine Punkte,
+auch wenn die Funktion korrekt ist.
+Dahingegen erhalten Sie Teilpunkte wenn Sie dem Schema folgen, aber an einem gewissen Punkt
+nicht weiterkommen.
+Aufgabe 1 (4+4 Punkte)
+Ein Auto ist charakterisiert durch Farbe (ein String), die Marke (ebenfalls ein String) und
+die Antriebsart (Verbrenner oder elektrisch). Ein Fahrrad besitzt eine Marke (String) und die
+Antriebsart (Muskelkraft oder elektrisch). Zur Vereinfachung nehmen wir an, dass immer nur
+eine Antriebsart gibt (also keine Hybridautos o.ä.)
+Ein Fahrzeug ist entweder ein Auto oder ein Fahrrad.
+(a) Modellieren Sie diese Gegebenheit.
+(b) Schreiben Sie eine Funktion zur Berechnung der Reichweite eines Fahrzeugs. Dabei kommt
+ein Auto mit Verbrenner 600km weit, eines mit elektrischem Antriebe 400km, ein Fahrrad
+mit elektrischem Antrieb 120km und ein Fahrrad mit Muskelkraft 10.000km. Es ist sinn-
+voll, zunächst separate Hilfsfunktionen zur Berechnung der Reichweiten von Autos und
+Fahrräder zu bestimmen.
+1
+Übungsblatt 4 AKI/NES Programmierung 1
+Aufgabe 2 (2+2+6+6 Punkte)
+Im folgenden soll ein Bestellformular für Sportartikel modelliert werden. Folgende Artikel sind
+lieferbar:
+Trikot mit Größe (S, M oder L), Farbe (schwarz, grün, blau oder rot) und einer optionalen
+Rückennummer.
+Hose mit Größe (S, M oder L) und Farbe (schwarz, grün, blau oder rot)
+Stutzen mit einer oberen und unteren Schranke für die passende Schuhgröße und einer Farbe
+(schwarz, grün, blau oder rot).
+(a) Überlegen Sie sich zuerst, wie Sie optionale Rückennummern mit einem gemischten Daten-
+typ modellieren können. Schauen Sie sich dazu noch einmal an, wie wir in der Vorlesung
+Fehler mittels gemischter Daten modelliert haben. Schreiben Sie dann eine Funktion die
+entscheidet, ob eine optionale Rückennummer vorhanden ist.
+(b) Modellieren Sie die Sportartikel wie oben beschrieben.
+(c) Schreiben Sie dann eine Funktion die den Preis eines Sportartikels berechnet.
+• Ein Trikot kostet dabei 20 e, mit Rückennummer 25 e.
+• Eine Hose kostet in Größe S 10 e, in Größe M 12 eund in Größe L 15 e.
+• Stutzen kosten bis zur Maximalgröße 38 nur 5 e. Ansonsten 9 e.
+Aufgabe 3 (6+8 Punkte)
+Die Pizzeria „Cheap&Dirty“ setzt verstärkt auf Gerichte zum Mitnehmen. Um die Preiskalku-
+lation zu vereinfachen soll eine automatische Berechnung des Preis’ erfolgen.
+(a) Eine Pizza ist in zwei Größen verfügbar: normal (Grundpreis: 2 e) und groß (Grundpreis
+2,50e). Neben der Größe kann eine Pizza noch folgende Zutaten haben: Oliven (0,50 e),
+Pilze (0,40 e), Salami (0,45 e) und Käse (0,55 e). Die Preise in Klammern gelten für die
+Normalgröße, bei großen Pizzen wird ein Aufpreis von 10% fällig. Zutaten können beliebig
+kombiniert werden, jede Zutat kann aber höchstens einmal vorkommen. Schreiben Sie eine
+Funktion, die den Preis einer Pizza berechnet.
+(b) Da der Preisrechner sehr erfolgreich ist, sollen die Preise weiterer Gerichte und Getränke
+damit berechnet werden. Zum einen Bier, welches in den Sorten Pils und Weizen angeboten
+wird und in den Größen 0,3l und 0,5l verfügbar ist. 100ml Pils kostet dabei 0,80 e, 100ml
+Weizen 0,85e. Zum anderen gibt es Nudelgerichte. Ein Nudelgericht hat dabei einen Na-
+men, einen Preis pro 100g und eine Bestellmenge in Gramm. Schreiben Sie eine Funktion,
+die den Preis eines Gerichts (Pizza oder Nudeln) oder eines Getränks berechnet.
+2
+Übungsblatt 4 AKI/NES Programmierung 1
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 13.11.2024, 23:00 Uhr . Speichern Sie jede Programmieren-
+aufgabe in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.py sein, wobei N
+die Nummer der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann
+aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+
+@record
+class Pizza:
+    größe: str = 'normal'
+    oliven: bool = True
+    pilze: bool = False
+    salami: bool = False
+    käse: bool = False
+
+
+# Berechnet den Preis einer Pizza.
+def calcPizzaPreis(pizza: Pizza) -> float:
+    preis = 0
+    if pizza.größe == 'groß':
+        preis = 2.5
+    if pizza.oliven:
+        preis = 0.5
+    if pizza.pilze:
+        preis = preis + 0.4 
+    if pizza.salami:
+        preis = preis + 0.45 
+    if pizza.größe == 'groß':
+        preis = preis * 0.9
+    return preis
+
+
+check(calcPizzaPreis(Pizza('normal', True, True, True, True)), 3.9)
+check(calcPizzaPreis(Pizza('groß')), 2.5)
+
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 3 (6+8 Punkte)
+Die Pizzeria „Cheap&Dirty“ setzt verstärkt auf Gerichte zum Mitnehmen. Um die Preiskalkulation zu vereinfachen soll eine automatische Berechnung des Preis’ erfolgen.
+(a) Eine Pizza ist in zwei Größen verfügbar: normal (Grundpreis: 2 e) und groß (Grundpreis 2,50e). Neben der Größe kann eine Pizza noch folgende Zutaten haben: Oliven (0,50 e), Pilze (0,40 e), Salami (0,45 e) und Käse (0,55 e). Die Preise in Klammern gelten für die Normalgröße, bei großen Pizzen wird ein Aufpreis von 10% fällig. Zutaten können beliebig kombiniert werden, jede Zutat kann aber höchstens einmal vorkommen. Schreiben Sie eine Funktion, die den Preis einer Pizza berechnet.
+(b) Da der Preisrechner sehr erfolgreich ist, sollen die Preise weiterer Gerichte und Getränke damit berechnet werden. Zum einen Bier, welches in den Sorten Pils und Weizen angeboten wird und in den Größen 0,3l und 0,5l verfügbar ist. 100ml Pils kostet dabei 0,80 e, 100ml Weizen 0,85e. Zum anderen gibt es Nudelgerichte. Ein Nudelgericht hat dabei einen Namen, einen Preis pro 100g und eine Bestellmenge in Gramm. Schreiben Sie eine Funktion, die den Preis eines Gerichts (Pizza oder Nudeln) oder eines Getränks berechnet.
+         
+from wypp import *
+
+
+@record
+class Pizza:
+    größe: str = 'normal'
+    oliven: bool = True
+    pilze: bool = False
+    salami: bool = False
+    käse: bool = False
+
+
+# Berechnet den Preis einer Pizza.
+def calcPizzaPreis(pizza: Pizza) -> float:
+    preis = 0
+    if pizza.größe == 'groß':
+        preis = 2.5
+    if pizza.oliven:
+        preis = 0.5
+    if pizza.pilze:
+        preis = preis + 0.4 
+    if pizza.salami:
+        preis = preis + 0.45 
+    if pizza.größe == 'groß':
+        preis = preis * 0.9
+    return preis
+
+
+check(calcPizzaPreis(Pizza('normal', True, True, True, True)), 3.9)
+check(calcPizzaPreis(Pizza('groß')), 2.5)
+================================== Ai Message ==================================
+
+Hier ist das Feedback zu deiner Lösung, basierend auf den vorgegebenen sechs Schritten:
+
+**Schritt 1: Kurzbeschreibung**
+- Du hast keinen Kommentar hinzugefügt, der erklärt, was die Funktion `calcPizzaPreis` tut. Eine kurze Beschreibung wäre notwendig, um den Zweck der Funktion zu verdeutlichen. 
+
+**Schritt 2: Datenanalyse**
+- In deiner Lösung fehlt auch die Datenanalyse. Du solltest unter dem Kommentar zur Funktion festhalten, welche Eingaben die Funktion erwartet und was sie zurückgibt, einschließlich Typen und möglicher Maßeinheiten. Zum Beispiel, welche Argumenttypen die `Pizza`-Klasse hat und welchen Rückgabewert die Funktion liefert (float).
+
+**Schritt 3: Funktionskopf**
+- Der Funktionskopf ist korrekt geschrieben und beinhaltet die Typangabe für das Argument und das Ergebnis. 
+
+**Schritt 4: Beispiele und Tests**
+- Die Tests mittels der `check`-Funktion sind korrekt implementiert, jedoch fehlte eine ausführliche Erläuterung der Tests, die den Erwartungswert und die getesteten Szenarien beschreiben würden. Zudem wäre es hilfreich, mehr Tests zu schreiben, um unterschiedliche Szenarien abzudecken.
+
+**Schritt 5: Schablonen**
+- Du hast keine Schablonen in den Funktionsrumpf eingefügt. Normalerweise solltest du dies tun, bevor du den eigentlichen Funktionsrumpf schreibst.
+
+**Schritt 6: Implementierung**
+- Der Funktionsrumpf hat mehrere Fehler:
+    1. Der Grundpreis scheint nicht richtig berechnet zu werden, weil bei einigen Bedingungen der Preis nicht kumuliert wird. Zum Beispiel: Der Basispreis für 'normal' ist 2, die Zutatenkosten sollten zu diesem Basispreis addiert werden.
+    2. Der Aufpreis von 10% sollte auf den Gesamtpreis angewendet werden, nicht als 0.9-Multiplikator, sondern als Preis + 10% des Preises.
+    3. Die Bedingung `if pizza.oliven:` und die anderen Zutatenbedingung müssen den Basis- oder bisherigen Preis addieren (also `preis += 0.5` anstelle von `preis = 0.5` für Oliven).
+
+Zusammenfassend: Deine Lösung benötigt noch einige Anpassungen und fehlt in einigen Schritten, um die vorgegebene Struktur einzuhalten. Bitte überarbeite die Beschreibung, Datenanalyse und die Implementierungs-Logik in der Funktion.
+================================== Ai Message ==================================
+
+Die Studentlösung und die Musterlösung weisen mehrere Unterschiede auf:
+
+1. **Größenbehandlung**:
+   - Student: Der Preis für die große Pizza wird nicht korrekt berechnet, da der Grundpreis für die große Pizza (`2.5 e`) direkt am Anfang gesetzt wird, ohne die Zutaten zu berücksichtigen.
+   - Muster: Der Grundpreis wird erst addiert, nachdem überprüft wurde, ob die Pizza groß ist.
+
+2. **Zutatenpreisberechnung**:
+   - Student: Der Preis für die Oliven wird separat vom Grundpreis behandelt, während die anderen Zutaten zum Preis addiert werden, aber der Einfluss der Größe nicht sachgerecht gehandhabt wird (10% Aufpreis nicht korrekt angewendet).
+   - Muster: Alle Zutaten werden auf korrekte Weise addiert, und es wird ein 10% Aufpreis für große Pizzen korrekt berechnet.
+
+3. **Fehlende Zutatenbehandlung**:
+   - Student: Der Preis für Käse wird in der Berechnung nicht berücksichtigt.
+   - Muster: Käse wird korrekt in die Preisberechnung aufgenommen.
+
+4. **Preisberechnung für Normalgröße**:
+   - Student: Der Grundpreis für die normale Pizza wird nicht explizit berücksichtigt, es wird nur ein Preis für die Zutaten zurückgegeben.
+   - Muster: Klarer Grundpreis für normale Pizzen.
+
+5. **Prüfungen**:
+   - Die Studentlösung hat nur zwei Prüfmöglichkeiten, während die Musterlösung detailliertere und umfangreichere Tests für verschiedene Fälle umfasst.
+
+**Feedback**: Die Musterlösung ist der Studentlösung überlegen, da sie die korrekte Preisberechnung für alle Zutaten und Größen vollständig implementiert, anstatt nur die Zutaten zum Preis zu addieren. Sie führt klare Berechnungen durch und hat einen durchdachten Ansatz zur Kostenkalkulation. Der Student sollte sicherstellen, dass alle Komponenten (Größen, Zutaten) korrekt in den Preis integriert werden.
+================================== Ai Message ==================================
+
+| Schritt                                                                                                                                                         | Wurde eingehalten? |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------| :----------------: |
+| Schritt 1: Schreiben Sie zuerst eine Kurzbeschreibung als Kommentar                                                                                             |    ❌ Nein         |
+| Schritt 2: Führen Sie dann eine Datenanalyse durch. Schreiben Sie das Ergebnis Ihrer Datenanalyse ebenfalls als Kommentar in die Zeile nach der Kurzbeschreibung|    ❌ Nein         |
+| Schritt 3: Schreiben Sie dann den Funktionskopf inkl. der Typen für Argumente und Ergebnis hin                                                                  |    ✅ Ja           |
+| Schritt 4: Schreiben Sie dann Tests mittels check                                                                                                               |    ✅ Ja           |
+| Schritt 5: Setzen Sie die passenden Schablonen in den Rumpf der Funktion ein                                                                                    |    ❌ Nein         |
+| Schritt 6:  Schreiben Sie erst dann richtigen Funktionsrumpf hin                                                                                                      |    ❌ Nein         |
+
+**Fehler im Funktionsrumpf (Schritt 6)**:
+1. Der Grundpreis scheint nicht richtig berechnet zu werden, weil bei einigen Bedingungen der Preis nicht kumuliert wird. Zum Beispiel: Der Basispreis für 'normal' ist 2, die Zutatenkosten sollten zu diesem Basispreis addiert werden.
+2. Der Aufpreis von 10% sollte auf den Gesamtpreis angewendet werden, nicht als 0.9-Multiplikator, sondern als Preis + 10% des Preises.
+3. Die Bedingung `if pizza.oliven:` und die anderen Zutatenbedingungen müssen den Basis- oder bisherigen Preis addieren (also `preis += 0.5` anstelle von `preis = 0.5` für Oliven).
+
+Zusammenfassend: Deine Lösung benötigt noch einige Anpassungen und fehlt in einigen Schritten, um die vorgegebene Struktur einzuhalten. Bitte überarbeite die Beschreibung, Datenanalyse und die Implementierungs-Logik in der Funktion.
+
+---
+
+Die Musterlösung ist der Studentlösung überlegen, da sie die korrekte Preisberechnung für alle Zutaten und Größen vollständig implementiert, anstatt nur die Zutaten zum Preis zu addieren. Sie führt klare Berechnungen durch und hat einen durchdachten Ansatz zur Kostenkalkulation. Der Student sollte sicherstellen, dass alle Komponenten (Größen, Zutaten) korrekt in den Preis integriert werden.

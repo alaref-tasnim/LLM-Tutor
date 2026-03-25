@@ -1,0 +1,291 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe_1 teil a) in der pdf:
+Prof. Dr. Stefan Wehr, Simon Rösch
+Übungsblatt 10
+AKI/NES Programmierung 1, Wintersemester 2025/2026
+Deadline: 24.1.2026, 23:00 Uhr
+18.1.2026
+Aufgabe 1 (5+5+8 Punkte)
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter
+findet. Gehen Sie wie folgt vor:
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin
+enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt
+werden.
+Beispiel:
+Hallo Stefan,
+wie geht es dir?
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"]
+zurückgegeben werden.
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary
+berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der
+angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle
+spielen.
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurück-
+gegeben werden.
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten
+in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert
+ausgeben. Beispielausgabe:
+er: 31
+haus: 29
+bunt: 19
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords.
+Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Haupt-
+funktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem
+möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl
+python3 wordcount.py FILE
+1
+Übungsblatt 10 AKI/NES Programmierung 1
+soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.
+Unter Windows braucht man (manchmal) den Befehl
+py -3.10 -m unittest FILE
+Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei
+vorne in der Liste die am häufigsten vorkommenden Wörter stehen:
+sorted(d.items(), key=lambda x: x[1], reverse=True)
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der
+Wörter in einer Datei auszugeben, nicht ausgeführt wird.
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so
+aussehen:
+the: 10
+was: 9
+he: 7
+Aufgabe 2 (2+3+5+5+5 Punkte)
+Entwerfen und implementieren Sie einen Record Fraction zum exakten Rechnen mit Brüchen
+auf der Basis der vorhandenen arithmetischen Operationen auf int. Dabei hat ein Bruch zwei
+Eigenschaften: numerator (Zähler) und denominator (Nenner).
+Stellen Sie in Ihrer Implementierung sicher, dass folgende Eigenschaften gelten:
+• Der Nenner darf nie 0 sein.
+• Instanzen von Fraction sollen nicht veränderbar sein.
+• Die Implementierung soll komplett ohne Gleitkommazahlen auskommen!
+Sie dürfen ausschließlich folgenden Imports nutzen:
+from wypp import *
+from math import gcd
+Insbesondere dürfen Sie das Module fractions nicht verwenden!
+Gehen Sie wie folgt vor:
+(a) Verwenden Sie Records zur Repräsentation von Brüchen
+(b) Stellen Sie zunächst die Bedingung „Nenner ungleich 0“ sicher. Dazu bieten die klassen-
+basierte Records die Möglichkeit, durch Defininition einer Method
+__post_init__(self: Fraction) -> None
+Code direkt nach Konstruktion eines Fraction-Wertes auszuführen. Werfen Sie einen ValueError
+wenn die Bedingung verletzt ist.
+2
+Übungsblatt 10 AKI/NES Programmierung 1
+(c) Schreiben Sie eine Methode cancel(self: Fraction) -> Fraction, die einen Bruch voll-
+ständig kürzt und normalisiert. So soll z.B. der Bruch 2
+−6 zu −1
+3 werden.
+(d) Implementieren Sie die Operatoren +, - und * auf Brüchen. Geben Sie nur vollständig
+gekürzte Brüche als Ergebnis zurück. Welche Methoden Sie dazu implementieren müssen,
+finden Sie im Abschnitt 3.3.8 unter https://docs.python.org/3/reference/datamodel.
+html
+(e) Implementieren Sie Methoden für die Vergleichsoperatoren == und < auf Brüchen.
+Speichern Sie ihre Lösung in einer Datei fraction.py
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 24.1.2026, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.pysein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+
+        Hier ist die Musterlösung:
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+# Zerlegt den übergebenen Text in einzelne Wörter.
+# Eingabe: Text (String)
+# Ergebnis: Liste der Wörter ohne Satzzeichen
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = {',', '?', '.', ';', ':', '!'} 
+    clean_chars = []
+    
+    for ch in s:
+        if ch in satzzeichen:
+            clean_chars.append(" ")  
+        else:
+            clean_chars.append(ch)
+    
+    clean_string = "".join(clean_chars)
+    return clean_string.split()
+
+text = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(text), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        
+================================== Ai Message ==================================
+
+Aufgabe:
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter findet. Gehen Sie wie folgt vor:
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt werden.
+Beispiel:
+Hallo Stefan,
+wie geht es dir?
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"] zurückgegeben werden.
+
+Gegebene Lösung:
+from wypp import *
+
+# Zerlegt den übergebenen Text in einzelne Wörter.
+# Eingabe: Text (String)
+# Ergebnis: Liste der Wörter ohne Satzzeichen
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = {',', '?', '.', ';', ':', '!'} 
+    clean_chars = []
+    
+    for ch in s:
+        if ch in satzzeichen:
+            clean_chars.append(" ")  
+        else:
+            clean_chars.append(ch)
+    
+    clean_string = "".join(clean_chars)
+    return clean_string.split()
+
+text = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(text), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+Gegebene Musterlösung:
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+================================== Ai Message ==================================
+
+Beide Lösungen implementieren die Funktion `stringToWords`, um Satzzeichen aus einem String zu entfernen und die verbleibenden Wörter als Liste zurückzugeben. Beide Ansätze sind funktional korrekt, unterscheiden sich jedoch in ihrer Herangehensweise:
+
+1. **Studentenlösung:**
+   - Verwendet ein Set für Satzzeichen und iteriert über jeden Charakter im String.
+   - Fügt Leerzeichen für Satzzeichen hinzu und baut den String aus einer Liste von Zeichen wieder zusammen.
+   - Dieser Ansatz ist etwas umständlicher, da er eine zusätzliche Liste (`clean_chars`) verwendet und für jeden einzelnen Charakter im String eine Entscheidung trifft.
+
+2. **Musterlösung:**
+   - Verwendet eine Liste für Satzzeichen und ersetzt direkt im String jedes Satzzeichen mit einem Leerzeichen.
+   - Der Ansatz ist direkter und nutzt die eingebaute `replace` Methode, die effizienter und lesbarer ist.
+
+**Feedback:**
+Die Musterlösung ist einfacher und direkter, da sie eine eingebaute String-Methode (`replace`) anwendet, um Satzzeichen zu entfernen. Dies führt zu einem kompakteren und leichter lesbaren Code. Der Ansatz in der Musterlösung ist daher zu bevorzugen, da er sowohl einfacher als auch effizienter in der Umsetzung ist.
+================================== Ai Message ==================================
+
+Deine Lösung wird anhand der sechs Schritte überprüft, die für eine strukturierte Entwicklung von Programmen vorgesehen sind:
+
+### Schritt 1: Kurzbeschreibung
+- **Deine Lösung**: "# Zerlegt den übergebenen Text in einzelne Wörter."
+- **Musterlösung**: "# String in Liste von Wörtern konvertieren."
+
+Beide Lösungen haben eine treffende und zutreffende Kurzbeschreibung. Perfekt!
+
+### Schritt 2: Datenanalyse
+- **Deine Lösung**: 
+  ```
+  # Eingabe: Text (String)
+  # Ergebnis: Liste der Wörter ohne Satzzeichen
+  ```
+- **Musterlösung**: 
+  ```
+  # Eingabe: ein String
+  # Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+  ```
+
+Die Datenanalyse ist in beiden Lösungen enthalten und verständlich formuliert. Perfekt!
+
+### Schritt 3: Funktionskopf
+- **Deine Lösung**: `def stringToWords(s: str) -> list[str]:`
+- **Musterlösung**: `def stringToWords(s: str) -> list[str]:`
+
+Der Funktionskopf entspricht dem aus der Musterlösung. Perfekt!
+
+### Schritt 4: Beispiele und Tests
+- **Deine Lösung**: `check(stringToWords(text), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])`
+- **Musterlösung**: `check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])`
+
+Beide Lösungen führen einen korrekten Test durch. Perfekt!
+
+### Schritt 5: Schablonen
+- In der Musterlösung wird dieser Schritt nicht explizit behandelt, daher nicht anwendbar. Sowohl die gegebene Lösung als auch die Musterlösung gehen direkt zur Implementierung über.
+
+### Schritt 6: Implementierung
+- **Deine Lösung**:
+  ```python
+  satzzeichen = {',', '?', '.', ';', ':', '!'} 
+  clean_chars = []
+  
+  for ch in s:
+      if ch in satzzeichen:
+          clean_chars.append(" ")  
+      else:
+          clean_chars.append(ch)
+  
+  clean_string = "".join(clean_chars)
+  return clean_string.split()
+  ```
+- **Musterlösung**:
+  ```python
+  satzzeichen = [',', '?', '.', ';', ':', '!']
+  for x in satzzeichen:
+      s = s.replace(x, ' ')
+  return s.split()
+  ```
+
+Deine Lösung verfolgt einen etwas anderen Ansatz durch den Einsatz einer Liste von `clean_chars` und anschließender Wiederzusammenfügung des Strings, bevor er geteilt wird. Dies führt zum gleichen Ergebnis, ist aber weniger direkt und effizient als die Lösung, die die `str.replace` Methode nutzt. Zur Vereinfachung könntest du den Ansatz der Musterlösung nutzen.
+
+### Gesamtbewertung
+Deine Lösung ist nahezu perfekt und funktioniert korrekt, obwohl der Ansatz der Musterlösung effizienter ist. Berücksichtige diesen effizienteren Ansatz für zukünftige Implementierungen. Ansonsten gibt es keine notwendigen Verbesserungen an deiner aktuellen Lösung.
+================================== Ai Message ==================================
+
+| Schritt                                        | Wurde eingehalten? |
+| :--------------------------------------------- | :----------------: |
+| Schritt 1: Kurzbeschreibung                    |        ✅ Ja        |
+| Schritt 2: Datenanalyse                        |        ✅ Ja        |
+| Schritt 3: Funktionskopf                       |        ✅ Ja        |
+| Schritt 4: Beispiele und Tests                 |        ✅ Ja        |
+| Schritt 5: Schablonen                          |     ❌ Nicht anwendbar   |
+| Schritt 6: Implementierung                     |        ✅ Ja        |
+
+**Feedback des Muster_Agenten:**
+Beide Lösungen implementieren die Funktion `stringToWords` korrekt, um Satzzeichen aus einem String zu entfernen und die verbleibenden Wörter als Liste zurückzugeben. Die Studentenlösung ist funktional korrekt, verwendet jedoch einen umständlicheren Ansatz mit einer zusätzlichen Liste. Die Musterlösung ist effizienter und lesbarer, da sie die eingebaute `replace` Methode nutzt. Der Ansatz der Musterlösung ist somit zu bevorzugen, da er einfacher und effizienter ist.

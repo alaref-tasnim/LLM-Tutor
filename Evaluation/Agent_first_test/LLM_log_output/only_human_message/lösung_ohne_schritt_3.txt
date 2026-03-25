@@ -1,0 +1,264 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe_1 teil a) in der pdf:
+Prof. Dr. Stefan Wehr, Simon Rösch
+Übungsblatt 10
+AKI/NES Programmierung 1, Wintersemester 2025/2026
+Deadline: 24.1.2026, 23:00 Uhr
+18.1.2026
+Aufgabe 1 (5+5+8 Punkte)
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter
+findet. Gehen Sie wie folgt vor:
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin
+enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt
+werden.
+Beispiel:
+Hallo Stefan,
+wie geht es dir?
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"]
+zurückgegeben werden.
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary
+berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der
+angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle
+spielen.
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurück-
+gegeben werden.
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten
+in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert
+ausgeben. Beispielausgabe:
+er: 31
+haus: 29
+bunt: 19
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords.
+Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Haupt-
+funktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem
+möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl
+python3 wordcount.py FILE
+1
+Übungsblatt 10 AKI/NES Programmierung 1
+soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.
+Unter Windows braucht man (manchmal) den Befehl
+py -3.10 -m unittest FILE
+Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei
+vorne in der Liste die am häufigsten vorkommenden Wörter stehen:
+sorted(d.items(), key=lambda x: x[1], reverse=True)
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der
+Wörter in einer Datei auszugeben, nicht ausgeführt wird.
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so
+aussehen:
+the: 10
+was: 9
+he: 7
+Aufgabe 2 (2+3+5+5+5 Punkte)
+Entwerfen und implementieren Sie einen Record Fraction zum exakten Rechnen mit Brüchen
+auf der Basis der vorhandenen arithmetischen Operationen auf int. Dabei hat ein Bruch zwei
+Eigenschaften: numerator (Zähler) und denominator (Nenner).
+Stellen Sie in Ihrer Implementierung sicher, dass folgende Eigenschaften gelten:
+• Der Nenner darf nie 0 sein.
+• Instanzen von Fraction sollen nicht veränderbar sein.
+• Die Implementierung soll komplett ohne Gleitkommazahlen auskommen!
+Sie dürfen ausschließlich folgenden Imports nutzen:
+from wypp import *
+from math import gcd
+Insbesondere dürfen Sie das Module fractions nicht verwenden!
+Gehen Sie wie folgt vor:
+(a) Verwenden Sie Records zur Repräsentation von Brüchen
+(b) Stellen Sie zunächst die Bedingung „Nenner ungleich 0“ sicher. Dazu bieten die klassen-
+basierte Records die Möglichkeit, durch Defininition einer Method
+__post_init__(self: Fraction) -> None
+Code direkt nach Konstruktion eines Fraction-Wertes auszuführen. Werfen Sie einen ValueError
+wenn die Bedingung verletzt ist.
+2
+Übungsblatt 10 AKI/NES Programmierung 1
+(c) Schreiben Sie eine Methode cancel(self: Fraction) -> Fraction, die einen Bruch voll-
+ständig kürzt und normalisiert. So soll z.B. der Bruch 2
+−6 zu −1
+3 werden.
+(d) Implementieren Sie die Operatoren +, - und * auf Brüchen. Geben Sie nur vollständig
+gekürzte Brüche als Ergebnis zurück. Welche Methoden Sie dazu implementieren müssen,
+finden Sie im Abschnitt 3.3.8 unter https://docs.python.org/3/reference/datamodel.
+html
+(e) Implementieren Sie Methoden für die Vergleichsoperatoren == und < auf Brüchen.
+Speichern Sie ihre Lösung in einer Datei fraction.py
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 24.1.2026, 23:00 Uhr . Speichern Sie jede Programmierenaufgabe
+in eine eigene Datei. Der Name der Datei muss dabei aufgabe_0N.pysein, wobei N die Nummer
+der Aufgabe ist. Zum Beispiel lautet für Aufgabe 1 der Name der Datei dann aufgabe_01.py.
+Verpacken Sie alle Dateien in einem zip-Archiv (Standard-Zip, keine 7zip, rar o.ä.), welches den
+Namen NAME_MATRIKELNUMMER.zip hat. Ersetzen Sie dabei NAME und MATRIKELNUMMER durch
+Ihren Namen und Ihre Matrikelnummer. Es ist wichtig, dass Sie sich an die Namenskonventionen
+halten, die wir Abgaben automatisch überprüfen.
+Wichtig: Die Lösungen für alle Programmieraufgaben müssen ohne Fehler ausführbar sein, sonst
+akzeptiert der Praktomat Ihre Abgabe nicht. Wenn der Praktomat nach dem Upload für eine
+oder mehrere Aufgaben den Status failed anzeigt, wird ihre komplette Abgabe nicht akzpe-
+tiert und Sie erhalten für das komplette Blatt 0 Punkte! Kommentieren Sie fehlerhafte
+Codestellen in einem solche Fall aus, so dass der Praktomat Ihre Abgabe akzeptiert.
+3
+
+        Hier ist die Musterlösung:
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        Hier ist die Lösung des Studenten:
+from wypp import *
+
+# Diese Funktion konvertiert eine String in Liste.
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+def stringToWords(s):
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+        
+================================== Ai Message ==================================
+
+Aufgabe 1 (5+5+8 Punkte)  
+Schreiben Sie ein Programm, dass in einer Textdatei die am häufigsten vorkommenden Wörter findet. Gehen Sie wie folgt vor:  
+(a) Implementieren Sie eine Funktion stringToWords, die für einen String eine Liste aller darin enthaltener Wörter zurückgibt. Dabei sollen Satzzeichen am Ende von Wörtern entfernt werden.  
+Beispiel:  
+Hallo Stefan,  
+wie geht es dir?  
+Für diesen Strings sollte die Liste ["Hallo", "Stefan", "wie", "geht", "es", "dir"] zurückgegeben werden.  
+(b) Implementieren Sie eine Funktion countWords, die für eine Liste von Strings ein Dictionary berechnet, so dass für für jedes Wort aus der Liste ein Eintrag im Dictionary steht, der angibt, wie häufig das Wort vorkommt. Groß- und Kleinschreibung soll dabei keine Rolle spielen.  
+Beispiel: für die Liste ["Ding","einmal","ding"] soll {"ding":2,"einmal":1} zurückgegeben werden.  
+(c) Implementieren Sie jetzt die Funktion countWordsInFile. Sie soll die drei am häufigsten in der Datei FILE vorkommenden Wörter auf der Konsole mit ihrer Häufigkeit sortiert ausgeben. Beispielausgabe:  
+er: 31  
+haus: 29  
+bunt: 19  
+Schreiben Sie mittels des unittestModuls Tests für die Funktionen stringToWordsund countWords. Diese beiden Funktionen sollen in einem Modul wordcountHelper abgelegt werden. Die Hauptfunktion countWordsInFile soll in einem neuen Modul wordcount stehen. Es soll außerdem möglich sein, das Programm über die Kommandozeile auszuführen. Der Befehl python3 wordcount.py FILE soll dabei die am drei häufigsten in FILE vorkommenden Wörter ausgeben.  
+Unter Windows braucht man (manchmal) den Befehl py -3.10 -m unittest FILE Dabei steht 3.10 für die Reihe der Python-Version, die verwendet werden soll.  
+Sie können ein Dictionary d wie folgt sortieren und erhalten dann eine Listen von Paaren, wobei vorne in der Liste die am häufigsten vorkommenden Wörter stehen:  
+sorted(d.items(), key=lambda x: x[1], reverse=True)  
+Beachten Sie, dass beim Importieren des Moduls wordcount der Code, um die Häufigkeit der Wörter in einer Datei auszugeben, nicht ausgeführt wird.  
+In Moodle steht eine Testdatei hitchhikers.txt bereit. Die Ausgabe für diese Datei sollte so aussehen:  
+the: 10  
+was: 9  
+he: 7  
+
+from wypp import *
+
+# String in Liste von Wörtern konvertieren.
+# Eingabe: ein String
+# Ergebnis: Liste mit den Wörtern, die im String enthalten sind.
+def stringToWords(s: str) -> list[str]:
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+
+from wypp import *
+
+# Diese Funktion konvertiert eine String in Liste.
+# Eingabe: s(str) 
+# Ergebnis: Liste aus Strings.
+def stringToWords(s):
+    satzzeichen = [',', '?', '.', ';', ':', '!']
+    for x in satzzeichen:
+        s = s.replace(x, ' ')
+    return s.split()
+
+sampleString = """Hallo Stefan,
+
+wie geht es dir?"""
+
+check(stringToWords(sampleString), ["Hallo", "Stefan", "wie", "geht", "es", "dir"])
+================================== Ai Message ==================================
+
+Die Studentensolution und die Musterlösung für die Funktion `stringToWords` sind inhaltlich ähnlich, aber es gibt einige Unterschiede:
+
+1. **Typannotationen**: Die Musterlösung verwendet Typannotationen (z.B. `def stringToWords(s: str) -> list[str]:`), während die Studentensolution keine Typannotationen enthält. Typannotationen sind hilfreich, um die Eingangs- und Ausgangstypen der Funktionen klar anzugeben.
+
+2. **Import-Statement**: In der Schülerlösung wird `from wypp import *` an beiden Stellen verwendet, was möglicherweise nicht nötig ist, es sei denn, es wird spezifische Funktionalität aus diesem Modul verwendet. In der Musterlösung scheint dies auch der Fall zu sein, allerdings ist hier nicht erkennbar, ob die Schülerlösung die Importe tatsächlich benötigt.
+
+3. **Docstring**: Die Musterlösung enthält eine klare Beschreibung der Funktionalität der Funktion im Docstring, während die Studentensolution einen weniger präzisen Kommentar verwendet.
+
+Beurteilung:
+Der Ansatz der Studentensolution ist grundsätzlich funktional, aber die Verwendung von Typannotationen und ein präziserer Docstring würden die Lesbarkeit und Verständlichkeit des Codes deutlich verbessern. Eine klare Dokumentation und Typisierung tragen dazu bei, dass der Code wartungsfreundlicher wird und die Absicht der Funktion für andere Entwickler klarer ist.
+
+**Feedback**: Gute Funktion, jedoch wäre es sinnvoll, Typannotationen hinzuzufügen und Docstrings zu verwenden, um die Lesbarkeit und Verständlichkeit zu erhöhen. Achten Sie zudem darauf, überflüssige Importe zu vermeiden, es sei denn, sie sind notwendig.
+================================== Ai Message ==================================
+
+Vielen Dank, dass du deine Lösung mit mir geteilt hast! Ich werde nun dein Programm anhand der geforderten sechs Schritte und der bereitgestellten Musterlösung bewerten.
+
+### Schritt 1: Kurzbeschreibung
+- **Feedback:** Du hast eine Kommentarbeschreibung hinzugefügt, allerdings ist sie nicht sehr präzise. Es ist wichtig, dass die Beschreibung klar angibt, was die Funktion genau macht.
+- **Verbesserungsvorschlag:** Ändere die Beschreibung zu: `# Diese Funktion konvertiert einen String in eine Liste von Wörtern.`
+
+### Schritt 2: Datenanalyse
+- **Feedback:** Du hast eine grundlegende Datenanalyse durchgeführt und die Eingaben sowie das Ergebnis beschrieben. Allerdings fehlen spezifische Informationen zu den Typen der Eingaben und des Ergebnisses. 
+- **Verbesserungsvorschlag:** Füge eine detaillierte Analyse hinzu. Beispiel: 
+    ``` 
+    # Eingabe: ein String (str)
+    # Ergebnis: eine Liste von Wörtern (list[str])
+    ```
+
+### Schritt 3: Funktionskopf
+- **Feedback:** Der Funktionskopf ist unvollständig, da die Typen der Argumente und des Rückgabewerts nicht angegeben sind.
+- **Verbesserungsvorschlag:** Ändere den Funktionskopf zu:
+    ```
+    def stringToWords(s: str) -> list[str]:
+    ```
+
+### Schritt 4: Tests
+- **Feedback:** Der Testteil ist korrekt implementiert und macht Gebrauch von der `check`-Funktion.
+- **Verbesserungsvorschlag:** In diesem Schritt gibt es keine Änderungen. Der Test ist gut formuliert.
+
+### Schritt 5: Schablonen
+- **Feedback:** Du hast diesen Schritt ausgelassen, was in diesem Fall aber in Ordnung ist, da es sich um eine einfache Funktion handelt.
+- **Verbesserung:** Es wäre sinnvoll, die Schablonen zu erwähnen, um sicherzustellen, dass du alle notwendigen Schritte in der Zukunft einhältst.
+
+### Schritt 6: Implementierung
+- **Feedback:** Der Funktionsrumpf ist korrekt und funktioniert gemäß den Anforderungen.
+- **Verbesserung:** Hier gibt es keine Notwendigkeit zur Verbesserung, da die Funktion korrekt implementiert ist.
+
+### Zusammenfassung
+Insgesamt hast du die Grundstruktur befolgt, aber bei der Typangabe und der Kommentarbeschreibung gibt es Verbesserungsmöglichkeiten. Mit den vorgeschlagenen Änderungen sollte deine Lösung klarer und den Anforderungen entsprechend sein.
+
+Wenn du die genannten Punkte berücksichtigst, werde ich in der Lage sein, deine Lösung als korrekt und vollständig zu bewerten. 
+
+**Ergebnis:** Die Lösung benötigt Verbesserungen, aber ist auf dem richtigen Weg.
+================================== Ai Message ==================================
+
+| Schritt                                        | Wurde eingehalten? |
+| :--------------------------------------------- | :----------------: |
+| Schritt 1: Kurze Beschreibung hinzufügen       |    ❌ Nein         |
+| Schritt 2: Datenanalyse durchführen            |    ❌ Nein         |
+| Schritt 3: Funktionskopf vollständig angeben   |    ❌ Nein         |
+| Schritt 4: Tests korrekt implementieren        |    ✅ Ja           |
+| Schritt 5: Schablonen berücksichtigen          |    ❌ Nein         |
+| Schritt 6: Funktion korrekt implementieren     |    ✅ Ja           |
+
+### Zusammenfassung des Muster-Feedbacks
+Die Studentensolution und die Musterlösung sind inhaltlich ähnlich, weisen jedoch Unterschiede auf. Typannotationen fehlen in der Studentensolution, was die Klarheit über Eingangs- und Ausgangstypen angeht. Auch die Verwendung von überflüssigen Import-Statements sollte vermieden werden, und der Docstring benötigt eine präzisere Beschreibung der Funktionalität. Insgesamt ist der Ansatz funktional, aber die Lesbarkeit und Verständlichkeit könnten durch klare Typisierung und Dokumentation verbessert werden.

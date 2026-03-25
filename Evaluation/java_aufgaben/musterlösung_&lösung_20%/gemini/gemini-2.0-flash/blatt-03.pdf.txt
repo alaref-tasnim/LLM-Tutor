@@ -1,0 +1,442 @@
+================================ Human Message =================================
+
+ 
+    
+        Es handelt um die Aufgabe 1 in der pdf:
+Prof. Dr. Stefan Wehr, Hannes Braun
+Übungsblatt 3
+Algorithmen & Datenstrukturen, Sommersemester 2025
+Deadline: 27.3.2025, 23:00 Uhr
+21.3.2025
+Hinweise
+Code-Template. Zusammen mit der Aufgabenstellung finden Sie ein Template mit Klassen und
+Tests für dieses Übungsblatt. Importieren Sie zunächst dieses Template nach Eclipse. Gehen Sie
+dazu wie folgt vor:
+• Laden Sie das zip-Archiv aus dem Praktomat herunter und entpacken Sie es.
+• Durch das Entpacken wird ein Verzeichnis AuD_Assignment_N (wobei N die Nummer des
+aktuellen Übungsblatts ist) erstellt.
+• Importieren Sie das Verzeichnis AuD_Assignment_N nach Eclipse.
+– Sie finden die Import-Funktionalität im Menu “File” unter “Import” .
+– Benutzen Sie dann die Option “Existing Projects into Workspace” in der Kategorie
+“General”
+– Wählen Sie als “root directory” das Verzeichnis AuD_Assignment_N aus und schließen
+Sie den Import mit “Finish” ab.
+Code-Formatierung. Damit Eclipse standardmäßig mit 4 Leerzeichen einrückt, muss einmalig
+eine Einstellung geändert werden. Öffnen Sie dazu die Einstellungen. Unter “Java” → “Code
+Style” → “Formatter” erstellen Sie mit “New... ” ein neues Profil für den Formatter. Initialisieren
+Sie das Profil mit “Eclipse [built-in]” und setzen Sie einen Namen Ihrer Wahl. Im nächsten
+Fenster setzen Sie die Einstellung “Tab policy” (zu finden unter “Indentation”) auf “Spaces
+only” . Sichern Sie das Profil und stellen Sie sicher, dass dieses nun als aktives Profil ausgewählt
+ist.
+Im Menü von Eclipse können Sie jetzt unter „Source“ → „Correct Indentation“ die Einrückung
+automatisch korrigieren.
+Der Code muss folgende Namenskonventionen verwenden:
+• Für alle Identifizierer (außer Konstanten) wird CamelCase verwendet. Verwenden Sie keine
+Unterstriche zum Trennen von Wörtern.
+• Namen von Klassen, Interfaces, Records und Enums fangen mit einem Großbuchstaben
+an.
+• Methodennamen und Variablen fangen mit einem Kleinbuchstaben an.
+• Für Konstantennamen wird SCREAMING_SNAKE_CASE verwendet.
+1
+Übungsblatt 3 Algorithmen & Datenstrukturen
+Ausführen von Tests.
+• Klicken Sie mit der rechten Maustaste auf eine Testklasse
+• Wählen Sie dann “Run As . . .JUnit Test” . Alternativ können Sie den grünen Play-Button
+in der Menüleiste zur Ausführung der Tests verwenden.
+• Zum Ausführen aller Tests im Projekt: klicken Sie mit der rechten Maustaste auf das
+Projekt und dann “Run As . . .JUnit Test” .
+• Wichtig: die Tests müssen mit JUnit Version 5 laufen.
+Weitere wichtige Hinweise.
+• Benennen Sie keine Klassen, Interfaces, Methoden, Felder etc. aus dem Template um und
+ändern Sie keine Typsignaturen! Falls Sie dies doch tun, funktioniert die semi-automatische
+Bewertung nicht und Sie erhalten keine Punkte.
+• Ebenfalls funktioniert die semi-automatische Bewertung nicht, wenn Ihr Code nicht kom-
+piliert. Sorgen Sie dafür, dass Ihr kompletter Code kompiliert. Kommentieren Sie Code
+aus, der dies nicht tut.
+• Eine Lösung, die der Praktomat mit failed markiert, wird nicht bewertet.
+• Falls nicht anders angegeben, dürfen Sie für Ihre Lösung keine externe Bibliotheken ver-
+wenden. Es sind per Default nur Klassen aus java.lang und aus der JUnit Bibliothek
+(Version 5) erlaubt.
+• Bei der Abgabe wird der Coding-Style überprüft, siehe oben.
+Abgabe. Die Abgabe erfolgt über den Praktomat. Erstellen Sie dazu aus AuD_Assignment_N
+ein Zip-Archiv und laden Sie dieses Archiv in den Praktomat hoch. Sie können Lösungen mehr-
+fach abgeben, die letzte Abgabe zählt. Der Praktomat kompiliert Ihren Code und führt Unit-
+Tests aus. Möglicherweise kommen dabei auch Unit-Tests zum Einsatz, die im Code-Template
+nicht enthalten sind. Abgaben mit Kompilierfehler werden nicht akzeptiert.
+Aufgabe 1 ((6+8+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex03_01 (siehe Templa-
+te).
+Laden Sie sich das Code-Gerüst herunter. Ergänzen Sie dann die Klasse LinkedList wie folgt:
+(a) Implementieren Sie die Methode get, welche das Element an einem bestimmten Index lie-
+fert. Achten Sie darauf, dass Sie bei ungültigen Indexen eine IndexOutOfBoundsException
+werfen. Der Bereich der gültigen Indexe ist 0, . . . , n− 1 wobei n die Länge der Liste ist.
+Sie dürfen nicht die Methode asArray für Ihre Implementierung benutzen.
+(b) Implementieren Sie die Methode remove, welche das Element an einem bestimmten Index
+entfernt. Bzgl. der Indexe gelten dieselben Hinweise wie in Teil (a).
+(c) Implementieren Sie die Methode indexOf. Sie dürfen nicht die Methode asArray für Ihre
+Implementierung benutzen.
+Stellen Sie sicher, dass alle Tests aus dem bereitgestellten Code-Gerüst laufen!
+2
+Übungsblatt 3 Algorithmen & Datenstrukturen
+Aufgabe 2 ((8+8+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex03_02 (siehe Templa-
+te).
+Laden Sie sich das Code-Gerüst herunter.
+(a) Implementieren Sie in der Klasse DynArray die Methode insert. Bei einem ungültigen
+Index soll eine IndexOutOfBoundsException geworfen werden. Achten Sie darauf, dass
+alle Tests laufen.
+(b) Implementieren Sie remove für DynArray.
+(c) Implementieren Sie indexOf für DynArray.
+Hinweis: die Methode System.arraycopy kann zum Kopieren von Teilen eines Arrays verwendet
+werden. Dabei ist die Signatur dieser Methode wie folgt:
+void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+Es wird dabei aus dem Array src ab Index srcPos in das Array dest ab Index destPos kopiert.
+length ist die Anzahl an Elementen die kopiert werden. Es ist dabei möglich, dass src und dest
+auf dasselbe Array verweisen.
+Beispiel: folgender Aufruf verschiebt die Elemente an den Indexpositionen 1,2,3,4,5 im Array
+array an die Indexpositionen 0,1,2,3,4. Dabei bleibt das Element am Index 5 unverändert, d.h.
+am Index 4 und 5 stehen nach der Operation dieselben Werte.
+System.arraycopy(array, 1, array, 0, 5)
+Gesamtpunkte: 38
+Abgabe
+Via Upload im Praktomat bis 27.3.2025, 23:00 Uhr . Bitte beachten Sie die Hinweise zur
+Abgabe, die am Anfang des Übungsblatts stehen.
+3
+        Hier ist die Lösung des Studenten:
+package de.hso.aud.ex03_01;
+
+public class LinkedList<T> {
+    private static class Entry<T> {
+        private T data;
+        private Entry<T> next;
+        Entry(T data) {
+            this(data, null);
+        }
+        Entry(T data, Entry<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    private Entry<T> first;
+    private int size;
+
+    public void add(T elem) {
+        if (first == null) {
+            first = new Entry<T>(elem);
+        } else {
+            Entry<T> cur = first;
+            while (cur.next != null) {
+                cur = cur.next;
+            }
+            cur.next = new Entry<T>(elem);
+        }
+        size++;
+    }
+
+    public void insert(int i, T elem) {
+        if (i < 0) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+        if (i == 0) {
+            first = new Entry<T>(elem, first);
+        } else {
+            Entry<T> prev = first;
+            int j = i - 1;
+            while (j > 0) {
+                if (prev == null) {
+                    throw new IndexOutOfBoundsException(i + " is not a valid index");
+                }
+                j--;
+                prev = prev.next;
+            }
+            prev.next = new Entry<T>(elem, prev.next);
+        }
+        size++;
+    }
+
+    public void remove(int i) {
+        if (i < 0 || i > size || first == null) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+
+        if (i == 0) {
+            first = first.next;
+            size++;
+        } else {
+            Entry<T> previousEntry = first;
+            while (previousEntry != null && i > 1) {
+                i--;
+                previousEntry = previousEntry.next;
+            }
+
+            previousEntry.next = previousEntry.next;
+            size--;
+        }
+    }
+
+    public T get(int i) {
+        if (i < 0 || i > size || first == null) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+        Entry<T> currentEntry = first;
+        while (currentEntry != null && i > 1) {
+            i--;
+            currentEntry = currentEntry.next;
+        }
+
+        return currentEntry.data;
+    }
+
+    public int indexOf(T elem) {
+        int index = 0;
+        Entry<T> currentEntry = first;
+
+        while (currentEntry != null) {
+            if (elem == currentEntry.data) {
+                return index;
+            }
+
+            currentEntry = currentEntry.next;
+
+        return -1;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] asArray() {
+        Object[] res = new Object[size];
+        Entry<T> cur = first;
+        int i = 0;
+        while (cur != null) {
+            if (i >= size) {
+                throw new IllegalStateException("Size does not match list length");
+            }
+            res[i] = cur.data;
+            cur = cur.next;
+            i++;
+        }
+
+        if (i != size) {
+            throw new IllegalStateException("Size does not match list length");
+        }
+
+        return res;
+    }
+}
+
+
+
+        
+================================== Ai Message ==================================
+
+```text
+Aufgabe 1 ((6+8+4) Punkte)
+Arbeiten Sie für diese Übung am Code aus dem Package de.hso.aud.ex03_01 (siehe Templa-
+te).
+Laden Sie sich das Code-Gerüst herunter. Ergänzen Sie dann die Klasse LinkedList wie folgt:
+(a) Implementieren Sie die Methode get, welche das Element an einem bestimmten Index lie-
+fert. Achten Sie darauf, dass Sie bei ungültigen Indexen eine IndexOutOfBoundsException
+werfen. Der Bereich der gültigen Indexe ist 0, . . . , n− 1 wobei n die Länge der Liste ist.
+Sie dürfen nicht die Methode asArray für Ihre Implementierung benutzen.
+(b) Implementieren Sie die Methode remove, welche das Element an einem bestimmten Index
+entfernt. Bzgl. der Indexe gelten dieselben Hinweise wie in Teil (a).
+(c) Implementieren Sie die Methode indexOf. Sie dürfen nicht die Methode asArray für Ihre
+Implementierung benutzen.
+Stellen Sie sicher, dass alle Tests aus dem bereitgestellten Code-Gerüst laufen!
+
+```
+
+```text
+package de.hso.aud.ex03_01;
+
+public class LinkedList<T> {
+    private static class Entry<T> {
+        private T data;
+        private Entry<T> next;
+        Entry(T data) {
+            this(data, null);
+        }
+        Entry(T data, Entry<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    private Entry<T> first;
+    private int size;
+
+    public void add(T elem) {
+        if (first == null) {
+            first = new Entry<T>(elem);
+        } else {
+            Entry<T> cur = first;
+            while (cur.next != null) {
+                cur = cur.next;
+            }
+            cur.next = new Entry<T>(elem);
+        }
+        size++;
+    }
+
+    public void insert(int i, T elem) {
+        if (i < 0) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+        if (i == 0) {
+            first = new Entry<T>(elem, first);
+        } else {
+            Entry<T> prev = first;
+            int j = i - 1;
+            while (j > 0) {
+                if (prev == null) {
+                    throw new IndexOutOfBoundsException(i + " is not a valid index");
+                }
+                j--;
+                prev = prev.next;
+            }
+            prev.next = new Entry<T>(elem, prev.next);
+        }
+        size++;
+    }
+
+    public void remove(int i) {
+        if (i < 0 || i > size || first == null) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+
+        if (i == 0) {
+            first = first.next;
+            size++;
+        } else {
+            Entry<T> previousEntry = first;
+            while (previousEntry != null && i > 1) {
+                i--;
+                previousEntry = previousEntry.next;
+            }
+
+            previousEntry.next = previousEntry.next;
+            size--;
+        }
+    }
+
+    public T get(int i) {
+        if (i < 0 || i > size || first == null) {
+            throw new IndexOutOfBoundsException(i + " is not a valid index");
+        }
+        Entry<T> currentEntry = first;
+        while (currentEntry != null && i > 1) {
+            i--;
+            currentEntry = currentEntry.next;
+        }
+
+        return currentEntry.data;
+    }
+
+    public int indexOf(T elem) {
+        int index = 0;
+        Entry<T> currentEntry = first;
+
+        while (currentEntry != null) {
+            if (elem == currentEntry.data) {
+                return index;
+            }
+
+            currentEntry = currentEntry.next;
+
+        return -1;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Object[] asArray() {
+        Object[] res = new Object[size];
+        Entry<T> cur = first;
+        int i = 0;
+        while (cur != null) {
+            if (i >= size) {
+                throw new IllegalStateException("Size does not match list length");
+            }
+            res[i] = cur.data;
+            cur = cur.next;
+            i++;
+        }
+
+        if (i != size) {
+            throw new IllegalStateException("Size does not match list length");
+        }
+
+        return res;
+    }
+}
+
+```
+================================== Ai Message ==================================
+
+Okay, hier ist die Bewertung des Java-Codes, wobei ich mich auf die Methoden `get`, `remove` und `indexOf` konzentriere und die entsprechenden Zeilennummern angebe.
+
+**Bewertung der Methode `get`**
+
+*   **Zeile 76:** Die Bedingung `i > size` sollte `i >= size` lauten, um eine `IndexOutOfBoundsException` zu werfen, wenn `i` gleich `size` ist. Aktuell wird die Exception nicht geworfen, wenn auf ein Element außerhalb der Liste zugegriffen wird.
+*   **Zeile 81:** Die Schleifenbedingung `i > 1` ist falsch. Sie sollte `i > 0` sein. Dadurch wird das erste Element (Index 0) übersprungen.
+*   **Zeile 85:** Es sollte geprüft werden, ob currentEntry null ist, bevor auf currentEntry.data zugegriffen wird. Ansonsten kommt es zu einer NullPointerException, wenn der Index zu groß ist.
+*   Die Lösung ist nicht korrekt, da die Schleifenbedingung und die fehlende Null-Prüfung zu Fehlern führen.
+*   Der geforderte Algorithmus ist die lineare Suche in einer einfach verketteten Liste. Dieser Algorithmus wurde implementiert. Die Schleife iteriert von `first` bis zum gewünschten Index.
+
+**Bewertung der Methode `remove`**
+
+*   **Zeile 54:** Die Bedingung `i > size` sollte `i >= size` lauten, um eine `IndexOutOfBoundsException` zu werfen, wenn `i` gleich `size` ist. Aktuell wird die Exception nicht geworfen, wenn ein Element außerhalb der Liste entfernt werden soll.
+*   **Zeile 54:** Die Prüfung `first == null` ist redundant, da durch `i < 0` oder `i > size` bereits eine Exception geworfen wird, wenn die Liste leer ist.
+*   **Zeile 59:** `size++` sollte `size--` lauten, da die Liste durch das Entfernen eines Elements kleiner wird.
+*   **Zeile 66:** `previousEntry.next = previousEntry.next` entfernt das Element nicht korrekt. Es wird lediglich sich selbst zugewiesen. Korrekt wäre `previousEntry.next = previousEntry.next.next;`.
+*   **Zeile 67:** `size--` fehlt im else-Block.
+*   Die Lösung ist nicht korrekt, da das falsche Inkrementieren der Größe und die fehlerhafte Verkettung beim Entfernen des Elements zu Fehlern führen.
+*   Der geforderte Algorithmus ist das Entfernen eines Elements an einem bestimmten Index in einer einfach verketteten Liste. Dieser Algorithmus wurde im Prinzip implementiert, jedoch mit Fehlern in der Verkettung und Größenanpassung. Die Schleife iteriert von `first` bis zum zu entfernenden Element.
+
+**Bewertung der Methode `indexOf`**
+
+*   **Zeile 96:** Die `if`-Bedingung `elem == currentEntry.data` vergleicht die Referenzen der Objekte und nicht die Inhalte. Stattdessen sollte `elem.equals(currentEntry.data)` verwendet werden, um die Inhalte zu vergleichen. Dies ist besonders wichtig, wenn es sich bei `T` um einen Objekttyp handelt.
+*   **Zeile 101:** Die `return -1` Anweisung befindet sich innerhalb der `while`-Schleife, wodurch die Schleife nach der ersten Iteration beendet wird, auch wenn das Element nicht gefunden wurde. Die Anweisung muss außerhalb der Schleife stehen.
+*   Die Lösung ist nicht korrekt, da der Vergleich der Elemente und die Position der `return`-Anweisung zu Fehlern führen.
+*   Der geforderte Algorithmus ist die lineare Suche in einer einfach verketteten Liste. Dieser Algorithmus wurde im Prinzip implementiert, jedoch mit Fehlern beim Vergleich und der Rückgabe. Die Schleife iteriert von `first` bis zum Ende der Liste oder bis das Element gefunden wurde.
+================================== Ai Message ==================================
+
+Die Studentenlösung und die Musterlösung sind sich ähnlich, es gibt jedoch einige wichtige Unterschiede:
+
+- **Fehlerbehandlung in `remove(int i)`:**
+  - Musterlösung: Wirft eine `IndexOutOfBoundsException`, wenn `i < 0 || i >= size || first == null`.
+  - Studentenlösung: Wirft eine `IndexOutOfBoundsException`, wenn `i < 0 || i > size || first == null`.
+  - Der Fehler liegt hier: `i > size` anstatt `i >= size`. Wenn `i == size` ist, ist der Index ungültig, da die gültigen Indizes von `0` bis `size - 1` reichen. Außerdem wird in der Studentenlösung die Größe der Liste fälschlicherweise inkrementiert anstatt dekrementiert.
+- **Schleifenbedingung und Datenzugriff in `get(int i)`:**
+  - Musterlösung: Durchläuft die Liste mit `i > 0` und gibt `currentEntry.data` zurück.
+  - Studentenlösung: Durchläuft die Liste mit `i > 1` und gibt `currentEntry.data` zurück.
+  - Der Fehler liegt hier: `i > 1` anstatt `i > 0`. Dadurch wird ein falsches Element zurückgegeben.
+- **Fehler in `indexOf(T elem)`:**
+    - Musterlösung: Inkrementiert den Index innerhalb der Schleife und vergleicht Elemente mit `Objects.equals()`.
+    - Studentenlösung: Gibt immer `-1` zurück, da die `return -1;` Anweisung innerhalb der Schleife liegt. Außerdem werden die Elemente mit `==` anstatt mit `Objects.equals()` verglichen.
+    - Der Fehler liegt hier: Die return Anweisung ist falsch positioniert und die Elemente werden falsch verglichen.
+
+Die Musterlösung ist korrekter, da sie die Randbedingungen korrekt behandelt, die richtige Schleifenbedingung verwendet und die Elemente korrekt vergleicht.
+================================== Ai Message ==================================
+
+1. Gesamtbewertung
+   - Die Lösung ist inkorrekt, da die Implementierungen der Methoden `get`, `remove` und `indexOf` Fehler enthalten.
+
+2. Fehlerauflistung
+   - **Zeile 76:** Die Bedingung `i > size` sollte `i >= size` lauten.
+   - **Zeile 81:** Die Schleifenbedingung `i > 1` sollte `i > 0` lauten.
+   - **Zeile 85:** Es sollte geprüft werden, ob `currentEntry` null ist, bevor auf `currentEntry.data` zugegriffen wird.
+   - **Zeile 54:** Die Bedingung `i > size` sollte `i >= size` lauten.
+   - **Zeile 54:** Die Prüfung `first == null` ist redundant.
+   - **Zeile 59:** `size++` sollte `size--` lauten.
+   - **Zeile 66:** `previousEntry.next = previousEntry.next` ist fehlerhaft. Korrekt wäre `previousEntry.next = previousEntry.next.next;`.
+   - **Zeile 67:** `size--` fehlt im `else`-Block.
+   - **Zeile 96:** Die `if`-Bedingung `elem == currentEntry.data` sollte `elem.equals(currentEntry.data)` lauten.
+   - **Zeile 101:** Die `return -1` Anweisung befindet sich innerhalb der `while`-Schleife und muss außerhalb der Schleife stehen.
+
+3. Explizit geforderte Algorithmen
+   - Die Algorithmen zum Entfernen eines Elements und zur linearen Suche sind zwar implementiert, enthalten aber Fehler.
