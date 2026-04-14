@@ -37,9 +37,19 @@ def evaluate_solution(pdf, model_solution, student_solution, assignment):
     print("Finales Ergebnis:")
     return result
 
+def save_result_to_markdown(result, output_path):
+    """
+    Schreibt das Ergebnis in eine Markdown-Datei.
+    Falls result kein String ist, wird es in einen String umgewandelt.
+    """
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("# Ergebnis\n\n")
+        f.write("```text\n")
+        f.write(str(result))
+        f.write("\n```")
 
 def main():
-    # sicherstellen, dass relative Pfade funktionieren:
+    # Sicherstellen, dass relative Pfade funktionieren
     repo_root = os.path.dirname(os.path.abspath(__file__))
     os.chdir(repo_root)
 
@@ -50,7 +60,6 @@ def main():
     p.add_argument("--assignment", required=True)
     args = p.parse_args()
 
-    # TODO: Agent starten (vorerst nur debug)
     print("ENTRY OK")
 
     result = evaluate_solution(
@@ -63,6 +72,10 @@ def main():
     print("Rückgabe aus evaluate_solution:")
     print(result)
 
+    output_file = os.path.join(repo_root, "ergebniss.md")
+    save_result_to_markdown(result, output_file)
+
+    print(f"Ergebnis wurde gespeichert in: {output_file}")
     print("Exit")
     return 0
 
