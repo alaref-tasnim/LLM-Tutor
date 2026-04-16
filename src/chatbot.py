@@ -19,7 +19,14 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 LLM_PROXY_URL = "https://llm-proxy.imla.hs-offenburg.de"
 
-def get_llm(modell_name):
+def get_llm(modell_name, api: str):
+    if api != '':
+        return ChatOpenAI(
+            model= modell_name, 
+            api_key=api,
+            base_url=LLM_PROXY_URL,
+            )
+
     if OPENAI_DIRECT:
         return init_chat_model(f"openai:{modell_name}")
     
@@ -99,9 +106,9 @@ def aggregator_node(state: AgentState, llm) -> AgentState:
     message = llm.invoke(messages)
     return {'aggregator_state': [message]}
     
-def build_Agent_Graph(modell_name):
+def build_Agent_Graph(modell_name, api):
 
-    llm = get_llm(modell_name)
+    llm = get_llm(modell_name, api)
 
     graph = StateGraph(AgentState)
 

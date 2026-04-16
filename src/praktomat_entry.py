@@ -18,7 +18,7 @@ def load_pdf(path):
     return "\n".join([p.page_content for p in pages])
 
 
-def evaluate_solution(pdf, model_solution, student_solution, assignment):
+def evaluate_solution(pdf, model_solution, student_solution, assignment, api):
     user_input = f""" 
     Es handelt um die Aufgabe {assignment} in der pdf:
     {load_pdf(pdf)}
@@ -26,7 +26,7 @@ def evaluate_solution(pdf, model_solution, student_solution, assignment):
     Hier ist die Lösung des Studenten:
     {load_code(student_solution)}
     """
-    graph = build_Agent_Graph(MODELL)
+    graph = build_Agent_Graph(MODELL, api)
     result = graph.invoke(
         {
             "human_assignment_state": [HumanMessage(content=user_input)],
@@ -58,6 +58,7 @@ def main():
     p.add_argument("--model-solution", required=True)
     p.add_argument("--student-solution", required=True)
     p.add_argument("--assignment", required=True)
+    p.add_argument("--api", required=True)
     args = p.parse_args()
 
     print("ENTRY OK")
@@ -66,7 +67,8 @@ def main():
         args.pdf,
         args.model_solution,
         args.student_solution,
-        args.assignment
+        args.assignment,
+        args.api
     )
 
     print("Rückgabe aus evaluate_solution:")
