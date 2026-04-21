@@ -8,7 +8,7 @@ GEMINI_KEY = os.getenv("GEMINI_API_KEY")
 
 # name des Modells
 # "gemini-2.0-flash"
-MODELL = "gpt-4o-mini"
+MODELL = "gpt-4.1-mini"
 
 # API
 OPENAI_HSO_PROXY = False
