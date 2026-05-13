@@ -143,7 +143,7 @@ def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,
     txt_path = save_result_to_markdown(result_text, txt_output_path)
 
     if create_html:
-        html_path = output_in_html(txt_path, html_output_path)
+        html_path = output_in_html(txt_path)
         return {
             "txt_path": txt_path,
             "html_path": html_path,
