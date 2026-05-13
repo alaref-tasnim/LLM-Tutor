@@ -1,52 +1,5 @@
 import os, sys, argparse
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_core.messages import  HumanMessage
-from config.meta_config import  MODELL
-from chatbot import build_Agent_Graph
-
-
-
-
-def load_code(path):
-    with open(path, "r") as f:
-        content = f.read()
-        return content if content else ""
-
-def load_pdf(path):
-    loader = PyPDFLoader(path)
-    pages = loader.load()
-    return "\n".join([p.page_content for p in pages])
-
-
-def evaluate_solution(pdf, model_solution, student_solution, assignment, api):
-    user_input = f""" 
-    Es handelt um die Aufgabe {assignment} in der pdf:
-    {load_pdf(pdf)}
-
-    Hier ist die Lösung des Studenten:
-    {load_code(student_solution)}
-    """
-    graph = build_Agent_Graph(MODELL, api)
-    result = graph.invoke(
-        {
-            "human_assignment_state": [HumanMessage(content=user_input)],
-            "sample_solution": f"Hier ist die Musterlösung\n{load_code(model_solution)}"
-        }
-    )
-
-    print("Finales Ergebnis:")
-    return result
-
-def save_result_to_markdown(result, output_path):
-    """
-    Schreibt das Ergebnis in eine Markdown-Datei.
-    Falls result kein String ist, wird es in einen String umgewandelt.
-    """
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write("# Ergebnis\n\n")
-        f.write("```text\n")
-        f.write(str(result))
-        f.write("\n```")
+from common import analyze_submission_praktomat
 
 def main():
     # Sicherstellen, dass relative Pfade funktionieren
@@ -61,9 +14,7 @@ def main():
     p.add_argument("--api", required=True)
     args = p.parse_args()
 
-    print("ENTRY OK")
-
-    result = evaluate_solution(
+    analyze_submission_praktomat(
         args.pdf,
         args.model_solution,
         args.student_solution,
@@ -71,14 +22,6 @@ def main():
         args.api
     )
 
-    print("Rückgabe aus evaluate_solution:")
-    print(result)
-
-    output_file = os.path.join(repo_root, "ergebniss.md")
-    save_result_to_markdown(result, output_file)
-
-    print(f"Ergebnis wurde gespeichert in: {output_file}")
-    print("Exit")
     return 0
 
 if __name__ == "__main__":

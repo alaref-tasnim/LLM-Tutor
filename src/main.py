@@ -1,74 +1,30 @@
-import os
 import traceback
 import sys
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.messages import  HumanMessage
-from pathlib import Path
-from config.meta_config import TASK_NUMBER, TASK, STUDENT_SOLUTION, MODELL
-from config.locations import PYTHON_SAMPLE_SOLUTION, PYTHON_STUDENT_SOLUTION, PYTHON_LLM_LOG, PYTHON_TASKS_DIR
+from config.meta_config import *
 from chatbot import build_Agent_Graph
+from common import detect_language, load_prompts, print_full_evaluation_stream, load_code, load_pdf, get_language_config
 
 
-def load_code(dir, filename: str) -> str:
-    path = os.path.join(dir, filename)
-    if not os.path.isfile(path):
-        return ""
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            content = f.read()
-            return content if content else ""
-    except Exception:
-        return ""
-    
-def load_pdf(filename: str) -> str:
-    path = os.path.join(PYTHON_TASKS_DIR, filename)
-    loader = PyPDFLoader(path)
-    pages = loader.load()
-    return "\n".join([p.page_content for p in pages])
 
-def print_stream(stream):
-    last_retriever_state = None
-    last_muster_state= None
-    last_aggregator_state= None
-    last_message_state= None
-    for s in stream:
-        if s["human_assignment_state"] != last_message_state:
-            if s["human_assignment_state"]:
-                s["human_assignment_state"][-1].pretty_print()
-        last_message_state = list(s["human_assignment_state"])
-    
-        if s["retriever_state"] != last_retriever_state:
-            if s["retriever_state"]:
-                s["retriever_state"][-1].pretty_print()
-        last_retriever_state = list(s["retriever_state"])
-
-        if s["muster_state"] != last_muster_state:
-            if s["muster_state"]:
-                s["muster_state"][-1].pretty_print()
-        last_muster_state = list(s["muster_state"])
-
-        if s["aggregator_state"] != last_aggregator_state:
-            if s["aggregator_state"]:
-                s["aggregator_state"][-1].pretty_print()
-        last_aggregator_state = list(s["aggregator_state"])
-        
-def evaluate_solution(task_pdf, task_py):
-    task = load_pdf(task_pdf)
-    my_solution = load_code(PYTHON_STUDENT_SOLUTION, task_py)
-    sample_solution= load_code(PYTHON_SAMPLE_SOLUTION, task_py)
+def evaluate_solution(task_pfad, submission_pfad, solution_pfad):
 
     user_input = f""" 
-        Es handelt um die {TASK_NUMBER} in der pdf:\n{task}
-        Hier ist die Lösung des Studenten:\n{my_solution}
+        Es handelt um die {TASK_NUMBER} in der pdf:\n{load_pdf(task_pfad)}
+        Hier ist die Lösung des Studenten:\n{load_code(submission_pfad)}
         """
+    
+    detected_language= detect_language(submission_pfad)
+    agent_prompt = load_prompts(detected_language)
 
-    print_stream(build_Agent_Graph(MODELL).stream({
+    print_full_evaluation_stream(build_Agent_Graph(MODELL, API_KEY, prompts= agent_prompt).stream({
                                                 "human_assignment_state": [HumanMessage(content=user_input)], 
-                                                "sample_solution": f"Hier ist die Musterlösung\n {sample_solution}"
+                                                "sample_solution": f"Hier ist die Musterlösung\n {load_code(solution_pfad)}"
                                                 },
                                                 
                                                  stream_mode="values"))
     
+
 def main():
     while True:
         try:
@@ -77,7 +33,13 @@ def main():
                 print("Goodbye!")
                 break
 
-            log_dir = PYTHON_LLM_LOG / MODELL
+            # to change the task, go to config and change the input 
+            config = get_language_config(STUDENT_SOLUTION)
+            task_path = config["tasks_dir"] / TASK
+            student_solution_path = (config["student_solution_dir"] / STUDENT_SOLUTION)
+            muster_solution_path = (config["sample_solution_dir"] / MUSTER_SOLUTION)
+
+            log_dir = config["llm_log_dir"] / MODELL
             log_dir.mkdir(parents=True, exist_ok=True) 
             log_path = log_dir / f"{TASK}.txt"
 
@@ -86,12 +48,15 @@ def main():
                 try:
                     sys.stdout = log_file
                     evaluate_solution(
-                        TASK,
-                        STUDENT_SOLUTION,
+                        task_path,
+                        student_solution_path, 
+                        muster_solution_path
+                       
                     )
                 finally:
                     sys.stdout = old_stdout 
             print(f"✅ Log wurde gespeichert unter: {log_path}")
+
 
         except Exception as e:
             sys.stdout = sys.__stdout__

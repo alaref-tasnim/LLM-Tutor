@@ -57,7 +57,7 @@ class AgentState(TypedDict):
 
 
 # Kontrollflussgraph eines mehrstufigen LLM-Workflows (LangGraph)
-def assignment_node(state: AgentState, llm) -> AgentState:
+def assignment_node(state: AgentState, llm, prompt) -> AgentState:
     """
     Extracts the specific assignment from the exercise sheets.  
     This node identifies which task is being referenced and 
@@ -65,57 +65,61 @@ def assignment_node(state: AgentState, llm) -> AgentState:
     without additional explanations or metadata. 
     The task files follow the naming pattern: PXX-topic_blatt-XX.pdf
     """
-   
-    messages = [SystemMessage(content=ASSIGNMENT_AGENT_SYSTEMMESSAGE)] +  list(state['human_assignment_state'])
+    messages = [SystemMessage(content=prompt)] +  list(state['human_assignment_state'])
     message = llm.invoke(messages)
     return {'human_assignment_state': [message]}
 
-def retriever_node(state: AgentState, llm) -> AgentState:
+
+def retriever_node(state: AgentState, llm, prompt) -> AgentState:
     """
     The retriever node evaluates and corrects the student’s
     solution in accordance with the corresponding prompt
     """
-
     # Anfangsnachrichten vorbereiten von assignment_agent 
     human_messages = [HumanMessage(content= state["human_assignment_state"][-1].content)]
-    response = llm.invoke([SystemMessage(content=RETRIEVER_AGENT_SYSTEMMESSAGE)] + human_messages)  
+    response = llm.invoke([SystemMessage(content=prompt)] + human_messages)  
     return {"retriever_state": [response]}
 
-def muster_node(state:AgentState, llm) -> AgentState:
+
+def muster_node(state:AgentState, llm, prompt) -> AgentState:
     """
     The muster node is provided with the assignment message 
     including the sample solution and is responsible for 
     comparing both solutions and delivering feedback
     """
-
     human_messages = [HumanMessage(content= state['human_assignment_state'][-1].content)]
-    messages = [SystemMessage(content=MUSTER_AGENT_SYSTEMMESSAGE)] + human_messages + [state["sample_solution"]]
+    messages = [SystemMessage(content=prompt)] + human_messages + [state["sample_solution"]]
     response  = llm.invoke(messages)
     return {'muster_state': [response]}
-    
-def aggregator_node(state: AgentState, llm) -> AgentState:
+
+
+def aggregator_node(state: AgentState, llm, prompt) -> AgentState:
     """
     Combines the results of the retreiver and the muster
     node and summarizes them into an overall evaluation using 
     a predefined template
     """
-
     retreiver_agent = state["retriever_state"][-1].content
     muster_agent    = state["muster_state"][-1].content
-    messages = [SystemMessage(content=AGGREGATOR_AGENT_SYSTEMMESSAGE)] + [retreiver_agent] + [muster_agent] 
+    messages = [SystemMessage(content=prompt)] + [retreiver_agent] + [muster_agent] 
     message = llm.invoke(messages)
     return {'aggregator_state': [message]}
     
-def build_Agent_Graph(modell_name, api):
+
+def build_Agent_Graph(modell_name, api, prompts:dict):
 
     llm = get_llm(modell_name, api)
-
     graph = StateGraph(AgentState)
 
-    graph.add_node("Aufgabenextraktion", partial(assignment_node, llm=llm))
-    graph.add_node("Abgabenanalyse",  partial(retriever_node, llm=llm))
-    graph.add_node("Mustervergleich",     partial(muster_node, llm=llm))
-    graph.add_node("Aggregation", partial(aggregator_node, llm=llm))
+    aggregator_prompt = prompts.get("aggregator")
+    assignment_prompt = prompts.get("assignment")
+    muster_prompt = prompts.get("muster")
+    retriever_prompt = prompts.get("retriever")
+
+    graph.add_node("Aufgabenextraktion", partial(assignment_node, llm=llm, prompt=assignment_prompt))
+    graph.add_node("Abgabenanalyse",  partial(retriever_node, llm=llm, prompt= retriever_prompt))
+    graph.add_node("Mustervergleich",     partial(muster_node, llm=llm, prompt= muster_prompt))
+    graph.add_node("Aggregation", partial(aggregator_node, llm=llm, prompt=aggregator_prompt))
 
     graph.set_entry_point("Aufgabenextraktion")
 
