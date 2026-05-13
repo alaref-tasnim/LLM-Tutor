@@ -108,18 +108,17 @@ def print_full_evaluation_stream(stream):
         last_aggregator_state = list(s["aggregator_state"])
         
 
-# code for praktomat 
+# code for praktomat
 def save_result_to_markdown(result, output_path):
-    """
-    Schreibt das Ergebnis in eine Markdown-Datei.
-    Falls result kein String ist, wird es in einen String umgewandelt.
-    """
+    output_path = Path(output_path)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("# Ergebnis\n\n")
         f.write("```text\n")
         f.write(str(result))
         f.write("\n```")
 
+    absolute_path = output_path.resolve()
+    return absolute_path
 
 def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,api,txt_output_path: str = "llm_result.txt",html_output_path: str = "llm_output.html",create_html: bool = True):
     user_input = f""" 
