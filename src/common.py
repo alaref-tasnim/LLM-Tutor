@@ -72,14 +72,18 @@ def load_prompts(language: str):
 
 
 
-def print_evaluation_stream(stream):
+def print_evaluation_stream_praktomat(stream):
     last_aggregator_state= None
+    result_text = ""
+
     for s in stream:
         if s["aggregator_state"] != last_aggregator_state:
             if s["aggregator_state"]:
-                s["aggregator_state"][-1].pretty_print()
+                message = s["aggregator_state"][-1]
+                result_text += message.content + "\n\n"
         last_aggregator_state = list(s["aggregator_state"])
         
+    return result_text
 
 def print_full_evaluation_stream(stream):
     last_retriever_state = None
@@ -120,7 +124,7 @@ def save_result_to_markdown(result, output_path):
     absolute_path = output_path.resolve()
     return absolute_path
 
-def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,api,txt_output_path: str = "llm_result.txt",html_output_path: str = "llm_output.html",create_html: bool = True):
+def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,api):
     user_input = f""" 
     Es handelt um die Aufgabe {assignment} in der pdf:
     {load_pdf(pdf)}
@@ -137,30 +141,13 @@ def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,
             "sample_solution": f"Hier ist die Musterlösung\n {load_code(model_solution)}"},
         stream_mode="values")
 
-    result_text = print_evaluation_stream(stream)
+    html_output = output_in_html(print_evaluation_stream_praktomat(stream))
+    print(html_output)
 
-    txt_path = save_result_to_markdown(result_text, txt_output_path)
-
-    if create_html:
-        html_path = output_in_html(txt_path)
-        return {
-            "txt_path": txt_path,
-            "html_path": html_path,
-            "result": result_text
-        }
-
-    return {
-        "txt_path": txt_path,
-        "html_path": None,
-        "result": result_text
-    }
    
 
 # if you want to use it, you must use  print_evaluation_stream instead of print_full_evaluation_stream !
-def output_in_html(llm_result_pfad):
-   
-    with open(llm_result_pfad , "r", encoding="utf-8") as f:
-        content = f.read()
+def output_in_html(content):
 
     cleaned = content.replace(
         "================================== Ai Message ==================================",
@@ -206,7 +193,6 @@ def output_in_html(llm_result_pfad):
         </body>
         </html>
         """
+    return html_content
 
-    # HTML speichern
-    with open("llm_output.html", "w", encoding="utf-8") as html_file:
-        html_file.write(html_content)
+   
