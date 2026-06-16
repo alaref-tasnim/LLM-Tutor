@@ -10,9 +10,12 @@ from pathlib import Path
 
 
 def load_code(path):
-    with open(path, "r") as f:
-        content = f.read()
-        return content if content else ""
+    try:
+        with open(path, "r") as f:
+            content = f.read()
+            return content if content else ""
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"Die Lösungsdatei existiert nicht: {path}") from e
 
 def load_pdf(path):
     loader = PyPDFLoader(path)
