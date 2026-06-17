@@ -15,7 +15,7 @@ def load_code(path):
             content = f.read()
             return content if content else ""
     except FileNotFoundError as e:
-        raise FileNotFoundError(f"Die Lösungsdatei existiert nicht: {path}") from e
+        print (f"Die Lösungsdatei existiert nicht: {path}")
 
 def load_pdf(path):
     loader = PyPDFLoader(path)
