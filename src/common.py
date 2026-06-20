@@ -14,8 +14,9 @@ def load_code(path):
         with open(path, "r") as f:
             content = f.read()
             return content if content else ""
-    except FileNotFoundError as e:
-        print (f"Die Lösungsdatei existiert nicht: {path}")
+    except FileNotFoundError:
+        print(f"Es gibt keine Datei: {path}")
+        return None
 
 def load_pdf(path):
     loader = PyPDFLoader(path)
@@ -128,6 +129,11 @@ def save_result_to_markdown(result, output_path):
     return absolute_path
 
 def analyze_submission_praktomat(pdf,model_solution,student_solution,assignment,api):
+    # not necessary for muster_solution
+    student_code = load_code(student_solution)
+    if student_code is None:
+        return
+
     user_input = f""" 
     Es handelt um die Aufgabe {assignment} in der pdf:
     {load_pdf(pdf)}
